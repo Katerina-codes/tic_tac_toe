@@ -27,6 +27,12 @@ RSpec.describe InputOutput do
       expect(output.string).to eq("Time to place your mark! Please choose a number from 1 - 9\n")
     end
 
+    it "gets a move from a player" do
+      input = StringIO.new("1")
+      input_output = InputOutput.new(output, input)
+      expect(input_output.get_move).to eq(1)
+    end
+
   end
 
 end
