@@ -16,6 +16,18 @@ RSpec.describe InputOutput do
  --- --- ---""")
     end
 
+    it "displays a grid with an 'X' on position 1" do
+      input_output = InputOutput.new
+      expect(input_output.display_grid([["| X |", "| 2 |", "| 3 |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]])).to eq("""
+ --- --- ---
+| X | 2 | 3 |
+ --- --- ---
+| 4 | 5 | 6 |
+ --- --- ---
+| 7 | 8 | 9 |
+ --- --- ---""")
+    end
+    
   end
 
   context "interacts with the player" do
