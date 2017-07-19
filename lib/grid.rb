@@ -5,7 +5,6 @@ class Grid
   end
 
   def place_a_move(current_grid, move)
-    current_grid[move]
     if move == 1
       [["| X |", "| 2 |", "| 3 |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]]
     elsif move == 2
