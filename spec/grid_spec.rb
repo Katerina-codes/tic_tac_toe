@@ -22,7 +22,7 @@ RSpec.describe Grid do
   it "marks an 'X' on the 3rd position of the grid" do
     grid = Grid.new
     current_grid = [["| 1 |", "| 2 |", "| 3 |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]]
-    expect(grid.place_a_move(current_grid, 3)).to eq([["| 1 |", "| 2 |", "| X |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]])
+    expect(grid.place_a_move(current_grid, [0, 2])).to eq([["| 1 |", "| 2 |", "| X |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]])
   end
 
 end
