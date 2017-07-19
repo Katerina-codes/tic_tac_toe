@@ -21,7 +21,7 @@ RSpec.describe Grid do
     expect(grid.place_a_move(unmarked_grid, [0, 2], "| X |")).to eq([["| 1 |", "| 2 |", "| X |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]])
   end
 
-  it "marks an 'O' on the 1st position of the grid" do
+  it "marks 'O' on the 1st position of the grid" do
     expect(grid.place_a_move(unmarked_grid, [0, 0], "| O |")).to eq([["| O |", "| 2 |", "| 3 |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]])
   end
 
