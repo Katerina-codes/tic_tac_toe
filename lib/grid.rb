@@ -5,9 +5,9 @@ class Grid
   end
 
   def place_a_move(current_grid, move)
-    first_position = move[0]
-    second_position = move[1]
-    current_grid[first_position][second_position] = "| X |"
+    move_part_1 = move[0]
+    move_part_2 = move[1]
+    current_grid[move_part_1][move_part_2] = "| X |"
     current_grid
   end
 
