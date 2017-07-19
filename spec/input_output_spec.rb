@@ -18,7 +18,7 @@ RSpec.describe InputOutput do
 
   end
 
-  context "displays intructions to the player" do
+  context "interacts with the player" do
 
     it "asks the player for a move" do
       output = StringIO.new
