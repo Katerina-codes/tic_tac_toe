@@ -20,6 +20,11 @@ class InputOutput
     @output.puts "Choose your mark, type 'X' or 'O'"
   end
 
+  def get_mark_choice
+    @input.gets.chomp.downcase
+  end
+
+
   def ask_for_move
     @output.puts "Time to place your mark! Please choose a number from 1 - 9"
   end
