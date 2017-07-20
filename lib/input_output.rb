@@ -6,13 +6,14 @@ class InputOutput
   end
 
   def display_grid(grid)
-    if grid == [["| 1 |", "| 2 |", "| 3 |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]]
-      "\n --- --- ---\n| 1 | 2 | 3 |\n --- --- ---\n| 4 | 5 | 6 |\n --- --- ---\n| 7 | 8 | 9 |\n --- --- ---"
-    elsif grid == [["| X |", "| 2 |", "| 3 |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]]
-      "\n --- --- ---\n| X | 2 | 3 |\n --- --- ---\n| 4 | 5 | 6 |\n --- --- ---\n| 7 | 8 | 9 |\n --- --- ---"
-    else
-      "\n --- --- ---\n| 1 | X | 3 |\n --- --- ---\n| 4 | 5 | 6 |\n --- --- ---\n| 7 | 8 | 9 |\n --- --- ---"
+    row_lines = " --- --- ---"
+    formatted_grid = grid.map do |each_row|
+      row_lines + "\n" + each_row.join("") + "\n"
     end
+
+    @output.puts "\n"
+    @output.puts formatted_grid
+    @output.print row_lines
   end
 
   def ask_for_move

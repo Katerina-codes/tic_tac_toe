@@ -5,8 +5,10 @@ RSpec.describe InputOutput do
   context "grid" do
 
     it "displays a formatted grid of numbers 1 - 9 to the user" do
-     input_output = InputOutput.new
-     expect(input_output.display_grid([["| 1 |", "| 2 |", "| 3 |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]])).to eq("""
+     output = StringIO.new
+     input_output = InputOutput.new(output)
+     input_output.display_grid([["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
+     expect(output.string).to eq("""
  --- --- ---
 | 1 | 2 | 3 |
  --- --- ---
@@ -17,8 +19,10 @@ RSpec.describe InputOutput do
     end
 
     it "displays a grid with 'X' marked at position 1" do
-      input_output = InputOutput.new
-      expect(input_output.display_grid([["| X |", "| 2 |", "| 3 |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]])).to eq("""
+      output = StringIO.new
+      input_output = InputOutput.new(output)
+      input_output.display_grid([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
+      expect(output.string).to eq("""
  --- --- ---
 | X | 2 | 3 |
  --- --- ---
@@ -29,8 +33,10 @@ RSpec.describe InputOutput do
     end
 
     it "displays a grid with 'X' marked at position 2" do
-      input_output = InputOutput.new
-      expect(input_output.display_grid([["| 1 |", "| X |", "| 3 |",], ["| 4 |", "| 5 |" , "| 6 |"], ["| 7 |", "| 8 |", "| 9 |"]])).to eq("""
+      output = StringIO.new
+      input_output = InputOutput.new(output)
+      input_output.display_grid([["| 1 ", "| X |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
+      expect(output.string).to eq("""
  --- --- ---
 | 1 | X | 3 |
  --- --- ---
