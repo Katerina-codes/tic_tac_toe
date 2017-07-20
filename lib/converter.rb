@@ -9,7 +9,8 @@ class Converter
       5 => [1, 1],
       6 => [1, 2],
       7 => [2, 0],
-      8 => [2, 1]
+      8 => [2, 1],
+      9 => [2, 2]
     }
     number_to_grid_position[move]
   end
