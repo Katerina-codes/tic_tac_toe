@@ -28,8 +28,4 @@ class InputOutput
     @input.gets.to_i
   end
 
-  def get_mark_choice
-    @input.gets
-  end
-
 end
