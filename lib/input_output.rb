@@ -16,6 +16,10 @@ class InputOutput
     @output.print row_lines
   end
 
+  def ask_for_mark_choice
+    @output.puts "Choose your mark, type 'X' or 'O'"
+  end
+
   def ask_for_move
     @output.puts "Time to place your mark! Please choose a number from 1 - 9"
   end
