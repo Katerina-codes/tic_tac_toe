@@ -42,7 +42,7 @@ RSpec.describe Converter do
     expect(converter.convert_move_number(8)).to eq([2, 1])
   end
 
-  it "converts 9 to [2, 1]" do
+  it "converts 9 to [2, 2]" do
     converter = Converter.new
     expect(converter.convert_move_number(9)).to eq([2, 2])
   end
