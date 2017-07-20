@@ -12,4 +12,9 @@ RSpec.describe Validator do
     expect(validator.move_valid?(10)).to eq(false)
   end
 
+  it "returns true if 2 is entered" do
+    validator = Validator.new
+    expect(validator.move_valid?(2)).to eq(true)
+  end
+
 end
