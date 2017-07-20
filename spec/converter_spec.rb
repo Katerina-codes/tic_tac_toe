@@ -17,4 +17,9 @@ RSpec.describe Converter do
     expect(converter.convert_move_number(3)).to eq([0, 2])
   end
 
+  it "converts 4 to [1, 0]" do
+    converter = Converter.new
+    expect(converter.convert_move_number(4)).to eq([1, 0])
+  end
+
 end
