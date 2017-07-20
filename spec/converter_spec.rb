@@ -37,4 +37,9 @@ RSpec.describe Converter do
     expect(converter.convert_move_number(7)).to eq([2, 0])
   end
 
+  it "converts 8 to [2, 1]" do
+    converter = Converter.new
+    expect(converter.convert_move_number(8)).to eq([2, 1])
+  end
+
 end
