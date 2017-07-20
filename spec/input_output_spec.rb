@@ -53,7 +53,7 @@ RSpec.describe InputOutput do
       expect(output.string).to eq("Choose your mark, type 'X' or 'O'\n")
     end
 
-    it "gets either 'X' from a player" do
+    it "gets 'X' from a player" do
       input = StringIO.new("X")
       input_output = InputOutput.new(output, input)
       expect(input_output.get_mark_choice).to eq("X")
