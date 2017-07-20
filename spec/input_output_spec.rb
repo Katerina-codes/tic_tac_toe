@@ -2,7 +2,7 @@ require 'input_output'
 
 RSpec.describe InputOutput do
 
-  context "grid" do
+  context "Displays grid" do
 
     it "displays a formatted grid of numbers 1 - 9 to the user" do
      output = StringIO.new
@@ -48,7 +48,7 @@ RSpec.describe InputOutput do
 
   end
 
-  context "interacts with the player" do
+  context "Interacts with the player" do
 
     it "asks the player for a move" do
       output = StringIO.new
@@ -62,7 +62,6 @@ RSpec.describe InputOutput do
       input_output = InputOutput.new(output, input)
       expect(input_output.get_move).to eq(1)
     end
-
   end
 
 end
