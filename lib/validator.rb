@@ -1,7 +1,11 @@
 class Validator
 
   def move_valid?(move)
-    true
+    if move == 1
+      true
+    else
+      false
+    end
   end
 
 end
