@@ -5,11 +5,7 @@ class Validator
   end
 
   def mark_move_valid?(mark)
-    if mark == "x" || mark == "o"
-      true
-    else
-      false
-    end
+     mark == "x" || mark == "o"
   end
 
 end
