@@ -17,4 +17,9 @@ RSpec.describe Validator do
     expect(validator.move_valid?(2)).to eq(true)
   end
 
+  it "returns true if move equals x" do
+    validator = Validator.new
+    expect(validator.mark_move_valid?("x")).to eq(true)
+  end
+
 end
