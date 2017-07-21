@@ -24,7 +24,6 @@ class InputOutput
     @input.gets.chomp.downcase
   end
 
-
   def ask_for_move
     @output.puts "Time to place your mark! Please choose a number from 1 - 9"
   end
