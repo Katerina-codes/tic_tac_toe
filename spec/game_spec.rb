@@ -28,4 +28,11 @@ RSpec.describe Game do
     expect(output.string).to include("Choose your mark, type 'X' or 'O'")
   end
 
+  it "gets a player move" do
+    input = StringIO.new("1")
+    input_output = InputOutput.new(output, input)
+    game = Game.new(input_output, validator)
+    expect(game.get_player_move).to eq(1)
+  end
+
 end

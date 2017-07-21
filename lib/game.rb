@@ -18,4 +18,9 @@ class Game
     mark
   end
 
+  def get_player_move
+    @input_output.ask_for_move
+    @input_output.get_move
+  end
+
 end
