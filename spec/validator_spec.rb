@@ -4,7 +4,7 @@ RSpec.describe Validator do
 
   let(:validator) { Validator.new }
 
-  context 'Validates player\'s move' do
+  context "Validates player's move" do
 
     it "returns true if 1 is entered" do
       expect(validator.move_valid?(1)).to eq(true)
@@ -20,7 +20,7 @@ RSpec.describe Validator do
 
   end
 
-  context 'Validates player\'s mark' do
+  context "Validates player's mark" do
 
     it "returns true if move equals x" do
       expect(validator.mark_move_valid?("x")).to eq(true)
