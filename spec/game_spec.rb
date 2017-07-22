@@ -10,6 +10,7 @@ RSpec.describe Game do
   let(:input_output) { InputOutput.new(output) }
   let(:validator) { Validator.new }
   let(:grid) { Grid.new }
+  let(:converter) { Converter.new }
 
   context "Gets a valid mark" do
 
@@ -72,10 +73,16 @@ RSpec.describe Game do
  --- --- ---""")
   end
 
+  it "gets player's move and shows grid updated with move" do
+   input = StringIO.new("1")
+   input_output = InputOutput.new(output, input)
+   game = new_game_instance(input_output)
+   expect(game.get_move_and_update_board("| X ", [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
+ end
+
+
   def new_game_instance(input_output)
-    game = Game.new(input_output, validator, grid)
+    game = Game.new(input_output, validator, grid, converter)
   end
-
-
 
 end

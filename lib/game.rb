@@ -1,9 +1,10 @@
 class Game
 
-  def initialize(input_output, validator, grid)
+  def initialize(input_output, validator, grid, converter)
     @input_output = input_output
     @validator = validator
     @grid = grid
+    @converter = converter
   end
 
   def get_player_mark
@@ -35,6 +36,18 @@ class Game
   def initial_grid
     new_grid = @grid.draw_grid
     @input_output.display_grid(new_grid)
+  end
+
+  def get_move_and_update_board(mark, current_grid)
+    move = get_player_move
+      if @validator.move_valid?(move)
+        move
+      else
+        move = get_valid_move(move)
+      end
+
+    converted_move = @converter.convert_move_number(move)
+    @grid.place_a_move(current_grid, converted_move, mark)
   end
 
 end
