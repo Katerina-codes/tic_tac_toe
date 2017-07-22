@@ -4,8 +4,10 @@ require 'validator'
 
 RSpec.describe Game do
 
-  let(:validator) { Validator.new }
   let(:output) { StringIO.new }
+  let(:input) { StringIO.new }
+  let(:input_output) { InputOutput.new(output) }
+  let(:validator) { Validator.new }
 
   it "gets a mark choice" do
     input = StringIO.new("x")
@@ -15,7 +17,6 @@ RSpec.describe Game do
   end
 
   it "returns mark if mark is 'x' " do
-    input_output = InputOutput.new
     game = Game.new(input_output, validator)
     expect(game.get_valid_mark("x")).to eq("x")
   end
@@ -36,12 +37,11 @@ RSpec.describe Game do
   end
 
   it "returns move if move is valid" do
-    input_output = InputOutput.new
     game = Game.new(input_output, validator)
     expect(game.get_valid_move(1)).to eq(1)
   end
 
-  it "displays prompt and gets for move until move is valid" do
+  it "displays prompt and gets move until move is valid" do
     input = StringIO.new("1")
     input_output = InputOutput.new(output, input)
     game = Game.new(input_output, validator)
