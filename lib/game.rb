@@ -38,14 +38,13 @@ class Game
     @input_output.display_grid(new_grid)
   end
 
-  def get_move_and_update_board(mark, current_grid)
+  def get_move_and_update_grid(mark, current_grid)
     move = get_player_move
       if @validator.move_valid?(move)
         move
       else
         move = get_valid_move(move)
       end
-
     converted_move = @converter.convert_move_number(move)
     @grid.place_a_move(current_grid, converted_move, mark)
   end
