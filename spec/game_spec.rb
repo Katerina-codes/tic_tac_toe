@@ -59,7 +59,7 @@ RSpec.describe Game do
 
   end
 
-  it "Player is shown the initial grid" do
+  it "shows player the initial grid" do
     game = new_game_instance(input_output)
     game.initial_grid
     expect(output.string).to eq("""
@@ -75,5 +75,7 @@ RSpec.describe Game do
   def new_game_instance(input_output)
     game = Game.new(input_output, validator, grid)
   end
+
+
 
 end
