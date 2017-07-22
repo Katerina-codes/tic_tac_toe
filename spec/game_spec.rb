@@ -35,4 +35,12 @@ RSpec.describe Game do
     expect(game.get_player_move).to eq(1)
   end
 
+  it "returns move if move is valid" do
+    input_output = InputOutput.new
+    game = Game.new(input_output, validator)
+    expect(game.get_valid_move(1)).to eq(1)
+  end
+
+  end
+
 end

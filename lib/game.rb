@@ -23,4 +23,8 @@ class Game
     @input_output.get_move
   end
 
+  def get_valid_move(move)
+    move
+  end
+
 end
