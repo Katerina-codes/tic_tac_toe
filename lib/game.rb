@@ -24,7 +24,9 @@ class Game
   end
 
   def get_valid_move(move)
-    move
+    if @validator.move_valid?(move)
+      move
+    end
   end
 
 end

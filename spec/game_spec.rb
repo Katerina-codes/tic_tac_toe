@@ -41,6 +41,4 @@ RSpec.describe Game do
     expect(game.get_valid_move(1)).to eq(1)
   end
 
-  end
-
 end
