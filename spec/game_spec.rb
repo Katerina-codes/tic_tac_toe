@@ -16,19 +16,19 @@ RSpec.describe Game do
     it "gets a mark choice" do
       input = StringIO.new("x")
       input_output = InputOutput.new(output, input)
-      game = Game.new(input_output, validator, grid)
+      game = new_game_instance(input_output)
       expect(game.get_player_mark).to eq('x')
     end
 
     it "returns mark if mark is 'x' " do
-      game = Game.new(input_output, validator, grid)
+      game = new_game_instance(input_output)
       expect(game.get_valid_mark("x")).to eq("x")
     end
 
     it "returns another mark prompt if mark is not valid" do
       input = StringIO.new("x")
       input_output = InputOutput.new(output, input)
-      game = Game.new(input_output, validator, grid)
+      game = new_game_instance(input_output)
       game.get_valid_mark("z")
       expect(output.string).to include("Choose your mark, type 'X' or 'O'")
     end
@@ -40,19 +40,19 @@ RSpec.describe Game do
     it "gets a player move" do
       input = StringIO.new("1")
       input_output = InputOutput.new(output, input)
-      game = Game.new(input_output, validator, grid)
+      game = new_game_instance(input_output)
       expect(game.get_player_move).to eq(1)
     end
 
     it "returns move if move is valid" do
-      game = Game.new(input_output, validator, grid)
+      game = new_game_instance(input_output)
       expect(game.get_valid_move(1)).to eq(1)
     end
 
     it "displays prompt and gets move until move is valid" do
       input = StringIO.new("1")
       input_output = InputOutput.new(output, input)
-      game = Game.new(input_output, validator, grid)
+      game = new_game_instance(input_output)
       game.get_valid_move(0)
       expect(output.string).to include("Time to place your mark! Please choose a number from 1 - 9\n")
     end
@@ -60,8 +60,7 @@ RSpec.describe Game do
   end
 
   it "Player is shown the initial grid" do
-    grid = Grid.new
-    game = Game.new(input_output, validator, grid)
+    game = new_game_instance(input_output)
     game.initial_grid
     expect(output.string).to eq("""
  --- --- ---
@@ -71,6 +70,10 @@ RSpec.describe Game do
  --- --- ---
 | 7 | 8 | 9 |
  --- --- ---""")
+  end
+
+  def new_game_instance(input_output)
+    game = Game.new(input_output, validator, grid)
   end
 
 end
