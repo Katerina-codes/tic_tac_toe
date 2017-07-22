@@ -24,9 +24,11 @@ class Game
   end
 
   def get_valid_move(move)
-    if @validator.move_valid?(move)
-      move
+    until @validator.move_valid?(move)
+      @input_output.ask_for_move
+      move = @input_output.get_move
     end
+    move
   end
 
 end

@@ -41,4 +41,12 @@ RSpec.describe Game do
     expect(game.get_valid_move(1)).to eq(1)
   end
 
+  it "displays prompt and gets for move until move is valid" do
+    input = StringIO.new("1")
+    input_output = InputOutput.new(output, input)
+    game = Game.new(input_output, validator)
+    game.get_valid_move(0)
+    expect(output.string).to include("Time to place your mark! Please choose a number from 1 - 9\n")
+  end
+
 end
