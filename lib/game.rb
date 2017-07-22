@@ -1,8 +1,9 @@
 class Game
 
-  def initialize(input_output, validator)
+  def initialize(input_output, validator, grid)
     @input_output = input_output
     @validator = validator
+    @grid = grid
   end
 
   def get_player_mark
@@ -29,6 +30,11 @@ class Game
       move = @input_output.get_move
     end
     move
+  end
+
+  def initial_grid
+    new_grid = @grid.draw_grid
+    @input_output.display_grid(new_grid)
   end
 
 end
