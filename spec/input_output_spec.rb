@@ -17,7 +17,7 @@ RSpec.describe InputOutput do
 | 4 | 5 | 6 |
  --- --- ---
 | 7 | 8 | 9 |
- --- --- ---""")
+ --- --- ---\n""")
     end
 
     it "displays a grid with 'X' marked at position 1" do
@@ -29,7 +29,7 @@ RSpec.describe InputOutput do
 | 4 | 5 | 6 |
  --- --- ---
 | 7 | 8 | 9 |
- --- --- ---""")
+ --- --- ---\n""")
     end
 
     it "displays a grid with 'X' marked at position 2" do
@@ -41,7 +41,7 @@ RSpec.describe InputOutput do
 | 4 | 5 | 6 |
  --- --- ---
 | 7 | 8 | 9 |
- --- --- ---""")
+ --- --- ---\n""")
     end
 
   end

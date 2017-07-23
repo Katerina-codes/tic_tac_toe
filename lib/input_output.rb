@@ -13,7 +13,7 @@ class InputOutput
 
     @output.puts "\n"
     @output.puts formatted_grid
-    @output.print row_lines
+    @output.puts row_lines
   end
 
   def ask_for_mark_choice
