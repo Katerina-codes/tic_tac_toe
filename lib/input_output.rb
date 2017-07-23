@@ -21,7 +21,7 @@ class InputOutput
   end
 
   def get_mark_choice
-    @input.gets.chomp.downcase
+    @input.gets.chomp.upcase
   end
 
   def ask_for_move

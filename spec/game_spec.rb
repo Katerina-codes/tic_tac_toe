@@ -18,12 +18,12 @@ RSpec.describe Game do
       input = StringIO.new("x")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
-      expect(game.get_player_mark).to eq('x')
+      expect(game.get_player_mark).to eq('X')
     end
 
-    it "returns mark if mark is 'x' " do
+    it "returns mark if mark is 'X' " do
       game = new_game_instance(input_output)
-      expect(game.get_valid_mark("x")).to eq("x")
+      expect(game.get_valid_mark("X")).to eq("X")
     end
 
     it "returns another mark prompt if mark is not valid" do
@@ -77,7 +77,7 @@ RSpec.describe Game do
    input = StringIO.new("1")
    input_output = InputOutput.new(output, input)
    game = new_game_instance(input_output)
-   expect(game.get_move_and_update_grid("| X ", [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
+   expect(game.get_move_and_update_grid("X", [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
  end
 
 

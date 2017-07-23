@@ -56,7 +56,7 @@ RSpec.describe InputOutput do
     it "gets 'X' from a player" do
       input = StringIO.new("X")
       input_output = InputOutput.new(output, input)
-      expect(input_output.get_mark_choice).to eq("x")
+      expect(input_output.get_mark_choice).to eq("X")
     end
 
     it "asks the player for a move" do

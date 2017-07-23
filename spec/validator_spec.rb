@@ -22,16 +22,16 @@ RSpec.describe Validator do
 
   context "Validates player's mark" do
 
-    it "returns true if move equals x" do
-      expect(validator.mark_move_valid?("x")).to eq(true)
+    it "returns true if move equals X" do
+      expect(validator.mark_move_valid?("X")).to eq(true)
     end
 
-    it "returns false if move is not x" do
-      expect(validator.mark_move_valid?("a")).to eq(false)
+    it "returns false if move is not X" do
+      expect(validator.mark_move_valid?("A")).to eq(false)
     end
 
-    it "returns true if move is o" do
-      expect(validator.mark_move_valid?("o")).to eq(true)
+    it "returns true if move is O" do
+      expect(validator.mark_move_valid?("O")).to eq(true)
     end
 
   end
