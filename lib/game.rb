@@ -7,16 +7,13 @@ class Game
     @converter = converter
   end
 
-  def get_player_mark
+  def get_valid_mark
     @input_output.ask_for_mark_choice
-    @input_output.get_mark_choice
-  end
-
-  def get_valid_mark(mark)
-    until @validator.mark_move_valid?(mark)
-      @input_output.ask_for_mark_choice
-      mark = @input_output.get_mark_choice
-    end
+    mark = @input_output.get_mark_choice
+      until @validator.mark_move_valid?(mark)
+        @input_output.ask_for_mark_choice
+        mark = @input_output.get_mark_choice
+      end
     mark
   end
 
@@ -53,12 +50,7 @@ class Game
   def game_flow
     new_grid = @grid.draw_grid
     @input_output.display_grid(new_grid)
-    mark = get_player_mark
-      if @validator.mark_move_valid?(mark)
-        mark
-      else
-        mark = get_valid_mark(mark)
-      end
+    mark = get_valid_mark  
     current_grid = get_move_and_update_grid(mark, new_grid)
     @input_output.display_grid(current_grid)
   end

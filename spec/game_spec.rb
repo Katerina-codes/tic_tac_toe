@@ -18,19 +18,21 @@ RSpec.describe Game do
       input = StringIO.new("x")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
-      expect(game.get_player_mark).to eq('X')
+      expect(game.get_valid_mark).to eq("X")
     end
 
     it "returns mark if mark is 'X' " do
-      game = new_game_instance(input_output)
-      expect(game.get_valid_mark("X")).to eq("X")
-    end
-
-    it "returns another mark prompt if mark is not valid" do
       input = StringIO.new("x")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
-      game.get_valid_mark("z")
+      expect(game.get_valid_mark).to eq("X")
+    end
+
+    it "returns another mark prompt if mark is not valid" do
+      input = StringIO.new("z\nx")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.get_valid_mark
       expect(output.string).to include("Choose your mark, type 'X' or 'O'")
     end
 
