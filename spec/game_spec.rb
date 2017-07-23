@@ -70,7 +70,7 @@ RSpec.describe Game do
 | 4 | 5 | 6 |
  --- --- ---
 | 7 | 8 | 9 |
- --- --- ---""")
+ --- --- ---\n""")
   end
 
   it "gets player's move and shows grid updated with move" do
