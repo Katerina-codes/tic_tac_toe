@@ -45,8 +45,9 @@ class Game
       else
         move = get_valid_move(move)
       end
+    formatted_mark = @converter.get_mark_template(move, mark)
     converted_move = @converter.convert_move_number(move)
-    @grid.place_a_move(current_grid, converted_move, mark)
+    @grid.place_a_move(current_grid, converted_move, formatted_mark)
   end
 
 end
