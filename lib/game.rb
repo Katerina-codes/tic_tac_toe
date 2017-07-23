@@ -17,12 +17,9 @@ class Game
     mark
   end
 
-  def get_player_move
+  def get_valid_move
     @input_output.ask_for_move
-    @input_output.get_move
-  end
-
-  def get_valid_move(move)
+    move = @input_output.get_move
     until @validator.move_valid?(move)
       @input_output.ask_for_move
       move = @input_output.get_move
@@ -36,12 +33,7 @@ class Game
   end
 
   def get_move_and_update_grid(mark, current_grid)
-    move = get_player_move
-      if @validator.move_valid?(move)
-        move
-      else
-        move = get_valid_move(move)
-      end
+    move = get_valid_move
     formatted_mark = @converter.get_mark_template(move, mark)
     converted_move = @converter.convert_move_number(move)
     @grid.place_a_move(current_grid, converted_move, formatted_mark)
@@ -50,7 +42,7 @@ class Game
   def game_flow
     new_grid = @grid.draw_grid
     @input_output.display_grid(new_grid)
-    mark = get_valid_mark  
+    mark = get_valid_mark
     current_grid = get_move_and_update_grid(mark, new_grid)
     @input_output.display_grid(current_grid)
   end
