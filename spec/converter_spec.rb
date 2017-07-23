@@ -56,7 +56,7 @@ RSpec.describe Converter do
     end
 
     it "Formats move 4 and mark 'X' " do
-        expect(converter.get_mark_template(4, "X")).to eq("| X ")
+      expect(converter.get_mark_template(4, "X")).to eq("| X ")
     end
   end
 
