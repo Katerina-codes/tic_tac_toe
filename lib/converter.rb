@@ -15,4 +15,8 @@ class Converter
     move_to_grid_position[move]
   end
 
+  def get_mark_template(move, mark)
+    "| #{mark} "
+  end
+
 end

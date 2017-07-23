@@ -42,4 +42,10 @@ RSpec.describe Converter do
     end
   end
 
+  context "Creates better display for player move" do
+    it "Formats move 1 and mark 'X' " do
+      expect(converter.get_mark_template(1, "X")).to eq("| X ")
+    end
+  end
+
 end
