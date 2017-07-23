@@ -18,7 +18,7 @@ class Converter
   def get_mark_template(move, mark)
     if move == 1 || move == 4
       "| #{mark} "
-    elsif move == 2
+    elsif move == 2 || move == 5
       "| #{mark} |"
     else
       " #{mark} |"
