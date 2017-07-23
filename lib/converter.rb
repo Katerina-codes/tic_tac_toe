@@ -16,7 +16,11 @@ class Converter
   end
 
   def get_mark_template(move, mark)
-    "| #{mark} "
+    if move == 1
+      "| #{mark} "
+    else
+      "| #{mark} |"
+    end
   end
 
 end
