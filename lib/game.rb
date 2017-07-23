@@ -50,4 +50,17 @@ class Game
     @grid.place_a_move(current_grid, converted_move, formatted_mark)
   end
 
+  def game_flow
+    new_grid = @grid.draw_grid
+    @input_output.display_grid(new_grid)
+    mark = get_player_mark
+      if @validator.mark_move_valid?(mark)
+        mark
+      else
+        mark = get_valid_mark(mark)
+      end
+    current_grid = get_move_and_update_grid(mark, new_grid)
+    @input_output.display_grid(current_grid)
+  end
+
 end
