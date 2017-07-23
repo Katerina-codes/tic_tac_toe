@@ -1,7 +1,7 @@
 class Converter
 
   def convert_move_number(move)
-    number_to_grid_position = {
+    move_to_grid_position = {
       1 => [0, 0],
       2 => [0, 1],
       3 => [0, 2],
@@ -12,7 +12,7 @@ class Converter
       8 => [2, 1],
       9 => [2, 2]
     }
-    number_to_grid_position[move]
+    move_to_grid_position[move]
   end
 
 end
