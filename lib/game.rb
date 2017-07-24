@@ -32,20 +32,23 @@ class Game
     @input_output.display_grid(new_grid)
   end
 
-  def get_move_and_update_grid(mark, current_grid)
-    move = get_valid_move
+  def get_move_and_update_grid(mark, move, current_grid)
     formatted_mark = @converter.get_mark_template(move, mark)
     converted_move = @converter.convert_move_number(move)
     @grid.place_a_move(current_grid, converted_move, formatted_mark)
   end
 
   def game_flow
+    winning_moves = [[1, 2, 3], [4, 5, 6]]
+    previous_moves = []
+
     new_grid = @grid.draw_grid
     @input_output.display_grid(new_grid)
     mark = get_valid_mark
-    current_grid = new_grid
-    until current_grid == [["| #{mark} ", "| #{mark} |", " #{mark} |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]] || current_grid == [["| 1 ", "| 2 |", " 3 |"], ["| #{mark} ", "| #{mark} |", " #{mark} |"], ["| 7 ", "| 8 |", " 9 |"]]
-      current_grid = get_move_and_update_grid(mark, new_grid)
+    until !(winning_moves & [previous_moves]).empty?
+      move = get_valid_move
+      previous_moves.push(move)
+      current_grid = get_move_and_update_grid(mark, move, new_grid)
     end
     @input_output.display_grid(current_grid)
   end

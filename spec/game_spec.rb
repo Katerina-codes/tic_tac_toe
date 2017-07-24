@@ -2,6 +2,7 @@ require 'game'
 require 'input_output'
 require 'validator'
 require 'grid'
+require 'converter'
 
 RSpec.describe Game do
 
@@ -75,10 +76,8 @@ RSpec.describe Game do
     end
 
     it "gets player's move and shows grid updated with move" do
-     input = StringIO.new("1")
-     input_output = InputOutput.new(output, input)
      game = new_game_instance(input_output)
-     expect(game.get_move_and_update_grid("X", [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
+     expect(game.get_move_and_update_grid("X", 1, [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
    end
 
     it "ends game and displays grid when player gets 1, 2, 3 in a row" do
