@@ -39,7 +39,7 @@ class Game
   end
 
   def game_flow
-    winning_moves = [[1, 2, 3], [4, 5, 6]]
+    winning_moves = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     previous_moves = []
 
     new_grid = @grid.draw_grid

@@ -124,6 +124,21 @@ RSpec.describe Game do
 | 7 | 8 | 9 |
  --- --- ---\n""")
     end
+
+    it "ends game and displays grid when mark is 'X' and moves = 7, 8, 9" do
+      input = StringIO.new("x\n7\n8\n9")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
+ --- --- ---
+| 1 | 2 | 3 |
+ --- --- ---
+| 4 | 5 | 6 |
+ --- --- ---
+| X | X | X |
+ --- --- ---\n""")
+    end
   end
 
   def new_game_instance(input_output)
