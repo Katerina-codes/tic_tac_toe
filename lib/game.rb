@@ -22,7 +22,7 @@ class Game
     move = @input_output.get_move
     converted_move = @converter.convert_move_number(move)
     until @validator.move_valid?(move) && @grid.is_move_unique?(converted_move, current_grid)
-      @input_output.ask_for_move
+      @input_output.display_invalid_move_error
       move = @input_output.get_move
       converted_move = @converter.convert_move_number(move)
     end

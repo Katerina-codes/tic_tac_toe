@@ -52,20 +52,20 @@ RSpec.describe Game do
       expect(game.get_valid_move([["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(1)
     end
 
-    it "displays prompt and gets move until move is valid" do
+    it "displays error message and gets move until move is valid" do
       input = StringIO.new("0\n1")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.get_valid_move([["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
-      expect(output.string).to include("Time to place your mark! Please choose a number from 1 - 9\n")
+      expect(output.string).to include("This move is invalid. Please enter another one\n")
     end
 
-    it "displays prompt again if same move is entered twice" do
+    it "displays error message if the same move is entered twice" do
       input = StringIO.new("1\n2")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.get_valid_move([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
-      expect(output.string).to include("Time to place your mark! Please choose a number from 1 - 9\n")
+      expect(output.string).to include("This move is invalid. Please enter another one\n")
     end
   end
 
