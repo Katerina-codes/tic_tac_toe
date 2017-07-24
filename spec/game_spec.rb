@@ -13,7 +13,6 @@ RSpec.describe Game do
   let(:converter) { Converter.new }
 
   context "Gets a valid mark" do
-
     it "gets a mark choice" do
       input = StringIO.new("x")
       input_output = InputOutput.new(output, input)
@@ -35,11 +34,9 @@ RSpec.describe Game do
       game.get_valid_mark
       expect(output.string).to include("Choose your mark, type 'X' or 'O'")
     end
-
   end
 
   context "Gets a valid move" do
-
     it "gets a player move" do
       input = StringIO.new("1")
       input_output = InputOutput.new(output, input)
@@ -61,11 +58,9 @@ RSpec.describe Game do
       game.get_valid_move
       expect(output.string).to include("Time to place your mark! Please choose a number from 1 - 9\n")
     end
-
   end
 
     context "Displaying and updating grid" do
-
     it "shows player the initial grid" do
       game = new_game_instance(input_output)
       game.initial_grid
@@ -85,7 +80,6 @@ RSpec.describe Game do
      game = new_game_instance(input_output)
      expect(game.get_move_and_update_grid("X", [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
    end
-
   end
 
   def new_game_instance(input_output)
