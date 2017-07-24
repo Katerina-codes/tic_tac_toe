@@ -17,12 +17,14 @@ class Game
     mark
   end
 
-  def get_valid_move
+  def get_valid_move(current_grid)
     @input_output.ask_for_move
     move = @input_output.get_move
-    until @validator.move_valid?(move)
+    converted_move = @converter.convert_move_number(move)
+    until @validator.move_valid?(move) && @grid.is_move_unique?(converted_move, current_grid)
       @input_output.ask_for_move
       move = @input_output.get_move
+      converted_move = @converter.convert_move_number(move)
     end
     move
   end
@@ -45,8 +47,9 @@ class Game
     new_grid = @grid.draw_grid
     @input_output.display_grid(new_grid)
     mark = get_valid_mark
+    current_grid = new_grid
     until !(winning_moves & [previous_moves]).empty?
-      move = get_valid_move
+      move = get_valid_move(current_grid)
       previous_moves.push(move)
       current_grid = get_move_and_update_grid(mark, move, new_grid)
     end

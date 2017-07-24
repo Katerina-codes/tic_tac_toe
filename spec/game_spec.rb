@@ -42,21 +42,29 @@ RSpec.describe Game do
       input = StringIO.new("1")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
-      expect(game.get_valid_move).to eq(1)
+      expect(game.get_valid_move([["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(1)
     end
 
     it "returns move if move is valid" do
       input = StringIO.new("1")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
-      expect(game.get_valid_move).to eq(1)
+      expect(game.get_valid_move([["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(1)
     end
 
     it "displays prompt and gets move until move is valid" do
       input = StringIO.new("0\n1")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
-      game.get_valid_move
+      game.get_valid_move([["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
+      expect(output.string).to include("Time to place your mark! Please choose a number from 1 - 9\n")
+    end
+
+    it "displays prompt again if same move is entered twice" do
+      input = StringIO.new("1\n2")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.get_valid_move([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
       expect(output.string).to include("Time to place your mark! Please choose a number from 1 - 9\n")
     end
   end
