@@ -33,4 +33,8 @@ RSpec.describe Grid do
     expect(grid.is_move_unique?([0, 0], [["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(false)
   end
 
+  it "returns true if move is unique and move is 2" do
+    expect(grid.is_move_unique?([0, 1], [["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(true)
+  end
+
 end
