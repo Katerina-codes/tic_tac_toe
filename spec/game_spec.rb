@@ -64,10 +64,12 @@ RSpec.describe Game do
 
   end
 
-  it "shows player the initial grid" do
-    game = new_game_instance(input_output)
-    game.initial_grid
-    expect(output.string).to eq("""
+    context "Displaying and updating grid" do
+
+    it "shows player the initial grid" do
+      game = new_game_instance(input_output)
+      game.initial_grid
+      expect(output.string).to eq("""
  --- --- ---
 | 1 | 2 | 3 |
  --- --- ---
@@ -75,15 +77,16 @@ RSpec.describe Game do
  --- --- ---
 | 7 | 8 | 9 |
  --- --- ---\n""")
+    end
+
+    it "gets player's move and shows grid updated with move" do
+     input = StringIO.new("1")
+     input_output = InputOutput.new(output, input)
+     game = new_game_instance(input_output)
+     expect(game.get_move_and_update_grid("X", [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
+   end
+
   end
-
-  it "gets player's move and shows grid updated with move" do
-   input = StringIO.new("1")
-   input_output = InputOutput.new(output, input)
-   game = new_game_instance(input_output)
-   expect(game.get_move_and_update_grid("X", [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
- end
-
 
   def new_game_instance(input_output)
     game = Game.new(input_output, validator, grid, converter)
