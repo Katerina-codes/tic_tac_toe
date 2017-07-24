@@ -45,7 +45,7 @@ class Game
     mark = get_valid_mark
     current_grid = new_grid
 
-    until current_grid == [["| X ", "| X |", " X |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+    until current_grid == [["| #{mark} ", "| #{mark} |", " #{mark} |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
       current_grid = get_move_and_update_grid(mark, new_grid)
     end
     @input_output.display_grid(current_grid)

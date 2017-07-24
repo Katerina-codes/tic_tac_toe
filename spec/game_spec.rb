@@ -95,6 +95,21 @@ RSpec.describe Game do
 | 7 | 8 | 9 |
  --- --- ---\n""")
     end
+
+    it "ends game and displays grid when mark is 'O' and player gets 1, 2, 3 in a row" do
+      input = StringIO.new("o\n1\n2\n3")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
+ --- --- ---
+| O | O | O |
+ --- --- ---
+| 4 | 5 | 6 |
+ --- --- ---
+| 7 | 8 | 9 |
+ --- --- ---\n""")
+    end
   end
 
   def new_game_instance(input_output)
