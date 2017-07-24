@@ -80,6 +80,21 @@ RSpec.describe Game do
      game = new_game_instance(input_output)
      expect(game.get_move_and_update_grid("X", [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
    end
+
+    it "ends game and displays grid when player gets 1, 2, 3 in a row" do
+      input = StringIO.new("x\n1\n2\n3")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
+ --- --- ---
+| X | X | X |
+ --- --- ---
+| 4 | 5 | 6 |
+ --- --- ---
+| 7 | 8 | 9 |
+ --- --- ---\n""")
+    end
   end
 
   def new_game_instance(input_output)
