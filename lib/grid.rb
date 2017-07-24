@@ -11,4 +11,8 @@ class Grid
     current_grid
   end
 
+  def is_move_unique?(move, current_grid)
+    true
+  end
+
 end
