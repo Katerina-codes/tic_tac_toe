@@ -32,4 +32,8 @@ class InputOutput
     @input.gets.to_i
   end
 
+  def display_invalid_move_error
+    @output.puts "This move is invalid. Please enter another one"
+  end
+
 end

@@ -66,6 +66,11 @@ RSpec.describe InputOutput do
       input_output = InputOutput.new(output, input)
       expect(input_output.get_move).to eq(1)
     end
+
+    it "displays an error message if move is invalid" do
+      input_output.display_invalid_move_error
+      expect(output.string).to eq("This move is invalid. Please enter another one\n")
+    end
   end
 
 end
