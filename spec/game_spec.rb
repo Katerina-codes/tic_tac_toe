@@ -95,7 +95,7 @@ RSpec.describe Game do
  --- --- ---\n""")
     end
 
-    it "ends game and displays grid when mark is 'O' and player gets 1, 2, 3 in a row" do
+    it "ends game and displays grid when mark is 'O' and moves = 1, 2, 3" do
       input = StringIO.new("o\n1\n2\n3")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
@@ -110,7 +110,7 @@ RSpec.describe Game do
  --- --- ---\n""")
     end
 
-    it "ends game and displays grid when mark is 'X' and player gets 4, 5, 6 in a row" do
+    it "ends game and displays grid when mark is 'X' and moves = 4, 5, 6" do
       input = StringIO.new("x\n4\n5\n6")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
