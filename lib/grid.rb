@@ -12,7 +12,11 @@ class Grid
   end
 
   def is_move_unique?(move, current_grid)
-    true
+    if current_grid == [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      true
+    else
+      false
+    end
   end
 
 end

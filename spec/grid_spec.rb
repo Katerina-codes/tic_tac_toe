@@ -25,8 +25,12 @@ RSpec.describe Grid do
     expect(grid.place_a_move(unmarked_grid, [0, 0], "| O ")).to eq([["| O ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
   end
 
-  it "Returns true if move is unique" do
+  it "returns true if move is unique" do
     expect(grid.is_move_unique?([0, 0], [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(true)
+  end
+
+  it "returns false if move is not unique" do
+    expect(grid.is_move_unique?([0, 0], [["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(false)
   end
 
 end
