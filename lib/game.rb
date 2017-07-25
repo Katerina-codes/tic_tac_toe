@@ -42,16 +42,18 @@ class Game
 
   def game_flow
     winning_moves = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-    previous_moves = []
+    past_moves = []
 
-    new_grid = @grid.draw_grid
-    @input_output.display_grid(new_grid)
+    current_grid = @grid.draw_grid
+    @input_output.display_grid(current_grid)
     mark = get_valid_mark
-    current_grid = new_grid
-    until !(winning_moves & [previous_moves]).empty?
+    split_past_moves = past_moves.each_cons(3).map {|three_moves| three_moves.sort}
+
+    until !(winning_moves & split_past_moves).empty?
       move = get_valid_move(current_grid)
-      previous_moves.push(move)
-      current_grid = get_move_and_update_grid(mark, move, new_grid)
+      past_moves.push(move)
+      current_grid = get_move_and_update_grid(mark, move, current_grid)
+      split_past_moves = past_moves.each_cons(3).map {|three_moves| three_moves.sort}
     end
     @input_output.display_grid(current_grid)
   end
