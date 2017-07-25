@@ -47,6 +47,10 @@ class Game
     winning_moves.each_slice(3).to_a
   end
 
+  def game_is_won?(winning_move_sequences, winning_sequence)
+    !(winning_move_sequences & winning_sequence).empty?
+  end
+
   def game_flow
     winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     winning_sequence = [["marked_move", "marked_move", "marked_move"]]
@@ -55,7 +59,7 @@ class Game
     @input_output.display_grid(current_grid)
     mark = get_valid_mark
 
-    until !(winning_move_sequences & winning_sequence).empty?
+    until game_is_won?(winning_move_sequences, winning_sequence)
       move = get_valid_move(current_grid)
       winning_move_sequences = get_winning_hits(winning_move_sequences, move)
       current_grid = get_move_and_update_grid(mark, move, current_grid)

@@ -269,6 +269,11 @@ RSpec.describe Game do
     end
   end
 
+  it "returns true if the game has been won" do
+    game = new_game_instance(input_output)
+    expect(game.game_is_won?([["marked_move", "marked_move", "marked_move"], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]], [["marked_move", "marked_move", "marked_move"]])).to eq(true)
+  end
+
   def new_game_instance(input_output)
     game = Game.new(input_output, validator, grid, converter)
   end
