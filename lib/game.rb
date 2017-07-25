@@ -40,20 +40,26 @@ class Game
     @grid.place_a_move(current_grid, converted_move, formatted_mark)
   end
 
+  def get_winning_hits(winning_moves, move)
+    winning_moves = winning_moves.flatten
+    index_position_of_move = (0..winning_moves.length-1).select { |value| winning_moves[value] == move }
+    index_position_of_move.each { |index| winning_moves[index] = "Hit" }
+    winning_moves.each_slice(3).to_a
+  end
+
   def game_flow
-    winning_moves = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-    past_moves = []
+    winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+    winning_sequence = [["Hit", "Hit", "Hit"]]
 
     current_grid = @grid.draw_grid
     @input_output.display_grid(current_grid)
     mark = get_valid_mark
-    split_past_moves = past_moves.each_cons(3).map {|three_moves| three_moves.sort}
 
-    until !(winning_moves & split_past_moves).empty?
+    until !(winning_move_sequences & winning_sequence).empty?
       move = get_valid_move(current_grid)
-      past_moves.push(move)
+      winning_move_sequences = get_winning_hits(winning_move_sequences, move)
       current_grid = get_move_and_update_grid(mark, move, current_grid)
-      split_past_moves = past_moves.each_cons(3).map {|three_moves| three_moves.sort}
+      @input_output.display_grid(current_grid)
     end
     @input_output.display_grid(current_grid)
   end
