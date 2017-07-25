@@ -253,7 +253,7 @@ RSpec.describe Game do
  --- --- ---\n""")
     end
 
-    it "ends game and displays grid when moves = 2, 3, 4, 1" do
+    it "ends game when winning sequence is not ordered and moves aren't consecutive" do
       input = StringIO.new("x\n2\n3\n4\n1")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
