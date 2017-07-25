@@ -43,13 +43,13 @@ class Game
   def get_winning_hits(winning_moves, move)
     winning_moves = winning_moves.flatten
     index_position_of_move = (0..winning_moves.length-1).select { |value| winning_moves[value] == move }
-    index_position_of_move.each { |index| winning_moves[index] = "Hit" }
+    index_position_of_move.each { |index| winning_moves[index] = "marked_move" }
     winning_moves.each_slice(3).to_a
   end
 
   def game_flow
     winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-    winning_sequence = [["Hit", "Hit", "Hit"]]
+    winning_sequence = [["marked_move", "marked_move", "marked_move"]]
 
     current_grid = @grid.draw_grid
     @input_output.display_grid(current_grid)
