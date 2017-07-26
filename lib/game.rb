@@ -40,8 +40,8 @@ class Game
     @grid.place_a_move(current_grid, converted_move, formatted_mark)
   end
 
-  def get_winning_hits(winning_moves, move)
-    winning_moves = winning_moves.flatten
+  def get_winning_hits(winning_moves_sequences, move)
+    winning_moves = winning_moves_sequences.flatten
     index_position_of_move = (0..winning_moves.length-1).select { |value| winning_moves[value] == move }
     index_position_of_move.each { |index| winning_moves[index] = "marked_move" }
     winning_moves.each_slice(3).to_a
@@ -57,12 +57,12 @@ class Game
 
     p1_grid = @grid.draw_grid
     @input_output.display_grid(p1_grid)
-    mark = get_valid_mark
+    p1_mark = get_valid_mark
 
     until game_is_won?(p1_winning_move_sequences, winning_sequence)
       p1_move = get_valid_move(p1_grid)
       p1_winning_move_sequences = get_winning_hits(p1_winning_move_sequences, p1_move)
-      p1_grid = display_latest_move_on_grid(mark, p1_move, p1_grid)
+      p1_grid = display_latest_move_on_grid(p1_mark, p1_move, p1_grid)
       @input_output.display_grid(p1_grid)
     end
   end
