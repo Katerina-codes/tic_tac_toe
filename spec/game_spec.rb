@@ -83,11 +83,6 @@ RSpec.describe Game do
  --- --- ---\n""")
     end
 
-    it "gets player's move and shows grid updated with move" do
-     game = new_game_instance(input_output)
-     expect(game.display_latest_move_on_grid("X", 1, [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
-   end
-
     it "ends game and displays grid when player gets 1, 2, 3 in a row" do
       input = StringIO.new("x\n1\n2\n3")
       input_output = InputOutput.new(output, input)
@@ -272,6 +267,12 @@ RSpec.describe Game do
   it "returns true if the game has been won" do
     game = new_game_instance(input_output)
     expect(game.game_is_won?([["marked_move", "marked_move", "marked_move"], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]], [["marked_move", "marked_move", "marked_move"]])).to eq(true)
+  end
+
+  it "returns a list of winning moves with instances of 1 replaced with marked_move" do
+    game = new_game_instance(input_output)
+    winning_moves = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+    expect(game.get_winning_hits(winning_moves, 1)).to eq([["marked_move", 2, 3], [4, 5, 6], [7, 8, 9], ["marked_move", 4, 7], [2, 5, 8], [3, 6, 9], ["marked_move", 5, 9], [3, 5, 7]])
   end
 
   def new_game_instance(input_output)
