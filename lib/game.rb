@@ -65,7 +65,6 @@ class Game
       p1_grid = get_move_and_update_grid(mark, p1_move, p1_grid)
       @input_output.display_grid(p1_grid)
     end
-    @input_output.display_grid(p1_grid)
   end
 
 end
