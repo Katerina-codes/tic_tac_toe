@@ -34,7 +34,7 @@ class Game
     @input_output.display_grid(new_grid)
   end
 
-  def get_move_and_update_grid(mark, move, current_grid)
+  def display_latest_move_on_grid(mark, move, current_grid)
     formatted_mark = @converter.get_mark_template(move, mark)
     converted_move = @converter.convert_move_number(move)
     @grid.place_a_move(current_grid, converted_move, formatted_mark)
@@ -62,7 +62,7 @@ class Game
     until game_is_won?(p1_winning_move_sequences, winning_sequence)
       p1_move = get_valid_move(p1_grid)
       p1_winning_move_sequences = get_winning_hits(p1_winning_move_sequences, p1_move)
-      p1_grid = get_move_and_update_grid(mark, p1_move, p1_grid)
+      p1_grid = display_latest_move_on_grid(mark, p1_move, p1_grid)
       @input_output.display_grid(p1_grid)
     end
   end
