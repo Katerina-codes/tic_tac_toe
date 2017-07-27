@@ -64,12 +64,15 @@ class Game
       p1_move = get_valid_move(current_grid)
       p1_winning_move_sequences = get_winning_hits(p1_winning_move_sequences, p1_move)
       update_grid_with_p1_move = display_latest_move_on_grid(p1_mark, p1_move, current_grid)
-      @input_output.display_grid(current_grid)
-
-      p2_move = get_valid_move(current_grid)
-      p2_winning_move_sequences = get_winning_hits(p2_winning_move_sequences, p2_move)
-      update_grid_with_p2_move = display_latest_move_on_grid(p2_mark, p2_move, current_grid)
-      @input_output.display_grid(current_grid)
+      if game_is_won?(p1_winning_move_sequences, winning_sequence)
+        return @input_output.display_grid(current_grid)
+      else
+        @input_output.display_grid(current_grid)
+        p2_move = get_valid_move(current_grid)
+        p2_winning_move_sequences = get_winning_hits(p2_winning_move_sequences, p2_move)
+        update_grid_with_p2_move = display_latest_move_on_grid(p2_mark, p2_move, current_grid)
+        @input_output.display_grid(current_grid)
+      end
     end
   end
 
