@@ -40,4 +40,8 @@ class InputOutput
     @output.puts "Please choose a mode:\nEnter '1' for human vs human\nEnter '2' for human vs computer\n"
   end
 
+  def get_game_mode
+    @input.gets.chomp.to_i
+  end
+
 end

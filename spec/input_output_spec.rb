@@ -76,6 +76,12 @@ RSpec.describe InputOutput do
       input_output.ask_for_game_mode
       expect(output.string).to eq("Please choose a mode:\nEnter '1' for human vs human\nEnter '2' for human vs computer\n")
     end
+
+    it "gets the player's game mode choice" do
+      input = StringIO.new("1")
+      input_output = InputOutput.new(output, input)
+      expect(input_output.get_game_mode).to eq(1)
+    end
   end
 
 end
