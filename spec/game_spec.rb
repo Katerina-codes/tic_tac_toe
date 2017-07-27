@@ -69,7 +69,7 @@ RSpec.describe Game do
     end
   end
 
-    context "Displaying and updating grid" do
+  context "Displaying and updating grid" do
     it "shows player the initial grid" do
       game = new_game_instance(input_output)
       game.initial_grid
@@ -83,12 +83,12 @@ RSpec.describe Game do
  --- --- ---\n""")
     end
 
-  it "ends game and displays grid when player 1 enters 1, 2, 3 in a row" do
-    input = StringIO.new("x\no\n1\n4\n2\n8\n3\n6")
-    input_output = InputOutput.new(output, input)
-    game = new_game_instance(input_output)
-    game.game_flow
-    expect(output.string).to include("""
+    it "ends game and displays grid when player 1 enters 1, 2, 3 in a row" do
+      input = StringIO.new("x\no\n1\n4\n2\n8\n3\n6")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
  --- --- ---
 | X | X | X |
  --- --- ---
@@ -96,7 +96,7 @@ RSpec.describe Game do
  --- --- ---
 | 7 | O | 9 |
  --- --- ---\n""")
-  end
+    end
 
     it "ends game and displays grid when mark is 'O' and p2 enters 1, 2, 3" do
       input = StringIO.new("o\nx\n1\n9\n2\n8\n3\n5")
