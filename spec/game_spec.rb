@@ -83,23 +83,23 @@ RSpec.describe Game do
  --- --- ---\n""")
     end
 
-    it "ends game and displays grid when player gets 1, 2, 3 in a row" do
-      input = StringIO.new("x\n1\n2\n3")
-      input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
-      game.game_flow
-      expect(output.string).to include("""
+  it "ends game and displays grid when player 1 enters 1, 2, 3 in a row" do
+    input = StringIO.new("x\no\n1\n4\n2\n8\n3\n6")
+    input_output = InputOutput.new(output, input)
+    game = new_game_instance(input_output)
+    game.game_flow
+    expect(output.string).to include("""
  --- --- ---
 | X | X | X |
  --- --- ---
-| 4 | 5 | 6 |
+| O | 5 | O |
  --- --- ---
-| 7 | 8 | 9 |
+| 7 | O | 9 |
  --- --- ---\n""")
-    end
+  end
 
-    it "ends game and displays grid when mark is 'O' and moves = 1, 2, 3" do
-      input = StringIO.new("o\n1\n2\n3")
+    it "ends game and displays grid when mark is 'O' and p2 enters 1, 2, 3" do
+      input = StringIO.new("o\nx\n1\n9\n2\n8\n3\n5")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -107,74 +107,104 @@ RSpec.describe Game do
  --- --- ---
 | O | O | O |
  --- --- ---
-| 4 | 5 | 6 |
- --- --- ---
-| 7 | 8 | 9 |
- --- --- ---\n""")
-    end
-
-    it "ends game and displays grid when mark is 'X' and moves = 4, 5, 6" do
-      input = StringIO.new("x\n4\n5\n6")
-      input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
-      game.game_flow
-      expect(output.string).to include("""
- --- --- ---
-| 1 | 2 | 3 |
- --- --- ---
-| X | X | X |
- --- --- ---
-| 7 | 8 | 9 |
- --- --- ---\n""")
-    end
-
-    it "ends game and displays grid when mark is 'X' and moves = 7, 8, 9" do
-      input = StringIO.new("x\n7\n8\n9")
-      input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
-      game.game_flow
-      expect(output.string).to include("""
- --- --- ---
-| 1 | 2 | 3 |
- --- --- ---
-| 4 | 5 | 6 |
- --- --- ---
-| X | X | X |
- --- --- ---\n""")
-    end
-
-    it "ends game and displays grid when mark is 'X' and moves = 1, 4, 7" do
-      input = StringIO.new("x\n1\n4\n7")
-      input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
-      game.game_flow
-      expect(output.string).to include("""
- --- --- ---
-| X | 2 | 3 |
- --- --- ---
-| X | 5 | 6 |
- --- --- ---
-| X | 8 | 9 |
- --- --- ---\n""")
-    end
-
-    it "ends game and displays grid when mark is 'X' and moves = 2, 5, 8" do
-      input = StringIO.new("x\n2\n5\n8")
-      input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
-      game.game_flow
-      expect(output.string).to include("""
- --- --- ---
-| 1 | X | 3 |
- --- --- ---
 | 4 | X | 6 |
+ --- --- ---
+| 7 | X | X |
+ --- --- ---\n""")
+    end
+
+    it "ends game and displays grid when mark is 'X' and p1 enters 4, 5, 6" do
+      input = StringIO.new("x\no\n4\n1\n5\n9\n6\n7")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
+ --- --- ---
+| O | 2 | 3 |
+ --- --- ---
+| X | X | X |
+ --- --- ---
+| O | 8 | O |
+ --- --- ---\n""")
+    end
+
+    it "ends game and displays grid when mark is 'X' p1 enters 7, 8, 9" do
+      input = StringIO.new("x\no\n7\n4\n8\n5\n9\n6")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
+ --- --- ---
+| 1 | 2 | 3 |
+ --- --- ---
+| O | O | O |
+ --- --- ---
+| X | X | X |
+ --- --- ---\n""")
+    end
+
+    it "ends game and displays grid when mark is 'X' p1 enters 1, 4, 7" do
+      input = StringIO.new("x\no\n1\n5\n4\n3\n7\n9")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
+ --- --- ---
+| X | 2 | O |
+ --- --- ---
+| X | O | 6 |
+ --- --- ---
+| X | 8 | O |
+ --- --- ---\n""")
+    end
+
+    it "ends game and displays grid when mark is 'X' p1 enters 2, 5, 8" do
+      input = StringIO.new("x\no\n2\n1\n5\n4\n8\n6")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
+ --- --- ---
+| O | X | 3 |
+ --- --- ---
+| O | X | O |
  --- --- ---
 | 7 | X | 9 |
  --- --- ---\n""")
     end
 
-    it "ends game and displays grid when mark is 'X' and moves = 3, 6, 9" do
-      input = StringIO.new("x\n3\n6\n9")
+    it "ends game and displays grid when mark is 'X' p1 enters 3, 6, 9" do
+      input = StringIO.new("x\no\n3\n2\n6\n5\n9\n8")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
+ --- --- ---
+| 1 | O | X |
+ --- --- ---
+| 4 | O | X |
+ --- --- ---
+| 7 | O | X |
+ --- --- ---\n""")
+    end
+
+    it "ends game and displays grid when mark is 'X' p1 enters 1, 5, 9" do
+      input = StringIO.new("x\no\n1\n2\n5\n4\n9\n8")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
+ --- --- ---
+| X | O | 3 |
+ --- --- ---
+| O | X | 6 |
+ --- --- ---
+| 7 | O | X |
+ --- --- ---\n""")
+    end
+
+    it "ends game and displays grid when mark is 'X' p1 enters 3, 5, 7" do
+      input = StringIO.new("x\no\n3\n6\n5\n4\n7\n9")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -182,44 +212,14 @@ RSpec.describe Game do
  --- --- ---
 | 1 | 2 | X |
  --- --- ---
-| 4 | 5 | X |
+| O | X | O |
  --- --- ---
-| 7 | 8 | X |
+| X | 8 | O |
  --- --- ---\n""")
     end
 
-    it "ends game and displays grid when mark is 'X' and moves = 1, 5, 9" do
-      input = StringIO.new("x\n1\n5\n9")
-      input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
-      game.game_flow
-      expect(output.string).to include("""
- --- --- ---
-| X | 2 | 3 |
- --- --- ---
-| 4 | X | 6 |
- --- --- ---
-| 7 | 8 | X |
- --- --- ---\n""")
-    end
-
-    it "ends game and displays grid when mark is 'X' and moves = 3, 5, 7" do
-      input = StringIO.new("x\n3\n5\n7")
-      input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
-      game.game_flow
-      expect(output.string).to include("""
- --- --- ---
-| 1 | 2 | X |
- --- --- ---
-| 4 | X | 6 |
- --- --- ---
-| X | 8 | 9 |
- --- --- ---\n""")
-    end
-
-    it "ends game and displays grid when moves = 4, 1, 2, 3" do
-      input = StringIO.new("x\n4\n1\n2\n3")
+    it "ends game and displays grid when p1 enters more than 3 moves 4, 1, 2, 3" do
+      input = StringIO.new("x\no\n4\n5\n1\n6\n2\n7\n3\n8")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -227,14 +227,14 @@ RSpec.describe Game do
  --- --- ---
 | X | X | X |
  --- --- ---
-| X | 5 | 6 |
+| X | O | O |
  --- --- ---
-| 7 | 8 | 9 |
+| O | O | 9 |
  --- --- ---\n""")
     end
 
-    it "ends game and displays grid when moves = 4, 1, 3, 2" do
-      input = StringIO.new("x\n4\n1\n3\n2")
+    it "ends game and displays grid when unordered moves 4, 1, 3, 2" do
+      input = StringIO.new("x\no\n4\n5\n1\n7\n3\n\n8\n2\n6")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -242,14 +242,14 @@ RSpec.describe Game do
  --- --- ---
 | X | X | X |
  --- --- ---
-| X | 5 | 6 |
+| X | O | O |
  --- --- ---
-| 7 | 8 | 9 |
+| O | O | 9 |
  --- --- ---\n""")
     end
 
     it "ends game when winning sequence is not ordered and moves aren't consecutive" do
-      input = StringIO.new("x\n2\n3\n4\n1")
+      input = StringIO.new("x\no\n2\n8\n3\n5\n4\n6\n1\n7")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -257,9 +257,9 @@ RSpec.describe Game do
  --- --- ---
 | X | X | X |
  --- --- ---
-| X | 5 | 6 |
+| X | O | O |
  --- --- ---
-| 7 | 8 | 9 |
+| O | O | 9 |
  --- --- ---\n""")
     end
   end
