@@ -36,4 +36,8 @@ class InputOutput
     @output.puts "This move is invalid. Please enter another one"
   end
 
+  def ask_for_game_mode
+    @output.puts "Please choose a mode:\nEnter '1' for human vs human\nEnter '2' for human vs computer\n"
+  end
+
 end

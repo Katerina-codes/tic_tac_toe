@@ -71,6 +71,11 @@ RSpec.describe InputOutput do
       input_output.display_invalid_move_error
       expect(output.string).to eq("This move is invalid. Please enter another one\n")
     end
+
+    it "asks the player which game mode they would like" do
+      input_output.ask_for_game_mode
+      expect(output.string).to eq("Please choose a mode:\nEnter '1' for human vs human\nEnter '2' for human vs computer\n")
+    end
   end
 
 end
