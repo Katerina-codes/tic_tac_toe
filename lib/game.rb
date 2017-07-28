@@ -51,6 +51,10 @@ class Game
     !(winning_move_sequences & winning_sequence).empty?
   end
 
+  def get_mark_for_p2(p1_mark)
+    "O"
+  end
+
   def game_flow
     p1_winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     p2_winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]

@@ -290,6 +290,11 @@ RSpec.describe Game do
     expect(game.get_winning_hits(winning_moves, 1)).to eq([["marked_move", 2, 3], [4, 5, 6], [7, 8, 9], ["marked_move", 4, 7], [2, 5, 8], [3, 6, 9], ["marked_move", 5, 9], [3, 5, 7]])
   end
 
+  it "returns 'O' if p1's mark is 'X' " do
+    game = new_game_instance(input_output)
+    expect(game.get_mark_for_p2("X")).to eq("O")
+  end
+
   def new_game_instance(input_output)
     game = Game.new(input_output, validator, grid, converter)
   end
