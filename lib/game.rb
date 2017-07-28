@@ -68,7 +68,7 @@ class Game
     current_grid = @grid.draw_grid
     @input_output.display_grid(current_grid)
     p1_mark = get_valid_mark
-    p2_mark = get_valid_mark
+    p2_mark = get_mark_for_p2(p1_mark)
 
     until game_is_won?(p1_winning_move_sequences, winning_sequence) || game_is_won?(p2_winning_move_sequences, winning_sequence)
       p1_move = get_valid_move(current_grid)
