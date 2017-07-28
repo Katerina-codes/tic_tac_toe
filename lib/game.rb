@@ -32,6 +32,7 @@ class Game
   def initial_grid
     new_grid = @grid.draw_grid
     @input_output.display_grid(new_grid)
+    new_grid
   end
 
   def display_latest_move_on_grid(mark, move, current_grid)
@@ -71,8 +72,7 @@ class Game
     winning_sequence = [["marked_move", "marked_move", "marked_move"]]
     @input_output.ask_for_game_mode
     game_mode = @input_output.get_game_mode
-    current_grid = @grid.draw_grid
-    @input_output.display_grid(current_grid)
+    current_grid = initial_grid
     p1_mark = get_valid_mark
     p2_mark = get_mark_for_p2(p1_mark)
 
