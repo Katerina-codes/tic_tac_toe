@@ -262,14 +262,13 @@ RSpec.describe Game do
 | 7 | O | 9 |
  --- --- ---\n""")
     end
-  end
 
-  it "ends the game as soon as a player has won" do
-    input = StringIO.new("1\nx\n1\n3\n4\n5\n7")
-    input_output = InputOutput.new(output, input)
-    game = new_game_instance(input_output)
-    game.game_flow
-    expect(output.string).to include("""
+    it "ends the game as soon as a player has won" do
+      input = StringIO.new("1\nx\n1\n3\n4\n5\n7")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
  --- --- ---
 | X | 2 | O |
  --- --- ---
@@ -277,6 +276,22 @@ RSpec.describe Game do
  --- --- ---
 | X | 8 | 9 |
  --- --- ---\n""")
+    end
+
+    it "ends the game when neither player has won" do
+      input = StringIO.new("1\nx\n1\n2\n3\n4\n5\n6\n8\n7\n9")
+      input_output = InputOutput.new(output, input)
+      game = new_game_instance(input_output)
+      game.game_flow
+      expect(output.string).to include("""
+ --- --- ---
+| X | O | X |
+ --- --- ---
+| O | X | O |
+ --- --- ---
+| O | X | X |
+ --- --- ---\n""")
+    end
   end
 
   it "returns true if the game has been won" do
