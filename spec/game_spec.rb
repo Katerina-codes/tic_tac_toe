@@ -84,7 +84,7 @@ RSpec.describe Game do
     end
 
     it "ends game and displays grid when player 1 enters 1, 2, 3 in a row" do
-      input = StringIO.new("1\nx\no\n1\n4\n2\n8\n3")
+      input = StringIO.new("1\nx\n1\n4\n2\n8\n3")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -99,7 +99,7 @@ RSpec.describe Game do
     end
 
     it "ends game and displays grid when mark is 'O' and p2 enters 1, 2, 3" do
-      input = StringIO.new("1\no\nx\n1\n9\n2\n8\n3")
+      input = StringIO.new("1\no\n1\n9\n2\n8\n3")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -114,7 +114,7 @@ RSpec.describe Game do
     end
 
     it "ends game and displays grid when mark is 'X' and p1 enters 4, 5, 6" do
-      input = StringIO.new("1\nx\no\n4\n1\n5\n9\n6")
+      input = StringIO.new("1\nx\n4\n1\n5\n9\n6")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -129,7 +129,7 @@ RSpec.describe Game do
     end
 
     it "ends game and displays grid when mark is 'X' p1 enters 7, 8, 9" do
-      input = StringIO.new("1\nx\no\n7\n4\n8\n5\n9")
+      input = StringIO.new("1\nx\n7\n4\n8\n5\n9")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -144,7 +144,7 @@ RSpec.describe Game do
     end
 
     it "ends game and displays grid when mark is 'X' p1 enters 1, 4, 7" do
-      input = StringIO.new("1\nx\no\n1\n5\n4\n3\n7")
+      input = StringIO.new("1\nx\n1\n5\n4\n3\n7")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -159,7 +159,7 @@ RSpec.describe Game do
     end
 
     it "ends game and displays grid when mark is 'X' p1 enters 2, 5, 8" do
-      input = StringIO.new("1\nx\no\n2\n1\n5\n4\n8")
+      input = StringIO.new("1\nx\n2\n1\n5\n4\n8")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -174,7 +174,7 @@ RSpec.describe Game do
     end
 
     it "ends game and displays grid when mark is 'X' p1 enters 3, 6, 9" do
-      input = StringIO.new("1\nx\no\n3\n2\n6\n5\n9")
+      input = StringIO.new("1\nx\n3\n2\n6\n5\n9")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -189,7 +189,7 @@ RSpec.describe Game do
     end
 
     it "ends game and displays grid when mark is 'X' p1 enters 1, 5, 9" do
-      input = StringIO.new("1\nx\no\n1\n2\n5\n4\n9")
+      input = StringIO.new("1\nx\n1\n2\n5\n4\n9")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -204,7 +204,7 @@ RSpec.describe Game do
     end
 
     it "ends game and displays grid when mark is 'X' p1 enters 3, 5, 7" do
-      input = StringIO.new("1\nx\no\n3\n6\n5\n4\n7")
+      input = StringIO.new("1\nx\n3\n6\n5\n4\n7")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -219,7 +219,7 @@ RSpec.describe Game do
     end
 
     it "ends game and displays grid when p1 enters more than 3 moves 4, 1, 2, 3" do
-      input = StringIO.new("1\nx\no\n4\n5\n1\n6\n2\n7\n3")
+      input = StringIO.new("1\nx\n4\n5\n1\n6\n2\n7\n3")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -234,7 +234,7 @@ RSpec.describe Game do
     end
 
     it "ends game and displays grid when unordered moves 4, 1, 3, 2" do
-      input = StringIO.new("1\nx\no\n4\n5\n1\n7\n3\n\n8\n2")
+      input = StringIO.new("1\nx\n4\n5\n1\n7\n3\n\n8\n2")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -249,7 +249,7 @@ RSpec.describe Game do
     end
 
     it "ends game when winning sequence is not ordered and moves aren't consecutive" do
-      input = StringIO.new("1\nx\no\n2\n8\n3\n5\n4\n6\n1")
+      input = StringIO.new("1\nx\n2\n8\n3\n5\n4\n6\n1")
       input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output)
       game.game_flow
@@ -265,7 +265,7 @@ RSpec.describe Game do
   end
 
   it "ends the game as soon as a player has won" do
-    input = StringIO.new("1\nx\no\n1\n3\n4\n5\n7")
+    input = StringIO.new("1\nx\n1\n3\n4\n5\n7")
     input_output = InputOutput.new(output, input)
     game = new_game_instance(input_output)
     game.game_flow
