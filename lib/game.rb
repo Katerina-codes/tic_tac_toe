@@ -60,10 +60,10 @@ class Game
     end
   end
 
-  def player_flow(player_mark, p1_winning_move_sequences, current_grid)
+  def player_flow(player_mark, winning_move_sequences, current_grid)
     move = get_valid_move(current_grid)
     display_latest_move_on_grid(player_mark, move, current_grid)
-    get_winning_hits(p1_winning_move_sequences, move)
+    get_winning_hits(winning_move_sequences, move)
   end
 
   def game_flow
