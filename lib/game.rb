@@ -52,7 +52,11 @@ class Game
   end
 
   def get_mark_for_p2(p1_mark)
-    "O"
+    if p1_mark == "X"
+      "O"
+    else
+      "X"
+    end
   end
 
   def game_flow

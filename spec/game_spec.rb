@@ -295,6 +295,11 @@ RSpec.describe Game do
     expect(game.get_mark_for_p2("X")).to eq("O")
   end
 
+  it "returns 'X' if p1's mark is 'O' " do
+    game = new_game_instance(input_output)
+    expect(game.get_mark_for_p2("O")).to eq("X")
+  end
+
   def new_game_instance(input_output)
     game = Game.new(input_output, validator, grid, converter)
   end
