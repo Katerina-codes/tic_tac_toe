@@ -59,28 +59,31 @@ class Game
     end
   end
 
+  def player_flow(player_mark, p1_winning_move_sequences, current_grid)
+    move = get_valid_move(current_grid)
+    display_latest_move_on_grid(player_mark, move, current_grid)
+    get_winning_hits(p1_winning_move_sequences, move)
+  end
+
   def game_flow
     p1_winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     p2_winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     winning_sequence = [["marked_move", "marked_move", "marked_move"]]
     @input_output.ask_for_game_mode
-    @input_output.get_game_mode
+    game_mode = @input_output.get_game_mode
     current_grid = @grid.draw_grid
     @input_output.display_grid(current_grid)
     p1_mark = get_valid_mark
     p2_mark = get_mark_for_p2(p1_mark)
 
     until game_is_won?(p1_winning_move_sequences, winning_sequence) || game_is_won?(p2_winning_move_sequences, winning_sequence)
-      p1_move = get_valid_move(current_grid)
-      p1_winning_move_sequences = get_winning_hits(p1_winning_move_sequences, p1_move)
-      update_grid_with_p1_move = display_latest_move_on_grid(p1_mark, p1_move, current_grid)
+      p1_winning_move_sequences = player_flow(p1_mark, p1_winning_move_sequences, current_grid)
+
       if game_is_won?(p1_winning_move_sequences, winning_sequence)
         return @input_output.display_grid(current_grid)
       else
         @input_output.display_grid(current_grid)
-        p2_move = get_valid_move(current_grid)
-        p2_winning_move_sequences = get_winning_hits(p2_winning_move_sequences, p2_move)
-        update_grid_with_p2_move = display_latest_move_on_grid(p2_mark, p2_move, current_grid)
+        p2_winning_move_sequences = player_flow(p2_mark, p2_winning_move_sequences, current_grid)
         @input_output.display_grid(current_grid)
       end
     end
