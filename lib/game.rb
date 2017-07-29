@@ -19,13 +19,13 @@ class Game
     mark
   end
 
-  def get_valid_move(current_grid)
+  def get_valid_move(current_grid, player_type)
     @input_output.ask_for_move
-    move = @input_output.get_move
+    move = player_type.play_move
     converted_move = @converter.convert_move_number(move)
     until @validator.move_valid?(move) && @grid.is_move_unique?(converted_move, current_grid)
       @input_output.display_invalid_move_error
-      move = @input_output.get_move
+      move = player_type.play_move
       converted_move = @converter.convert_move_number(move)
     end
     move
@@ -62,13 +62,18 @@ class Game
     end
   end
 
-  def player_flow(player_mark, winning_move_sequences, current_grid)
-    move = get_valid_move(current_grid)
+  def player_flow(player_type, player_mark, winning_move_sequences, current_grid)
+    move = get_valid_move(current_grid, player_type)
     display_latest_move_on_grid(player_mark, move, current_grid)
     get_winning_hits(winning_move_sequences, move)
   end
 
   def game_flow
+    player_types = {
+      1 => [@human_player, @human_player],
+      2 => [@human_player, @computer_player]
+    }
+
     p1_winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     p2_winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     winning_sequence = [["marked_move", "marked_move", "marked_move"]]
@@ -77,14 +82,16 @@ class Game
     current_grid = initial_grid
     p1_mark = "X"
     p2_mark = "O"
+    p1_type, p2_type = player_types[game_mode]
+
     until game_is_won?(p1_winning_move_sequences, winning_sequence) || game_is_won?(p2_winning_move_sequences, winning_sequence)
-      p1_winning_move_sequences = player_flow(p1_mark, p1_winning_move_sequences, current_grid)
+      p1_winning_move_sequences = player_flow(p1_type, p1_mark, p1_winning_move_sequences, current_grid)
 
       if game_is_won?(p1_winning_move_sequences, winning_sequence)
         return @input_output.display_grid(current_grid)
       else
         @input_output.display_grid(current_grid)
-        p2_winning_move_sequences = player_flow(p2_mark, p2_winning_move_sequences, current_grid)
+        p2_winning_move_sequences = player_flow(p2_type, p2_mark, p2_winning_move_sequences, current_grid)
         @input_output.display_grid(current_grid)
       end
     end

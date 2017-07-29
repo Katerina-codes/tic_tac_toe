@@ -3,6 +3,8 @@ require 'input_output'
 require 'validator'
 require 'grid'
 require 'converter'
+require 'human_player'
+require 'computer_player'
 
 RSpec.describe Game do
 
@@ -12,28 +14,28 @@ RSpec.describe Game do
   let(:validator) { Validator.new }
   let(:grid) { Grid.new }
   let(:converter) { Converter.new }
-  let(:human_player) { HumanPlayer.new }
+  let(:human_player) { HumanPlayer.new(input_output) }
   let(:computer_player) { ComputerPlayer.new }
 
   context "Gets a valid mark" do
     it "gets a mark choice" do
       input = StringIO.new("x")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      game = new_game_instance(input_output, human_player)
       expect(game.get_valid_mark).to eq("X")
     end
 
     it "returns mark if mark is 'X' " do
       input = StringIO.new("x")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      game = new_game_instance(input_output, human_player)
       expect(game.get_valid_mark).to eq("X")
     end
 
     it "returns another mark prompt if mark is not valid" do
       input = StringIO.new("z\nx")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      game = new_game_instance(input_output, human_player)
       game.get_valid_mark
       expect(output.string).to include("Choose your mark, type 'X' or 'O'")
     end
@@ -43,37 +45,45 @@ RSpec.describe Game do
     it "gets a player move" do
       input = StringIO.new("1")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
-      expect(game.get_valid_move([["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(1)
+      game = new_game_instance(input_output, human_player)
+      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      player_type = HumanPlayer.new(input_output)
+      expect(game.get_valid_move(current_grid, player_type)).to eq(1)
     end
 
     it "returns move if move is valid" do
       input = StringIO.new("1")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
-      expect(game.get_valid_move([["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(1)
+      game = new_game_instance(input_output, human_player)
+      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      player_type = HumanPlayer.new(input_output)
+      expect(game.get_valid_move(current_grid, player_type)).to eq(1)
     end
 
     it "displays error message and gets move until move is valid" do
       input = StringIO.new("0\n1")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
-      game.get_valid_move([["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
+      game = new_game_instance(input_output, human_player)
+      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      player_type = HumanPlayer.new(input_output)
+      game.get_valid_move(current_grid, player_type)
       expect(output.string).to include("This move is invalid. Please enter another one\n")
     end
 
     it "displays error message if the same move is entered twice" do
       input = StringIO.new("1\n2")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
-      game.get_valid_move([["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
+      game = new_game_instance(input_output, human_player)
+      current_grid_with_mark = [["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      player_type = HumanPlayer.new(input_output)
+      game.get_valid_move(current_grid_with_mark, player_type)
       expect(output.string).to include("This move is invalid. Please enter another one\n")
     end
   end
 
   context "Displaying and updating grid" do
     it "shows player the initial grid" do
-      game = new_game_instance(input_output)
+      game = new_game_instance(input_output, human_player)
       game.initial_grid
       expect(output.string).to eq("""
  --- --- ---
@@ -88,7 +98,8 @@ RSpec.describe Game do
     it "ends game and displays grid when player 1 enters 1, 2, 3 in a row" do
       input = StringIO.new("1\n1\n4\n2\n8\n3")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -103,7 +114,8 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 4, 5, 6" do
       input = StringIO.new("1\n4\n1\n5\n9\n6")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -118,7 +130,8 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 7, 8, 9" do
       input = StringIO.new("1\n7\n4\n8\n5\n9")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -133,7 +146,8 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 1, 4, 7" do
       input = StringIO.new("1\n1\n5\n4\n3\n7")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -148,7 +162,8 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 2, 5, 8" do
       input = StringIO.new("1\n2\n1\n5\n4\n8")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -163,7 +178,8 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 3, 6, 9" do
       input = StringIO.new("1\n3\n2\n6\n5\n9")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -178,7 +194,8 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 1, 5, 9" do
       input = StringIO.new("1\n1\n2\n5\n4\n9")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -193,7 +210,8 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 3, 5, 7" do
       input = StringIO.new("1\n3\n6\n5\n4\n7")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -208,7 +226,8 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 4, 1, 2, 3" do
       input = StringIO.new("1\n4\n5\n1\n6\n2\n7\n3")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -223,7 +242,8 @@ RSpec.describe Game do
     it "ends game and displays grid when unordered moves 4, 1, 3, 2" do
       input = StringIO.new("1\n4\n5\n1\n7\n3\n\n8\n2")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -238,7 +258,8 @@ RSpec.describe Game do
     it "ends game when winning sequence is not ordered and moves aren't consecutive" do
       input = StringIO.new("1\n2\n8\n3\n5\n4\n6\n1")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -253,7 +274,8 @@ RSpec.describe Game do
     it "ends the game as soon as a player has won" do
       input = StringIO.new("1\n1\n3\n4\n5\n7")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -268,7 +290,8 @@ RSpec.describe Game do
     it "ends the game when neither player has won" do
       input = StringIO.new("1\n1\n2\n3\n4\n5\n6\n8\n7\n9")
       input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
  --- --- ---
@@ -282,27 +305,27 @@ RSpec.describe Game do
   end
 
   it "returns true if the game has been won" do
-    game = new_game_instance(input_output)
+    game = new_game_instance(input_output, human_player)
     expect(game.game_is_won?([["marked_move", "marked_move", "marked_move"], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]], [["marked_move", "marked_move", "marked_move"]])).to eq(true)
   end
 
   it "returns a list of winning moves with instances of 1 replaced with marked_move" do
-    game = new_game_instance(input_output)
+    game = new_game_instance(input_output, human_player)
     winning_moves = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     expect(game.get_winning_hits(winning_moves, 1)).to eq([["marked_move", 2, 3], [4, 5, 6], [7, 8, 9], ["marked_move", 4, 7], [2, 5, 8], [3, 6, 9], ["marked_move", 5, 9], [3, 5, 7]])
   end
 
   it "returns 'O' if p1's mark is 'X' " do
-    game = new_game_instance(input_output)
+    game = new_game_instance(input_output, human_player)
     expect(game.get_mark_for_p2("X")).to eq("O")
   end
 
   it "returns 'X' if p1's mark is 'O' " do
-    game = new_game_instance(input_output)
+    game = new_game_instance(input_output, human_player)
     expect(game.get_mark_for_p2("O")).to eq("X")
   end
 
-  def new_game_instance(input_output)
+  def new_game_instance(input_output, human_player)
     game = Game.new(input_output, validator, grid, converter, human_player, computer_player)
   end
 

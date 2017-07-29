@@ -1,6 +1,6 @@
 class HumanPlayer
 
-  def initialize(input_output = InputOutput.new)
+  def initialize(input_output)
     @input_output = input_output
   end
 
