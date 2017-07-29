@@ -79,6 +79,15 @@ RSpec.describe Game do
       game.get_valid_move(current_grid_with_mark, player_type)
       expect(output.string).to include("This move is invalid. Please enter another one\n")
     end
+
+    it "gets a valid move from the computer player" do
+      game = new_game_instance(input_output, human_player)
+      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      player_type = ComputerPlayer.new
+      possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      computer_move = game.get_valid_move(current_grid, player_type)
+      expect(possible_moves.include?(computer_move)).to eq(true)
+    end
   end
 
   context "Displaying and updating grid" do
