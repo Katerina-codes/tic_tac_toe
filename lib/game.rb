@@ -1,10 +1,12 @@
 class Game
 
-  def initialize(input_output, validator, grid, converter)
+  def initialize(input_output, validator, grid, converter, human_player, computer_player)
     @input_output = input_output
     @validator = validator
     @grid = grid
     @converter = converter
+    @human_player = human_player
+    @computer_player = computer_player
   end
 
   def get_valid_mark

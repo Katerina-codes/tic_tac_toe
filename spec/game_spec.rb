@@ -12,6 +12,8 @@ RSpec.describe Game do
   let(:validator) { Validator.new }
   let(:grid) { Grid.new }
   let(:converter) { Converter.new }
+  let(:human_player) { HumanPlayer.new }
+  let(:computer_player) { ComputerPlayer.new }
 
   context "Gets a valid mark" do
     it "gets a mark choice" do
@@ -316,7 +318,7 @@ RSpec.describe Game do
   end
 
   def new_game_instance(input_output)
-    game = Game.new(input_output, validator, grid, converter)
+    game = Game.new(input_output, validator, grid, converter, human_player, computer_player)
   end
 
 end
