@@ -75,9 +75,8 @@ class Game
     @input_output.ask_for_game_mode
     game_mode = @input_output.get_game_mode
     current_grid = initial_grid
-    p1_mark = get_valid_mark
-    p2_mark = get_mark_for_p2(p1_mark)
-
+    p1_mark = "X"
+    p2_mark = "O"
     until game_is_won?(p1_winning_move_sequences, winning_sequence) || game_is_won?(p2_winning_move_sequences, winning_sequence)
       p1_winning_move_sequences = player_flow(p1_mark, p1_winning_move_sequences, current_grid)
 
