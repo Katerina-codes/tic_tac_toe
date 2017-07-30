@@ -20,22 +20,19 @@ RSpec.describe Game do
   context "Gets a valid mark" do
     it "gets a mark choice" do
       input = StringIO.new("x")
-      input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output, human_player)
+      game = new_game_instance(io_instance_with_input(output, input), human_player)
       expect(game.get_valid_mark).to eq("X")
     end
 
     it "returns mark if mark is 'X' " do
       input = StringIO.new("x")
-      input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output, human_player)
+      game = new_game_instance(io_instance_with_input(output, input), human_player)
       expect(game.get_valid_mark).to eq("X")
     end
 
     it "returns another mark prompt if mark is not valid" do
       input = StringIO.new("z\nx")
-      input_output = InputOutput.new(output, input)
-      game = new_game_instance(input_output, human_player)
+      game = new_game_instance(io_instance_with_input(output, input), human_player)
       game.get_valid_mark
       expect(output.string).to include("Choose your mark, type 'X' or 'O'")
     end
@@ -44,38 +41,34 @@ RSpec.describe Game do
   context "Gets a valid move" do
     it "gets a player move" do
       input = StringIO.new("1")
-      input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output, human_player)
       current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      player_type = HumanPlayer.new(input_output)
+      player_type = HumanPlayer.new(io_instance_with_input(output, input))
       expect(game.get_valid_move(current_grid, player_type)).to eq(1)
     end
 
     it "returns move if move is valid" do
       input = StringIO.new("1")
-      input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output, human_player)
       current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      player_type = HumanPlayer.new(input_output)
+      player_type = HumanPlayer.new(io_instance_with_input(output, input))
       expect(game.get_valid_move(current_grid, player_type)).to eq(1)
     end
 
     it "displays error message and gets move until move is valid" do
       input = StringIO.new("0\n1")
-      input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output, human_player)
       current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      player_type = HumanPlayer.new(input_output)
+      player_type = HumanPlayer.new(io_instance_with_input(output, input))
       game.get_valid_move(current_grid, player_type)
       expect(output.string).to include("This move is invalid. Please enter another one\n")
     end
 
     it "displays error message if the same move is entered twice" do
       input = StringIO.new("1\n2")
-      input_output = InputOutput.new(output, input)
       game = new_game_instance(input_output, human_player)
       current_grid_with_mark = [["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      player_type = HumanPlayer.new(input_output)
+      player_type = HumanPlayer.new(io_instance_with_input(output, input))
       game.get_valid_move(current_grid_with_mark, player_type)
       expect(output.string).to include("This move is invalid. Please enter another one\n")
     end
@@ -336,6 +329,10 @@ RSpec.describe Game do
 
   def new_game_instance(input_output, human_player)
     game = Game.new(input_output, validator, grid, converter, human_player, computer_player)
+  end
+
+  def io_instance_with_input(output, input)
+    InputOutput.new(output, input)
   end
 
 end
