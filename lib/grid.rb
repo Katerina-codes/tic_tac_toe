@@ -18,13 +18,9 @@ class Grid
   end
 
   def get_available_moves(current_grid)
-    if current_grid == draw_grid
-      [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    elsif current_grid == [["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      [2, 3, 4, 5, 6, 7, 8, 9]
-    else
-      [3, 4, 5, 6, 7, 8, 9]
-    end
+    current_grid = current_grid.flatten
+    available_move_indexes = (0..current_grid.length-1).select { |index| !current_grid[index].include?("X") }
+    available_move_indexes.map { |element| element += 1 }
   end
 
 end
