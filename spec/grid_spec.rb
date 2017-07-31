@@ -38,14 +38,14 @@ RSpec.describe Grid do
   end
 
   it "returns an array where all moves are available" do
-    expect(grid.get_available_moves(unmarked_grid)).to eq([[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]])
+    expect(grid.get_available_moves(unmarked_grid)).to eq([1, 2, 3, 4, 5, 6, 7, 8, 9])
   end
 
   it "returns an array where 8 moves are available" do
-    expect(grid.get_available_moves([["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([[0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]])
+    expect(grid.get_available_moves([["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([2, 3, 4, 5, 6, 7, 8, 9])
   end
 
   it "returns an array where 7 moves are available" do
-    expect(grid.get_available_moves([["| X ", "| x |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([[0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]])
+    expect(grid.get_available_moves([["| X ", "| x |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([3, 4, 5, 6, 7, 8, 9])
   end
 end
