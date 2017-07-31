@@ -17,4 +17,8 @@ class Grid
     !current_grid[move_part_1][move_part_2].include?("X") && !current_grid[move_part_1][move_part_2].include?("O")
   end
 
+  def get_available_moves(current_grid)
+    [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]]
+  end
+
 end
