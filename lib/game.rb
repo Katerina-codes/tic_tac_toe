@@ -68,6 +68,10 @@ class Game
     get_winning_hits(winning_move_sequences, move)
   end
 
+  def winning_score_for_player(move_sequences, winning_sequence, player_type)
+    10
+  end
+
   def game_flow
     player_types = {
       1 => [@human_player, @human_player],
