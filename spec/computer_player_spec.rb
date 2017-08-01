@@ -23,5 +23,9 @@ RSpec.describe ComputerPlayer do
   expect(computer_player.get_strategic_move([["| 1 ", "| 2 |", " 3 |"], ["| O ", "| 5 |" , " 6 |"], ["| X ", "| X |", " O |"]])).to eq(5)
   end
 
+  it "plays 3 if player's 3rd move is 2" do
+    computer_player = ComputerPlayer.new
+    expect(computer_player.get_strategic_move([["| 1 ", "| O |", " 3 |"], ["| O ", "| X |" , " 6 |"], ["| X ", "| X |", " O |"]])).to eq(3)
+  end
 
 end
