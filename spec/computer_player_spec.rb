@@ -18,5 +18,10 @@ RSpec.describe ComputerPlayer do
   expect(computer_player.get_strategic_move([["| 1 ", "| 2 |", " 3 |"], ["| O ", "| 5 |" , " 6 |"], ["| X ", "| 8 |", " 9 |"]])).to eq(8)
   end
 
+  it "plays 5 if player's 2nd move is 9" do
+  computer_player = ComputerPlayer.new
+  expect(computer_player.get_strategic_move([["| 1 ", "| 2 |", " 3 |"], ["| O ", "| 5 |" , " 6 |"], ["| X ", "| X |", " O |"]])).to eq(5)
+  end
+
 
 end

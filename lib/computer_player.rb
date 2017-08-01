@@ -8,8 +8,10 @@ class ComputerPlayer
   def get_strategic_move(current_grid)
     if current_grid == [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
       7
-    else
+    elsif current_grid == [["| 1 ", "| 2 |", " 3 |"], ["| O ", "| 5 |" , " 6 |"], ["| X ", "| 8 |", " 9 |"]]
       8
+    else
+      5
     end
   end
 
