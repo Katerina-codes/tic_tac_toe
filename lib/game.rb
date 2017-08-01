@@ -69,7 +69,11 @@ class Game
   end
 
   def winning_score_for_player(move_sequences, winning_sequence, player_type)
-    10
+    if player_type == @computer_player
+      10
+    else
+      -10
+    end
   end
 
   def game_flow

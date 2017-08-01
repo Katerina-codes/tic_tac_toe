@@ -323,6 +323,12 @@ RSpec.describe Game do
       move_sequences = [["marked_move", "marked_move", "marked_move"], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
       expect(game.winning_score_for_player(move_sequences, [["marked_move", "marked_move", "marked_move"]], computer_player)).to eq(10)
     end
+
+    it "scores the finished game as -10 if O wins" do
+      game = new_game_instance(input_output, human_player)
+      move_sequences = [["marked_move", "marked_move", "marked_move"], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+      expect(game.winning_score_for_player(move_sequences, [["marked_move", "marked_move", "marked_move"]], human_player)).to eq(-10)
+    end
   end
 
   it "returns 'O' if p1's mark is 'X' " do
