@@ -34,11 +34,13 @@ class Grid
   end
 
   def get_unmarked_positions_in_a_row(row)
-    if row == ["| 1 ", "| 2 |", " 3 |"]
-      3
-    else
-      2
+    count = 0
+    row.each do |value|
+      if !value.include?("X") && !value.include?("O")
+        count +=1
+      end
     end
+    count
   end
 
 end
