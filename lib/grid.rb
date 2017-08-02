@@ -24,11 +24,13 @@ class Grid
   end
 
   def get_marks_in_a_row(row, mark)
-    if row == ["| 1 ", "| 2 |", " 3 |"]
-      0
-    else
-      1
+    count = 0
+    row.each do |value|
+      if value.include?(mark)
+        count +=1
+      end
     end
+    count
   end
 
 end

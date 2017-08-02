@@ -61,6 +61,10 @@ RSpec.describe Grid do
     it "returns 1 for 1 mark in a row" do
       expect(grid.get_marks_in_a_row(["| X ", "| 2 |", " 3 |"], "X")).to eq(1)
     end
+
+    it "returns 2 for 2 marks in a row" do
+      expect(grid.get_marks_in_a_row(["| X ", "| X |", " 3 |"], "X")).to eq(2)
+    end
   end
 
 end
