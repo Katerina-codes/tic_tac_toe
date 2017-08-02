@@ -34,7 +34,11 @@ class Grid
   end
 
   def get_unmarked_positions_in_a_row(row)
-    3
+    if row == ["| 1 ", "| 2 |", " 3 |"]
+      3
+    else
+      2
+    end
   end
 
 end

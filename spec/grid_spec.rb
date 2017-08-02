@@ -70,4 +70,8 @@ RSpec.describe Grid do
   it "returns 3 if there are 3 unmarked positions in a row" do
       expect(grid.get_unmarked_positions_in_a_row(["| 1 ", "| 2 |", " 3 |"])).to eq(3)
   end
+
+  it "returns 2 if there are 2 unmarked positions in a row" do
+      expect(grid.get_unmarked_positions_in_a_row(["| X ", "| 2 |", " 3 |"])).to eq(2)
+  end
 end
