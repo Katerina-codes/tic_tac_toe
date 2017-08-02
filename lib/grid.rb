@@ -23,4 +23,8 @@ class Grid
     available_move_indexes.map { |element| element += 1 }
   end
 
+  def get_marks_in_a_row(row, mark)
+    0
+  end
+
 end
