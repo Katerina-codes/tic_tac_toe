@@ -335,6 +335,12 @@ RSpec.describe Game do
       move_sequences = [["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"]]
       expect(game.winning_score_for_player(move_sequences, [["marked_move", "marked_move", "marked_move"]], human_player)).to eq(0)
     end
+
+    it "scores the finished game as 0 if player is a computer player but game is tied" do
+      game = new_game_instance(input_output, human_player)
+      move_sequences = [["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"]]
+      expect(game.winning_score_for_player(move_sequences, [["marked_move", "marked_move", "marked_move"]], computer_player)).to eq(0)
+    end
   end
 
   it "returns 'O' if p1's mark is 'X' " do

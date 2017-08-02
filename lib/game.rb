@@ -69,9 +69,10 @@ class Game
   end
 
   def winning_score_for_player(move_sequences, winning_sequence, player_type)
-    if player_type == @computer_player
+    tie_sequence = [["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"]]
+    if player_type == @computer_player && move_sequences != tie_sequence
       10
-    elsif move_sequences == [["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"]]
+    elsif move_sequences == tie_sequence
       0
     else
       -10
