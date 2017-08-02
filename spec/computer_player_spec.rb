@@ -14,13 +14,13 @@ RSpec.describe ComputerPlayer do
   end
 
   it "plays 8 if player's 1st move is 4" do
-  computer_player = ComputerPlayer.new
-  expect(computer_player.get_strategic_move([["| 1 ", "| 2 |", " 3 |"], ["| O ", "| 5 |" , " 6 |"], ["| X ", "| 8 |", " 9 |"]])).to eq(8)
+    computer_player = ComputerPlayer.new
+    expect(computer_player.get_strategic_move([["| 1 ", "| 2 |", " 3 |"], ["| O ", "| 5 |" , " 6 |"], ["| X ", "| 8 |", " 9 |"]])).to eq(8)
   end
 
   it "plays 5 if player's 2nd move is 9" do
-  computer_player = ComputerPlayer.new
-  expect(computer_player.get_strategic_move([["| 1 ", "| 2 |", " 3 |"], ["| O ", "| 5 |" , " 6 |"], ["| X ", "| X |", " O |"]])).to eq(5)
+    computer_player = ComputerPlayer.new
+    expect(computer_player.get_strategic_move([["| 1 ", "| 2 |", " 3 |"], ["| O ", "| 5 |" , " 6 |"], ["| X ", "| X |", " O |"]])).to eq(5)
   end
 
   it "plays 3 if player's 3rd move is 2" do
