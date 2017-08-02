@@ -71,6 +71,8 @@ class Game
   def winning_score_for_player(move_sequences, winning_sequence, player_type)
     if player_type == @computer_player
       10
+    elsif move_sequences == [["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"]]
+      0
     else
       -10
     end
