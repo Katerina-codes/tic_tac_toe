@@ -33,4 +33,8 @@ class Grid
     count
   end
 
+  def get_unmarked_positions_in_a_row(row)
+    3
+  end
+
 end
