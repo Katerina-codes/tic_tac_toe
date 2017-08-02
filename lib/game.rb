@@ -50,7 +50,7 @@ class Game
     winning_moves.each_slice(3).to_a
   end
 
-  def game_is_won?(winning_move_sequences, winning_sequence)
+  def game_is_over?(winning_move_sequences, winning_sequence)
     !(winning_move_sequences & winning_sequence).empty?
   end
 
@@ -95,10 +95,10 @@ class Game
     p2_mark = "O"
     p1_type, p2_type = player_types[game_mode]
 
-    until game_is_won?(p1_winning_move_sequences, winning_sequence) || game_is_won?(p2_winning_move_sequences, winning_sequence)
+    until game_is_over?(p1_winning_move_sequences, winning_sequence) || game_is_over?(p2_winning_move_sequences, winning_sequence)
       p1_winning_move_sequences = player_flow(p1_type, p1_mark, p1_winning_move_sequences, current_grid)
 
-      if game_is_won?(p1_winning_move_sequences, winning_sequence)
+      if game_is_over?(p1_winning_move_sequences, winning_sequence)
         return @input_output.display_grid(current_grid)
       else
         @input_output.display_grid(current_grid)
