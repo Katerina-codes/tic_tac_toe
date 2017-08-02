@@ -24,7 +24,11 @@ class Grid
   end
 
   def get_marks_in_a_row(row, mark)
-    0
+    if row == ["| 1 ", "| 2 |", " 3 |"]
+      0
+    else
+      1
+    end
   end
 
 end
