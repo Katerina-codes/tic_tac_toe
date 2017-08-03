@@ -28,4 +28,9 @@ RSpec.describe ComputerPlayer do
     expect(computer_player.get_strategic_move([["| 1 ", "| O |", " 3 |"], ["| O ", "| X |" , " 6 |"], ["| X ", "| X |", " O |"]])).to eq(3)
   end
 
+  it "plays 6 as the winning move" do
+    computer_player = ComputerPlayer.new
+    expect(computer_player.play_winning_move([["| X ", "| O |", " X |"], ["| 4 ", "| O |" , " 6 |"], ["| O ", "| 8 |", " X |"]])).to eq(6)
+  end
+
 end

@@ -17,4 +17,8 @@ class ComputerPlayer
     end
   end
 
+  def play_winning_move(grid)
+    6
+  end
+
 end
