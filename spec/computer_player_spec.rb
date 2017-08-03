@@ -33,4 +33,8 @@ RSpec.describe ComputerPlayer do
     expect(computer_player.play_winning_move([["| X ", "| O |", " X |"], ["| 4 ", "| O |" , " 6 |"], ["| O ", "| 8 |", " X |"]])).to eq(6)
   end
 
+  it "plays 5 as the winning move" do
+    computer_player = ComputerPlayer.new
+    expect(computer_player.play_winning_move([["| X ", "| O |", " X |"], ["| 4 ", "| 5 |" , " O |"], ["| O ", "| 8 |", " X |"]])).to eq(5)
+  end
 end
