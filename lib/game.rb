@@ -43,10 +43,10 @@ class Game
     @grid.place_a_move(current_grid, converted_move, formatted_mark)
   end
 
-  def get_winning_hits(winning_move_sequences, move)
+  def get_winning_hits(winning_move_sequences, move, player_mark)
     winning_moves = winning_move_sequences.flatten
     index_position_of_move = (0..winning_moves.length-1).select { |value| winning_moves[value] == move }
-    index_position_of_move.each { |index| winning_moves[index] = "marked_move" }
+    index_position_of_move.each { |index| winning_moves[index] = player_mark }
     winning_moves.each_slice(3).to_a
   end
 
@@ -65,7 +65,7 @@ class Game
   def player_flow(player_type, player_mark, winning_move_sequences, current_grid)
     move = get_valid_move(current_grid, player_type)
     display_latest_move_on_grid(player_mark, move, current_grid)
-    get_winning_hits(winning_move_sequences, move)
+    get_winning_hits(winning_move_sequences, move, player_mark)
   end
 
   def winning_score_for_player(move_sequences, winning_sequence, player_type)
@@ -87,7 +87,8 @@ class Game
 
     p1_winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     p2_winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-    winning_sequence = [["marked_move", "marked_move", "marked_move"]]
+    p1_winning_move_sequence = [["X", "X", "X"]]
+    p2_winning_move_sequence = [["O", "O", "O"]]
     @input_output.ask_for_game_mode
     game_mode = @input_output.get_game_mode
     current_grid = initial_grid
@@ -95,10 +96,10 @@ class Game
     p2_mark = "O"
     p1_type, p2_type = player_types[game_mode]
 
-    until game_is_over?(p1_winning_move_sequences, winning_sequence) || game_is_over?(p2_winning_move_sequences, winning_sequence)
+    until game_is_over?(p1_winning_move_sequences, p1_winning_move_sequence) || game_is_over?(p2_winning_move_sequences, p2_winning_move_sequence)
       p1_winning_move_sequences = player_flow(p1_type, p1_mark, p1_winning_move_sequences, current_grid)
 
-      if game_is_over?(p1_winning_move_sequences, winning_sequence)
+      if game_is_over?(p1_winning_move_sequences, p1_winning_move_sequence)
         return @input_output.display_grid(current_grid)
       else
         @input_output.display_grid(current_grid)
