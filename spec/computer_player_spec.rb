@@ -37,4 +37,9 @@ RSpec.describe ComputerPlayer do
     computer_player = ComputerPlayer.new
     expect(computer_player.play_winning_move([["| X ", "| O |", " X |"], ["| 4 ", "| 5 |" , " O |"], ["| O ", "| 8 |", " X |"]])).to eq(5)
   end
+
+  it "plays 9 as the winning move" do
+    computer_player = ComputerPlayer.new
+    expect(computer_player.play_winning_move([["| 1 ", "| 2 |", " X |"], ["| O ", "| X |" , " X |"], ["| O ", "| O |", " 9 |"]])).to eq(9)
+  end
 end

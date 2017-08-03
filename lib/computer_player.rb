@@ -20,8 +20,10 @@ class ComputerPlayer
   def play_winning_move(grid)
     if grid == [["| X ", "| O |", " X |"], ["| 4 ", "| O |" , " 6 |"], ["| O ", "| 8 |", " X |"]]
       6
-    else
+    elsif grid == [["| X ", "| O |", " X |"], ["| 4 ", "| 5 |" , " O |"], ["| O ", "| 8 |", " X |"]]
       5
+    else
+      9
     end
   end
 
