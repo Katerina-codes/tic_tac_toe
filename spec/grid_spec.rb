@@ -79,8 +79,13 @@ RSpec.describe Grid do
       expect(grid.get_unmarked_positions_in_a_row(["| X ", "| X |", " 3 |"])).to eq(1)
   end
 
-  it "Returns 6 as the winning move" do
+  it "returns 6 as the winning move" do
     move_sequences = [["X", "O", "X"], [4, "O", 6], ["O", 8, "X"], ["X", 4, "O"], ["O", "O", 8], ["X", 6, "X"], ["X", "O", "X"], ["X", "O", "O"]]
     expect(grid.play_winning_move(move_sequences, "X")).to eq(6)
+  end
+
+  it "returns 5 as the winning move" do
+    move_sequences = [["X", "O", "X"], [4, 5, "O"], ["O", 8, "X"], ["X", 4, "O"], ["O", 5, 8], ["X", "O", "X"], ["X", 5, "X"], ["X", 5, "O"]]
+    expect(grid.play_winning_move(move_sequences, "X")).to eq(5)
   end
 end
