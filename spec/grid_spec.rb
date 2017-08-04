@@ -88,4 +88,9 @@ RSpec.describe Grid do
     move_sequences = [["X", "O", "X"], [4, 5, "O"], ["O", 8, "X"], ["X", 4, "O"], ["O", 5, 8], ["X", "O", "X"], ["X", 5, "X"], ["X", 5, "O"]]
     expect(grid.play_winning_move(move_sequences, "X")).to eq(5)
   end
+
+  it "returns 9 as the winning move" do
+    move_sequences = [[1, 2, "X"], ["O", "X", "X"], ["O", "O", 9], [1, "O", "O"], [2, "X", "O"], ["X", "X", 9], [1, "X", 9], ["X", "X", "O"]]
+    expect(grid.play_winning_move(move_sequences, "X")).to eq(9)
+  end
 end

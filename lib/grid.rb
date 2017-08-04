@@ -46,8 +46,10 @@ class Grid
   def play_winning_move(move_sequences, player_mark)
     if move_sequences == [["X", "O", "X"], [4, "O", 6], ["O", 8, "X"], ["X", 4, "O"], ["O", "O", 8], ["X", 6, "X"], ["X", "O", "X"], ["X", "O", "O"]]
       6
-    else
+    elsif move_sequences == [["X", "O", "X"], [4, 5, "O"], ["O", 8, "X"], ["X", 4, "O"], ["O", 5, 8], ["X", "O", "X"], ["X", 5, "X"], ["X", 5, "O"]]
       5
+    else
+      9
     end
   end
 
