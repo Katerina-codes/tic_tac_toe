@@ -44,13 +44,10 @@ class Grid
   end
 
   def play_winning_move(move_sequences, player_mark)
-    if move_sequences == [["X", "O", "X"], [4, "O", 6], ["O", 8, "X"], ["X", 4, "O"], ["O", "O", 8], ["X", 6, "X"], ["X", "O", "X"], ["X", "O", "O"]]
-      6
-    elsif move_sequences == [["X", "O", "X"], [4, 5, "O"], ["O", 8, "X"], ["X", 4, "O"], ["O", 5, 8], ["X", "O", "X"], ["X", 5, "X"], ["X", 5, "O"]]
-      5
-    else
-      9
+    sequence_with_winning_move = move_sequences.select do |sequence|
+      sequence.count(player_mark) == 2 && !sequence.include?("O")
     end
+    winning_move = sequence_with_winning_move.flatten.select { |value| value != "X" }.join.to_i
   end
 
 end
