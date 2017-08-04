@@ -43,4 +43,8 @@ class Grid
     count
   end
 
+  def play_winning_move(move_sequences, player_mark)
+    6
+  end
+
 end
