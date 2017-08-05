@@ -18,10 +18,16 @@ class ComputerPlayer
   end
 
   def play_winning_move(move_sequences, player_mark)
-    sequence_with_winning_move = move_sequences.select do |sequence|
-      sequence.count(player_mark) == 2 && !sequence.include?("O")
+    if player_mark == "X"
+      opponent_mark = "O"
+    else
+      opponent_mark = "X"
     end
-    winning_move = sequence_with_winning_move.flatten.select { |value| value != "X" }.join.to_i
+
+    sequence_with_winning_move = move_sequences.select do |sequence|
+      sequence.count(player_mark) == 2 && !sequence.include?(opponent_mark)
+    end
+    winning_move = sequence_with_winning_move.flatten.select { |value| value != player_mark }.join.to_i
   end
 
 end

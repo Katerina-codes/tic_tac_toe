@@ -45,4 +45,11 @@ RSpec.describe ComputerPlayer do
     move_sequences = [[1, 2, "X"], ["O", "X", "X"], ["O", "O", 9], [1, "O", "O"], [2, "X", "O"], ["X", "X", 9], [1, "X", 9], ["X", "X", "O"]]
     expect(computer_player.play_winning_move(move_sequences, "X")).to eq(9)
   end
+
+  it "plays 6 as the winning move if the opponent mark is 'X' " do
+    computer_player = ComputerPlayer.new
+    move_sequences = [["O", "X", "O"], [4, "X", 6], ["X", 8, "O"], ["O", 4, "X"], ["X", "X", 8], ["O", 6, "O"], ["O", "X", "O"], ["O", "X", "X"]]
+    expect(computer_player.play_winning_move(move_sequences, "O")).to eq(6)
+    end
+
 end
