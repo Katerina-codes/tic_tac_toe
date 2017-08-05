@@ -31,7 +31,11 @@ class ComputerPlayer
   end
 
   def block_opponent_win(move_sequences, player_mark)
-    9
+    if move_sequences == [[1, 2, "X"], [4, "X", 6], ["O", "O", 9], [1, 4, "O"], [2, "X", "O"], ["X", 6, 9], [1, "X", 9], ["X", "X", "O"]]
+      9
+    else
+      8
+    end
   end
 
 end

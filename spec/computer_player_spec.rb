@@ -45,9 +45,14 @@ RSpec.describe ComputerPlayer do
     expect(computer_player.play_winning_move(move_sequences, "O")).to eq(6)
     end
 
-  it "blocks the opponent's winning move" do
+  it "plays 9 to block the opponent's winning move" do
     move_sequences = [[1, 2, "X"], [4, "X", 6], ["O", "O", 9], [1, 4, "O"], [2, "X", "O"], ["X", 6, 9], [1, "X", 9], ["X", "X", "O"]]
     expect(computer_player.block_opponent_win(move_sequences, "X")).to eq(9)
+  end
+
+  it "plays 8 to block the opponent's winning move" do
+    move_sequences = [["X", 2, 3], [4, "X", 6], ["O", 8, "O"], ["X", 4, "O"], [2, "X", 8], [3, 6, "O"], ["X", "X", "O"], [3, "X", "O"]]
+    expect(computer_player.block_opponent_win(move_sequences, "X")).to eq(8)
   end
 
 end
