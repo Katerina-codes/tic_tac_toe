@@ -6,7 +6,8 @@ RSpec.describe ComputerPlayer do
 
   it "plays a random move" do
     possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    expect(possible_moves.include?(computer_player.play_move)).to eq(true)
+    move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+    expect(possible_moves.include?(computer_player.play_move(move_sequences, "X"))).to eq(true)
   end
 
   it "plays 7 as the 1st move" do

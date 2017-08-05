@@ -1,9 +1,16 @@
 class ComputerPlayer
 
-  def play_move
-    (1..9).to_a.sample
+  def play_move(move_sequences, player_mark)
+    possible_moves = (1..9).to_a
+    if possible_moves.include?(block_opponent_win(move_sequences, player_mark))
+      block_opponent_win(move_sequences, player_mark)
+    elsif
+       possible_moves.include?(play_winning_move(move_sequences, player_mark))
+       play_winning_move(move_sequences, player_mark)
+    else
+      (1..9).to_a.sample
+    end
   end
-
 
   def get_strategic_move(current_grid)
     if current_grid == [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
