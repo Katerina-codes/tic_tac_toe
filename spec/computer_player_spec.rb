@@ -30,16 +30,19 @@ RSpec.describe ComputerPlayer do
 
   it "plays 6 as the winning move" do
     computer_player = ComputerPlayer.new
-    expect(computer_player.play_winning_move([["| X ", "| O |", " X |"], ["| 4 ", "| O |" , " 6 |"], ["| O ", "| 8 |", " X |"]])).to eq(6)
+    move_sequences = [["X", "O", "X"], [4, "O", 6], ["O", 8, "X"], ["X", 4, "O"], ["O", "O", 8], ["X", 6, "X"], ["X", "O", "X"], ["X", "O", "O"]]
+    expect(computer_player.play_winning_move(move_sequences, "X")).to eq(6)
   end
 
   it "plays 5 as the winning move" do
     computer_player = ComputerPlayer.new
-    expect(computer_player.play_winning_move([["| X ", "| O |", " X |"], ["| 4 ", "| 5 |" , " O |"], ["| O ", "| 8 |", " X |"]])).to eq(5)
+    move_sequences = [["X", "O", "X"], [4, 5, "O"], ["O", 8, "X"], ["X", 4, "O"], ["O", 5, 8], ["X", "O", "X"], ["X", 5, "X"], ["X", 5, "O"]]
+    expect(computer_player.play_winning_move(move_sequences, "X")).to eq(5)
   end
 
   it "plays 9 as the winning move" do
     computer_player = ComputerPlayer.new
-    expect(computer_player.play_winning_move([["| 1 ", "| 2 |", " X |"], ["| O ", "| X |" , " X |"], ["| O ", "| O |", " 9 |"]])).to eq(9)
+    move_sequences = [[1, 2, "X"], ["O", "X", "X"], ["O", "O", 9], [1, "O", "O"], [2, "X", "O"], ["X", "X", 9], [1, "X", 9], ["X", "X", "O"]]
+    expect(computer_player.play_winning_move(move_sequences, "X")).to eq(9)
   end
 end

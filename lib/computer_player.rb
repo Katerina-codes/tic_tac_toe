@@ -17,14 +17,11 @@ class ComputerPlayer
     end
   end
 
-  def play_winning_move(grid)
-    if grid == [["| X ", "| O |", " X |"], ["| 4 ", "| O |" , " 6 |"], ["| O ", "| 8 |", " X |"]]
-      6
-    elsif grid == [["| X ", "| O |", " X |"], ["| 4 ", "| 5 |" , " O |"], ["| O ", "| 8 |", " X |"]]
-      5
-    else
-      9
+  def play_winning_move(move_sequences, player_mark)
+    sequence_with_winning_move = move_sequences.select do |sequence|
+      sequence.count(player_mark) == 2 && !sequence.include?("O")
     end
+    winning_move = sequence_with_winning_move.flatten.select { |value| value != "X" }.join.to_i
   end
 
 end

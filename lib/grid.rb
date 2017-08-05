@@ -43,11 +43,4 @@ class Grid
     count
   end
 
-  def play_winning_move(move_sequences, player_mark)
-    sequence_with_winning_move = move_sequences.select do |sequence|
-      sequence.count(player_mark) == 2 && !sequence.include?("O")
-    end
-    winning_move = sequence_with_winning_move.flatten.select { |value| value != "X" }.join.to_i
-  end
-
 end
