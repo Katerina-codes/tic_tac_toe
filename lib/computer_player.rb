@@ -31,11 +31,16 @@ class ComputerPlayer
   end
 
   def block_opponent_win(move_sequences, player_mark)
-    if move_sequences == [[1, 2, "X"], [4, "X", 6], ["O", "O", 9], [1, 4, "O"], [2, "X", "O"], ["X", 6, 9], [1, "X", 9], ["X", "X", "O"]]
-      9
+    if player_mark == "X"
+      opponent_mark = "O"
     else
-      8
+      opponent_mark = "X"
     end
+
+    sequence_with_blocking_move = move_sequences.select do |sequence|
+      sequence.count(opponent_mark) == 2 && !sequence.include?(player_mark)
+    end
+    winning_move = sequence_with_blocking_move.flatten.select { |value| value != opponent_mark }.join.to_i
   end
 
 end
