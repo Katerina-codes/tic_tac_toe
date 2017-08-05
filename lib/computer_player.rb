@@ -30,4 +30,8 @@ class ComputerPlayer
     winning_move = sequence_with_winning_move.flatten.select { |value| value != player_mark }.join.to_i
   end
 
+  def block_opponent_win(move_sequences, player_mark)
+    9
+  end
+
 end
