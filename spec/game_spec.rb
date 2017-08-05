@@ -314,37 +314,13 @@ RSpec.describe Game do
   context "Tracks the game status" do
     it "returns true if the game has been won" do
       game = new_game_instance(input_output, human_player)
-      expect(game.game_is_over?([["marked_move", "marked_move", "marked_move"], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]], [["marked_move", "marked_move", "marked_move"]])).to eq(true)
+      expect(game.game_is_over?([["O", "O", "O"], ["X", "X", 6], ["X", 8, "X"], ["O", "X", "X"], ["O", "X", 8], ["O", 6, "X"], ["O", "X", "X"], ["O", "X", "X"]], [["O", "O", "O"]])).to eq(true)
     end
 
     it "returns a list of winning moves with instances of 1 replaced with marked_move" do
       game = new_game_instance(input_output, human_player)
       winning_moves = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
       expect(game.get_winning_hits(winning_moves, 1, "X")).to eq([["X", 2, 3], [4, 5, 6], [7, 8, 9], ["X", 4, 7], [2, 5, 8], [3, 6, 9], ["X", 5, 9], [3, 5, 7]])
-    end
-
-    it "scores the finished game as 10 if X wins" do
-      game = new_game_instance(input_output, human_player)
-      move_sequences = [["marked_move", "marked_move", "marked_move"], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-      expect(game.winning_score_for_player(move_sequences, [["marked_move", "marked_move", "marked_move"]], computer_player)).to eq(10)
-    end
-
-    it "scores the finished game as -10 if O wins" do
-      game = new_game_instance(input_output, human_player)
-      move_sequences = [["marked_move", "marked_move", "marked_move"], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-      expect(game.winning_score_for_player(move_sequences, [["marked_move", "marked_move", "marked_move"]], human_player)).to eq(-10)
-    end
-
-    it "scores the finished game as 0 if neither player wins" do
-      game = new_game_instance(input_output, human_player)
-      move_sequences = [["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"]]
-      expect(game.winning_score_for_player(move_sequences, [["marked_move", "marked_move", "marked_move"]], human_player)).to eq(0)
-    end
-
-    it "scores finished game as 0 if game is tied and player is a computer player" do
-      game = new_game_instance(input_output, human_player)
-      move_sequences = [["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"]]
-      expect(game.winning_score_for_player(move_sequences, [["marked_move", "marked_move", "marked_move"]], computer_player)).to eq(0)
     end
   end
 

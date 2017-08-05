@@ -68,17 +68,6 @@ class Game
     get_winning_hits(winning_move_sequences, move, player_mark)
   end
 
-  def winning_score_for_player(move_sequences, winning_sequence, player_type)
-    tie_sequence = [["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"], ["marked_move", "marked_move", "marked_move"]]
-    if player_type == @computer_player && move_sequences != tie_sequence
-      10
-    elsif move_sequences == tie_sequence
-      0
-    else
-      -10
-    end
-  end
-
   def game_flow
     player_types = {
       1 => [@human_player, @human_player],
