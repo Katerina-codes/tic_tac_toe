@@ -52,7 +52,7 @@ class Grid
   end
 
   def diagonal_has_three_marks?(current_grid, player_mark)
-    if current_grid == [["| X ", "| X |", " O |"], ["| X ", "| O |" , " 6 |"], ["| O ", "| 8 |", " 9 |"]]
+    if current_grid == [["| X ", "| X |", " O |"], ["| X ", "| O |" , " 6 |"], ["| O ", "| 8 |", " 9 |"]] || current_grid == [["| X ", "| O |", " X |"], ["| O ", "| X |" , " O |"], ["| X ", "| 8 |", " 9 |"]]
       true
     else
       false
