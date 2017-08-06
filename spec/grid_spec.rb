@@ -51,7 +51,7 @@ RSpec.describe Grid do
     end
 
     it "returns an array where 7 moves are available" do
-      expect(grid.get_available_moves([["| X ", "| X |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([3, 4, 5, 6, 7, 8, 9])
+      expect(grid.get_available_moves([["| X ", "| O |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([3, 4, 5, 6, 7, 8, 9])
     end
 
     it "returns 0 for 0 marks in a row" do

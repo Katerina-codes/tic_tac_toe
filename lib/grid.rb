@@ -19,7 +19,7 @@ class Grid
 
   def get_available_moves(current_grid)
     current_grid = current_grid.flatten
-    available_move_indexes = (0..current_grid.length-1).select { |index| !current_grid[index].include?("X") }
+    available_move_indexes = (0..current_grid.length-1).select { |index| !current_grid[index].include?("X") && !current_grid[index].include?("O") }
     available_move_indexes.map { |element| element += 1 }
   end
 
