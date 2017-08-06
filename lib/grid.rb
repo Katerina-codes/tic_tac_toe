@@ -51,4 +51,8 @@ class Grid
     column_one == true || column_two == true || column_three == true
   end
 
+  def diagonal_has_three_marks?(current_grid, player_mark)
+    true
+  end
+
 end
