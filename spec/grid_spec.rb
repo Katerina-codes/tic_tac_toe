@@ -109,4 +109,9 @@ RSpec.describe Grid do
     expect(grid.diagonal_has_three_marks?(current_grid, "X")).to eq(true)
   end
 
+  it "returns true if any rows have 3 X's" do
+    current_grid = [["| X ", "| X |", " X |"], ["| O ", "| O |" , " X |"], ["| O ", "| 8 |", " 9 |"]]
+    expect(grid.row_has_three_marks?(current_grid, "X")).to eq(true)
+  end
+
 end

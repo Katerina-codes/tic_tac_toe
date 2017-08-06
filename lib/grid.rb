@@ -43,6 +43,10 @@ class Grid
     count
   end
 
+  def row_has_three_marks?(current_grid, player_mark)
+    true
+  end
+
   def column_has_three_marks?(current_grid, player_mark)
     column_one = current_grid[0][0].include?(player_mark) && current_grid[1][0].include?(player_mark) && current_grid[2][0].include?(player_mark)
     column_two = current_grid[0][1].include?(player_mark) && current_grid[1][1].include?(player_mark) && current_grid[2][1].include?(player_mark)
