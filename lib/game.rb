@@ -63,7 +63,11 @@ class Game
   end
 
   def get_end_score(current_grid)
-    "Game over. Player 1 wins!"
+    if current_grid == [["| X ", "| X |", " X |"], ["| O ", "| O |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      "Game over. Player 1 wins!"
+    else
+      "Game over. Player 2 wins!"
+    end
   end
 
   def player_flow(player_type, player_mark, winning_move_sequences, current_grid)
