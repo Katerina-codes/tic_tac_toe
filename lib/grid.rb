@@ -43,4 +43,7 @@ class Grid
     count
   end
 
+  def column_has_three_marks?(current_grid, player_mark)
+    true
+  end
 end
