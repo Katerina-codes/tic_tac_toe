@@ -62,6 +62,10 @@ class Game
     end
   end
 
+  def get_end_score(current_grid)
+    "Game over. Player 1 wins!"
+  end
+
   def player_flow(player_type, player_mark, winning_move_sequences, current_grid)
     move = get_valid_move(current_grid, player_type, winning_move_sequences, player_mark)
     display_latest_move_on_grid(player_mark, move, current_grid)
