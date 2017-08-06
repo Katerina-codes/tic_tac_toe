@@ -334,6 +334,12 @@ RSpec.describe Game do
       current_grid = [["| X ", "| X |", " O |"], ["| X ", "| O |" , " 6 |"], ["| O ", "| 8 |", " 9 |"]]
       expect(game.get_end_score(current_grid)).to eq("Game over. Player 2 wins!")
     end
+
+    it "returns 'Game over. It's a tie!' if neither player wins" do
+      game = new_game_instance(input_output, human_player)
+      current_grid = [["| X ", "| O |", " X |"], ["| O ", "| X |" , " O |"], ["| X ", "| X |", " O |"]]
+      expect(game.get_end_score(current_grid)).to eq("Game over. It's a tie!")
+    end
   end
 
   it "returns 'O' if p1's mark is 'X' " do
