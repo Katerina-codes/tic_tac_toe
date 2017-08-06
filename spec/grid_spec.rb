@@ -89,4 +89,9 @@ RSpec.describe Grid do
     expect(grid.column_has_three_marks?(current_grid, "X")).to eq(false)
   end
 
+  it "returns true if any of the columns have 3 O's" do
+    current_grid = [["| X ", "| O |", " X |"], ["| X ", "| O |" , " X |"], ["| 7 ", "| O |", " 9 |"]]
+    expect(grid.column_has_three_marks?(current_grid, "O")).to eq(true)
+  end
+
 end
