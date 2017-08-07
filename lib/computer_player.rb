@@ -1,8 +1,11 @@
 class ComputerPlayer
 
-  def play_move(move_sequences, player_mark)
+  def play_move(move_sequences, player_mark, current_grid)
     possible_moves = (1..9).to_a
-    if possible_moves.include?(block_opponent_win(move_sequences, player_mark))
+    grid = Grid.new
+    if grid.get_available_moves(current_grid).count == 9 || grid.get_available_moves(current_grid).count == 8
+      5
+    elsif possible_moves.include?(block_opponent_win(move_sequences, player_mark))
       block_opponent_win(move_sequences, player_mark)
     elsif
        possible_moves.include?(play_winning_move(move_sequences, player_mark))
@@ -50,7 +53,7 @@ class ComputerPlayer
     winning_move = sequence_with_blocking_move.flatten.select { |value| value != opponent_mark }.join.to_i
   end
 
-  def play_first_move(current_grid)
+  def play_first_move(winning_sequence)
     5
   end
 

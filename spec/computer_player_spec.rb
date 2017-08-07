@@ -7,7 +7,8 @@ RSpec.describe ComputerPlayer do
   it "plays a random move" do
     possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-    expect(possible_moves.include?(computer_player.play_move(move_sequences, "X"))).to eq(true)
+    current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+    expect(possible_moves.include?(computer_player.play_move(move_sequences, "X", current_grid))).to eq(true)
   end
 
   it "plays 7 as the 1st move" do
@@ -62,8 +63,9 @@ RSpec.describe ComputerPlayer do
   end
 
   it "plays 5 as first move" do
-    current_grid = [["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-    expect(computer_player.play_first_move(current_grid)).to eq(5)
+    move_sequences = [["X", 2, 3], [4, 5, 6], [7, 8, 9], ["X", 4, 7], [2, 5, 8], [3, 6, 9], ["X", 5, 9], [3, 5, 7]]
+    current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+    expect(computer_player.play_first_move(move_sequences)).to eq(5)
   end
 
 end

@@ -21,11 +21,11 @@ class Game
 
   def get_valid_move(current_grid, player_type, move_sequences, player_mark)
     @input_output.ask_for_move
-    move = player_type.play_move(move_sequences, player_mark)
+    move = player_type.play_move(move_sequences, player_mark, current_grid)
     converted_move = @converter.convert_move_number(move)
     until @validator.move_valid?(move) && @grid.is_move_unique?(converted_move, current_grid)
       @input_output.display_invalid_move_error
-      move = player_type.play_move(move_sequences, player_mark)
+      move = player_type.play_move(move_sequences, player_mark, current_grid)
       converted_move = @converter.convert_move_number(move)
     end
     move
