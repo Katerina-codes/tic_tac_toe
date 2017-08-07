@@ -64,11 +64,11 @@ class Game
 
   def get_end_score(current_grid)
     if @grid.row_has_three_marks?(current_grid, "X") || @grid.column_has_three_marks?(current_grid, "X") || @grid.diagonal_has_three_marks?(current_grid, "X")
-      "Game over. Player 1 wins!"
+      @input_output.display_player_one_wins
     elsif @grid.row_has_three_marks?(current_grid, "O") || @grid.column_has_three_marks?(current_grid, "O") || @grid.diagonal_has_three_marks?(current_grid, "O")
-      "Game over. Player 2 wins!"
+        @input_output.display_player_two_wins
     else
-      "Game over. It's a tie!"
+      @input_output.display_game_tie
     end
   end
 
