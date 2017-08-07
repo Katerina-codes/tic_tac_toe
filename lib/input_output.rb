@@ -48,4 +48,8 @@ class InputOutput
     @output.puts "Game over. Player 1 wins!"
   end
 
+  def display_player_two_wins
+    @output.puts "Game over. Player 2 wins!"
+  end
+
 end
