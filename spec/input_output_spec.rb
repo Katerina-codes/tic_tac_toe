@@ -92,6 +92,11 @@ RSpec.describe InputOutput do
       input_output.display_player_two_wins
       expect(output.string).to eq("Game over. Player 2 wins!\n")
     end
+
+    it "announces game is tied" do
+      input_output.display_game_tie
+      expect(output.string).to eq("Game over. It's a tie!\n")
+    end
   end
 
 end

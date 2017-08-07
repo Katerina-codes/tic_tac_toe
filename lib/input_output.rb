@@ -52,4 +52,8 @@ class InputOutput
     @output.puts "Game over. Player 2 wins!"
   end
 
+  def display_game_tie
+    @output.puts "Game over. It's a tie!"
+  end
+
 end
