@@ -337,7 +337,7 @@ RSpec.describe Game do
 
     it "returns 'Game over. It's a tie!' if neither player wins" do
       game = new_game_instance(input_output, human_player)
-      current_grid = [["| X ", "| O |", " X |"], ["| O ", "| X |" , " O |"], ["| X ", "| X |", " O |"]]
+      current_grid = [["| X ", "| O |", " X |"], ["| X ", "| O |" , " O |"], ["| O ", "| X |", " X |"]]
       expect(game.get_end_score(current_grid, "X")).to eq("Game over. It's a tie!")
     end
   end
