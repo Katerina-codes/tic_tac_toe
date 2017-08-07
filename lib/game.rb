@@ -62,7 +62,7 @@ class Game
     end
   end
 
-  def get_end_score(current_grid)
+  def get_end_score(current_grid, player_mark)      
     if current_grid == [["| X ", "| X |", " X |"], ["| O ", "| O |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
       "Game over. Player 1 wins!"
     elsif current_grid == [["| X ", "| X |", " O |"], ["| X ", "| O |" , " 6 |"], ["| O ", "| 8 |", " 9 |"]]
