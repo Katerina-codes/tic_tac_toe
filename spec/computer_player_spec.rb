@@ -61,4 +61,9 @@ RSpec.describe ComputerPlayer do
     expect(computer_player.block_opponent_win(move_sequences, "X")).to eq(6)
   end
 
+  it "plays 5 as first move" do
+    current_grid = [["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+    expect(computer_player.play_first_move(current_grid)).to eq(5)
+  end
+
 end
