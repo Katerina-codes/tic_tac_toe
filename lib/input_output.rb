@@ -44,4 +44,8 @@ class InputOutput
     @input.gets.chomp.to_i
   end
 
+  def display_player_one_wins
+    @output.puts "Game over. Player 1 wins!"
+  end
+
 end

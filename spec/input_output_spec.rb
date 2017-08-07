@@ -82,6 +82,11 @@ RSpec.describe InputOutput do
       input_output = InputOutput.new(output, input)
       expect(input_output.get_game_mode).to eq(1)
     end
+
+    it "announces player 1 has won" do
+      input_output.display_player_one_wins
+      expect(output.string).to eq("Game over. Player 1 wins!\n")
+    end
   end
 
 end
