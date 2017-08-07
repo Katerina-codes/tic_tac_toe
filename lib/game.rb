@@ -62,7 +62,7 @@ class Game
     end
   end
 
-  def get_end_score(current_grid, player_mark)
+  def get_end_score(current_grid)
     if @grid.row_has_three_marks?(current_grid, "X") || @grid.column_has_three_marks?(current_grid, "X") || @grid.diagonal_has_three_marks?(current_grid, "X")
       "Game over. Player 1 wins!"
     elsif @grid.row_has_three_marks?(current_grid, "O") || @grid.column_has_three_marks?(current_grid, "O") || @grid.diagonal_has_three_marks?(current_grid, "O")
