@@ -44,11 +44,10 @@ class Grid
   end
 
   def row_has_three_marks?(current_grid, player_mark)
-    if current_grid == [["| X ", "| X |", " X |"], ["| O ", "| O |" , " X |"], ["| O ", "| 8 |", " 9 |"]] || current_grid == [["| X ", "| X |", " X |"], ["| O ", "| O |" , " O |"], ["| X ", "| 8 |", " 9 |"]]
-      true
-    else
-      false
-    end
+    row_one = current_grid[0][0].include?(player_mark) && current_grid[0][1].include?(player_mark) && current_grid[0][2].include?(player_mark)
+    row_two = current_grid[1][0].include?(player_mark) && current_grid[1][1].include?(player_mark) && current_grid[1][2].include?(player_mark)
+    row_three = current_grid[2][0].include?(player_mark) && current_grid[2][1].include?(player_mark) && current_grid[2][2].include?(player_mark)
+    row_one == true || row_two == true || row_three == true
   end
 
   def column_has_three_marks?(current_grid, player_mark)
