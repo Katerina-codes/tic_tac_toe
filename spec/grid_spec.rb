@@ -104,7 +104,7 @@ RSpec.describe Grid do
     expect(grid.diagonal_has_three_marks?(current_grid, "O")).to eq(false)
   end
 
-  it "returns true if any of the diagonals include 3 'X's" do
+  it "returns true if any of the diagonals include 3 X's" do
     current_grid = [["| X ", "| O |", " X |"], ["| O ", "| X |" , " O |"], ["| X ", "| 8 |", " 9 |"]]
     expect(grid.diagonal_has_three_marks?(current_grid, "X")).to eq(true)
   end
@@ -118,4 +118,10 @@ RSpec.describe Grid do
     current_grid = [["| X ", "| O |", " X |"], ["| O ", "| X |" , " X |"], ["| O ", "| 8 |", " 9 |"]]
     expect(grid.row_has_three_marks?(current_grid, "X")).to eq(false)
   end
+
+  it "returns true if any rows have 3 O's" do
+    current_grid = [["| X ", "| X |", " X |"], ["| O ", "| O |" , " O |"], ["| X ", "| 8 |", " 9 |"]]
+    expect(grid.row_has_three_marks?(current_grid, "O")).to eq(true)
+  end
+
 end
