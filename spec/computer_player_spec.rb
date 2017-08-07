@@ -25,6 +25,13 @@ RSpec.describe ComputerPlayer do
     expect(computer_player.play_move(move_sequences, "O", current_grid)).to eq(6)
   end
 
+  it "plays a move choosing from the only available moves left" do
+    move_sequences = [["X", 2, "O"], ["O", "X", "X"], ["X", 8, "O"], ["X", "O", "X"], [2, "X", 8], ["O", "X", "O"], ["X", "X", "O"], ["O", "X", "X"]]
+    current_grid = [["| X ", "| 2 |", " O |"], ["| O ", "| X |" , " X |"], ["| X ", "| 8 |", " O |"]]
+    available_moves = [2, 8]
+    expect(available_moves.include?(computer_player.play_move(move_sequences, "O", current_grid))).to eq(true)
+  end
+
   it "plays 7 as the 1st move" do
     expect(computer_player.get_strategic_move([["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(7)
   end
