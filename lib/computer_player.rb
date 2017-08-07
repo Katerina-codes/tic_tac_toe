@@ -2,8 +2,9 @@ class ComputerPlayer
 
   def play_move(move_sequences, player_mark, current_grid)
     possible_moves = (1..9).to_a
+    corner_moves = [1, 3, 7, 9]
     grid = Grid.new
-    if grid.get_available_moves(current_grid).count == 9 || grid.get_available_moves(current_grid).count == 8
+    if grid.get_available_moves(current_grid).count == 9 || grid.get_available_moves(current_grid).count == 8 && grid.get_available_moves(current_grid).include?(5)
       5
     elsif possible_moves.include?(block_opponent_win(move_sequences, player_mark))
       block_opponent_win(move_sequences, player_mark)
@@ -11,7 +12,7 @@ class ComputerPlayer
        possible_moves.include?(play_winning_move(move_sequences, player_mark))
        play_winning_move(move_sequences, player_mark)
     else
-      (1..9).to_a.sample
+      corner_moves.sample
     end
   end
 

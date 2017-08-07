@@ -1,4 +1,5 @@
 require 'computer_player'
+require 'grid'
 
 RSpec.describe ComputerPlayer do
 
@@ -9,6 +10,13 @@ RSpec.describe ComputerPlayer do
     move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
     expect(possible_moves.include?(computer_player.play_move(move_sequences, "X", current_grid))).to eq(true)
+  end
+
+  it "plays a corner move as the first move if 5 is taken" do
+    move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+    current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| X |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+    corner_moves = [1, 3, 7, 9]
+    expect(corner_moves.include?(computer_player.play_move(move_sequences, "X", current_grid))).to eq(true)
   end
 
   it "plays 7 as the 1st move" do
