@@ -66,7 +66,7 @@ class Game
     if @grid.row_has_three_marks?(current_grid, "X") || @grid.column_has_three_marks?(current_grid, "X") || @grid.diagonal_has_three_marks?(current_grid, "X")
       @input_output.display_player_one_wins
     elsif @grid.row_has_three_marks?(current_grid, "O") || @grid.column_has_three_marks?(current_grid, "O") || @grid.diagonal_has_three_marks?(current_grid, "O")
-        @input_output.display_player_two_wins
+      @input_output.display_player_two_wins
     else
       @input_output.display_game_tie
     end
@@ -94,16 +94,17 @@ class Game
     p2_mark = "O"
     p1_type, p2_type = player_types[game_mode]
 
-    until game_is_over?(winning_move_sequences, p1_winning_move_sequence) || game_is_over?(winning_move_sequences, p2_winning_move_sequence)
+    until game_is_over?(winning_move_sequences, p1_winning_move_sequence) || game_is_over?(winning_move_sequences, p2_winning_move_sequence) || @grid.get_available_moves(current_grid) == []
       winning_move_sequences = player_flow(p1_type, p1_mark, winning_move_sequences, current_grid)
-      if game_is_over?(winning_move_sequences, p1_winning_move_sequence)
-        return @input_output.display_grid(current_grid)
+      if game_is_over?(winning_move_sequences, p1_winning_move_sequence) || @grid.get_available_moves(current_grid) == []
+        @input_output.display_grid(current_grid)
       else
         @input_output.display_grid(current_grid)
         winning_move_sequences = player_flow(p2_type, p2_mark, winning_move_sequences, current_grid)
         @input_output.display_grid(current_grid)
       end
     end
+    get_end_score(current_grid)
   end
 
 end

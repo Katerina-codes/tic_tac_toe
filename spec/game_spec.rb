@@ -343,6 +343,15 @@ RSpec.describe Game do
       game.get_end_score(current_grid)
       expect(output.string).to eq("Game over. It's a tie!\n")
     end
+
+    it "ends game when neither player has won and there are no moves left" do
+      input = StringIO.new("2\n1\n3\n8\n7\n9\n4\n6")
+      input_output = InputOutput.new(output, input)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
+      game.game_flow
+      expect(output.string).to include("Game over. It's a tie!")
+    end
   end
 
   it "returns 'O' if p1's mark is 'X' " do
