@@ -1,11 +1,14 @@
 class ComputerPlayer
 
+  def initialize(grid)
+    @grid = grid
+  end
+
   def play_move(move_sequences, player_mark, current_grid)
-    grid = Grid.new
     possible_moves = (1..9).to_a
     corner_moves = [1, 3, 7, 9]
-    available_moves = grid.get_available_moves(current_grid)
-    if grid.get_available_moves(current_grid).count == 9 || grid.get_available_moves(current_grid).count == 8 && grid.get_available_moves(current_grid).include?(5)
+    available_moves = @grid.get_available_moves(current_grid)
+    if @grid.get_available_moves(current_grid).count == 9 || @grid.get_available_moves(current_grid).count == 8 && @grid.get_available_moves(current_grid).include?(5)
       5
     elsif possible_moves.include?(block_possible_fork(current_grid))
       block_possible_fork(current_grid)
@@ -51,19 +54,18 @@ class ComputerPlayer
   end
 
   def block_possible_fork(current_grid)
-    grid = Grid.new
     no_fork = 0
-    if current_grid[0][1].include?("X") && current_grid[1][0].include?("X") && grid.get_available_moves(current_grid).include?(1)
+    if current_grid[0][1].include?("X") && current_grid[1][0].include?("X") && @grid.get_available_moves(current_grid).include?(1)
       1
-    elsif current_grid[0][1].include?("X") && current_grid[1][2].include?("X") && grid.get_available_moves(current_grid).include?(3)
+    elsif current_grid[0][1].include?("X") && current_grid[1][2].include?("X") && @grid.get_available_moves(current_grid).include?(3)
       3
-    elsif current_grid[1][2].include?("X") && current_grid[2][1].include?("X") && grid.get_available_moves(current_grid).include?(9)
+    elsif current_grid[1][2].include?("X") && current_grid[2][1].include?("X") && @grid.get_available_moves(current_grid).include?(9)
       9
-    elsif current_grid[1][0].include?("X") && current_grid[2][1].include?("X") && grid.get_available_moves(current_grid).include?(7)
+    elsif current_grid[1][0].include?("X") && current_grid[2][1].include?("X") && @grid.get_available_moves(current_grid).include?(7)
       7
-    elsif current_grid[0][0].include?("X") && current_grid[2][2].include?("X") && grid.get_available_moves(current_grid).include?(6)
+    elsif current_grid[0][0].include?("X") && current_grid[2][2].include?("X") && @grid.get_available_moves(current_grid).include?(6)
       6
-    elsif current_grid[0][2].include?("X") && current_grid[2][0].include?("X") && grid.get_available_moves(current_grid).include?(4)
+    elsif current_grid[0][2].include?("X") && current_grid[2][0].include?("X") && @grid.get_available_moves(current_grid).include?(4)
       4
     else
       no_fork

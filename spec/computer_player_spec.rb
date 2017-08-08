@@ -3,7 +3,8 @@ require 'grid'
 
 RSpec.describe ComputerPlayer do
 
-  let(:computer_player) { ComputerPlayer.new }
+  let(:grid) { Grid.new }
+  let(:computer_player) { ComputerPlayer.new(grid) }
 
   it "plays a random move" do
     possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]

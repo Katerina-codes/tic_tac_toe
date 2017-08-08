@@ -7,5 +7,6 @@ require_relative 'lib/human_player'
 require_relative 'lib/computer_player'
 
 input_output_instance = InputOutput.new
-new_game = Game.new(input_output_instance, Validator.new, Grid.new, Converter.new, HumanPlayer.new(input_output_instance), ComputerPlayer.new)
+grid_instance = Grid.new
+new_game = Game.new(input_output_instance, Validator.new, grid_instance, Converter.new, HumanPlayer.new(input_output_instance), ComputerPlayer.new(grid_instance))
 new_game.game_flow

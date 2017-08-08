@@ -15,7 +15,7 @@ RSpec.describe Game do
   let(:grid) { Grid.new }
   let(:converter) { Converter.new }
   let(:human_player) { HumanPlayer.new(input_output) }
-  let(:computer_player) { ComputerPlayer.new }
+  let(:computer_player) { ComputerPlayer.new(grid) }
 
   context "Gets a valid mark" do
     it "gets a mark choice" do
@@ -80,7 +80,7 @@ RSpec.describe Game do
     it "gets a valid move from the computer player" do
       game = new_game_instance(input_output, human_player)
       current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      player_type = ComputerPlayer.new
+      player_type = ComputerPlayer.new(grid)
       possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
       move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
       computer_move = game.get_valid_move(current_grid, player_type, move_sequences, "X")
