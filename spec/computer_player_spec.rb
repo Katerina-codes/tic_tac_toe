@@ -80,6 +80,11 @@ RSpec.describe ComputerPlayer do
       current_grid = [["| 1 ", "| X |", " 3 |"], ["| X ", "| O |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
       expect(computer_player.block_possible_fork(current_grid)).to eq(1)
     end
+
+    it "plays 3 if player has played 2, 6" do
+      current_grid = [["| 1 ", "| X |", " 3 |"], ["| 4 ", "| O |" , " X |"], ["| 7 ", "| 8 |", " 9 |"]]
+      expect(computer_player.block_possible_fork(current_grid)).to eq(3)
+    end
   end
 
 end
