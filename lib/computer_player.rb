@@ -49,4 +49,8 @@ class ComputerPlayer
     5
   end
 
+  def block_possible_fork(current_grid)
+    1
+  end
+
 end
