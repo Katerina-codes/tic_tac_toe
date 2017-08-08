@@ -7,8 +7,7 @@ class ComputerPlayer
     available_moves = grid.get_available_moves(current_grid)
     if grid.get_available_moves(current_grid).count == 9 || grid.get_available_moves(current_grid).count == 8 && grid.get_available_moves(current_grid).include?(5)
       5
-    elsif
-       possible_moves.include?(play_winning_move(move_sequences, player_mark))
+    elsif possible_moves.include?(play_winning_move(move_sequences, player_mark))
        play_winning_move(move_sequences, player_mark)
      elsif possible_moves.include?(block_opponent_win(move_sequences, player_mark))
        block_opponent_win(move_sequences, player_mark)
@@ -59,6 +58,8 @@ class ComputerPlayer
       9
     elsif current_grid[1][0].include?("X") && current_grid[2][1].include?("X")
       7
+    elsif current_grid[0][0].include?("X") && current_grid[2][2].include?("X")
+      6
     else
       no_fork
     end
