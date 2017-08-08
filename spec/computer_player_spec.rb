@@ -32,22 +32,6 @@ RSpec.describe ComputerPlayer do
     expect(available_moves.include?(computer_player.play_move(move_sequences, "O", current_grid))).to eq(true)
   end
 
-  it "plays 7 as the 1st move" do
-    expect(computer_player.get_strategic_move([["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(7)
-  end
-
-  it "plays 8 if player's 1st move is 4" do
-    expect(computer_player.get_strategic_move([["| 1 ", "| 2 |", " 3 |"], ["| O ", "| 5 |" , " 6 |"], ["| X ", "| 8 |", " 9 |"]])).to eq(8)
-  end
-
-  it "plays 5 if player's 2nd move is 9" do
-    expect(computer_player.get_strategic_move([["| 1 ", "| 2 |", " 3 |"], ["| O ", "| 5 |" , " 6 |"], ["| X ", "| X |", " O |"]])).to eq(5)
-  end
-
-  it "plays 3 if player's 3rd move is 2" do
-    expect(computer_player.get_strategic_move([["| 1 ", "| O |", " 3 |"], ["| O ", "| X |" , " 6 |"], ["| X ", "| X |", " O |"]])).to eq(3)
-  end
-
   it "plays 6 as the winning move" do
     move_sequences = [["X", "O", "X"], [4, "O", 6], ["O", 8, "X"], ["X", 4, "O"], ["O", "O", 8], ["X", 6, "X"], ["X", "O", "X"], ["X", "O", "O"]]
     expect(computer_player.play_winning_move(move_sequences, "X")).to eq(6)
