@@ -76,15 +76,19 @@ RSpec.describe ComputerPlayer do
       expect(computer_player.block_opponent_win(move_sequences, "X")).to eq(6)
     end
 
-    it "plays 1 if player has played 4, 2" do
+    it "plays 1 if opponent has played 4, 2" do
       current_grid = [["| 1 ", "| X |", " 3 |"], ["| X ", "| O |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
       expect(computer_player.block_possible_fork(current_grid)).to eq(1)
     end
 
-    it "plays 3 if player has played 2, 6" do
+    it "plays 3 if opponent has played 2, 6" do
       current_grid = [["| 1 ", "| X |", " 3 |"], ["| 4 ", "| O |" , " X |"], ["| 7 ", "| 8 |", " 9 |"]]
       expect(computer_player.block_possible_fork(current_grid)).to eq(3)
     end
-  end
 
+    it "plays 9 if opponent has played 6, 8" do
+      current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| O |" , " X |"], ["| 7 ", "| X  |", " 9 |"]]
+      expect(computer_player.block_possible_fork(current_grid)).to eq(9)
+    end
+  end
 end

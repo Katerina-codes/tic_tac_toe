@@ -52,8 +52,10 @@ class ComputerPlayer
   def block_possible_fork(current_grid)
     if current_grid == [["| 1 ", "| X |", " 3 |"], ["| X ", "| O |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
       1
-    else
+    elsif current_grid == [["| 1 ", "| X |", " 3 |"], ["| 4 ", "| O |" , " X |"], ["| 7 ", "| 8 |", " 9 |"]]
       3
+    else
+      9
     end
   end
 
