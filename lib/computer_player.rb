@@ -53,15 +53,15 @@ class ComputerPlayer
   def block_possible_fork(current_grid)
     grid = Grid.new
     no_fork = 0
-    if current_grid[0][1].include?("X") && current_grid[1][0].include?("X")
+    if current_grid[0][1].include?("X") && current_grid[1][0].include?("X") && grid.get_available_moves(current_grid).include?(1)
       1
-    elsif current_grid[0][1].include?("X") && current_grid[1][2].include?("X")
+    elsif current_grid[0][1].include?("X") && current_grid[1][2].include?("X") && grid.get_available_moves(current_grid).include?(3)
       3
-    elsif current_grid[1][2].include?("X") && current_grid[2][1].include?("X")
+    elsif current_grid[1][2].include?("X") && current_grid[2][1].include?("X") && grid.get_available_moves(current_grid).include?(9)
       9
-    elsif current_grid[1][0].include?("X") && current_grid[2][1].include?("X")
+    elsif current_grid[1][0].include?("X") && current_grid[2][1].include?("X") && grid.get_available_moves(current_grid).include?(7)
       7
-    elsif current_grid[0][0].include?("X") && current_grid[2][2].include?("X")
+    elsif current_grid[0][0].include?("X") && current_grid[2][2].include?("X") && grid.get_available_moves(current_grid).include?(6)
       6
     elsif current_grid[0][2].include?("X") && current_grid[2][0].include?("X") && grid.get_available_moves(current_grid).include?(4)
       4
