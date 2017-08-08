@@ -344,7 +344,7 @@ RSpec.describe Game do
       expect(output.string).to eq("Game over. It's a tie!\n")
     end
 
-    it "ends game when neither player has won and there are no moves left" do
+    it "ends and scores game when neither player has won and no moves are left" do
       input = StringIO.new("2\n1\n3\n8\n7\n9\n4\n6")
       input_output = InputOutput.new(output, input)
       human_player_with_input = HumanPlayer.new(input_output)

@@ -95,6 +95,11 @@ RSpec.describe ComputerPlayer do
       current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| X ", "| O |" , " 6 |"], ["| 7 ", "| X |", " 9 |"]]
       expect(computer_player.block_possible_fork(current_grid)).to eq(7)
     end
+
+    it "returns 0 if there is no fork" do
+      current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      expect(computer_player.block_possible_fork(current_grid)).to eq(0)
+    end
   end
 
 end

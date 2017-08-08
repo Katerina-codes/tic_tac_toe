@@ -50,14 +50,17 @@ class ComputerPlayer
   end
 
   def block_possible_fork(current_grid)
+    no_fork = 0
     if current_grid[0][1].include?("X") && current_grid[1][0].include?("X")
       1
     elsif current_grid[0][1].include?("X") && current_grid[1][2].include?("X")
       3
     elsif current_grid[1][2].include?("X") && current_grid[2][1].include?("X")
       9
-    else
+    elsif current_grid[1][0].include?("X") && current_grid[2][1].include?("X")
       7
+    else
+      no_fork
     end
   end
 
