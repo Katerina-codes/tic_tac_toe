@@ -116,6 +116,12 @@ RSpec.describe ComputerPlayer do
       move_sequences = [[1, 2, "X"], [4, "O", "X"], [7, 8, 9], [1, 4, 7], [2, "O", 8], ["X", "X", 9], [1, "O", 9], ["X", "O", 7]]
       expect(computer_player.play_move(move_sequences, "O", current_grid)).to eq(4)
     end
+
+    it "stops computer player repeating the same move after it has blocked a fork" do
+      move_sequences = [[1, 2, "X"], ["O", "O", "X"], ["X", 8, 9], [1, "O", "X"], [2, "O", 8], ["X", "X", 9], [1, "O", 9], ["X", "O", 7]]
+      current_grid = [["| 1 ", "| 2 |", " X |"], ["| O ", "| O |" , " X |"], ["| X ", "| 8 |", " 9 |"]]
+      expect(computer_player.play_move(move_sequences, "O", current_grid)).to eq(9)
+    end
   end
 
 end

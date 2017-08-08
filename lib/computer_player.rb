@@ -63,7 +63,7 @@ class ComputerPlayer
       7
     elsif current_grid[0][0].include?("X") && current_grid[2][2].include?("X")
       6
-    elsif current_grid[0][2].include?("X") && current_grid[2][0].include?("X")
+    elsif current_grid[0][2].include?("X") && current_grid[2][0].include?("X") && grid.get_available_moves(current_grid).include?(4)
       4
     else
       no_fork
