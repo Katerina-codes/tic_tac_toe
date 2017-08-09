@@ -9,16 +9,6 @@ class Game
     @computer_player = computer_player
   end
 
-  def get_valid_mark
-    @input_output.ask_for_mark_choice
-    mark = @input_output.get_mark_choice
-    until @validator.mark_move_valid?(mark)
-      @input_output.ask_for_mark_choice
-      mark = @input_output.get_mark_choice
-    end
-    mark
-  end
-
   def get_valid_move(current_grid, player_type, move_sequences, player_mark)
     @input_output.ask_for_move
     move = player_type.play_move(move_sequences, player_mark, current_grid)

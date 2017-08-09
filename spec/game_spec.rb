@@ -17,27 +17,6 @@ RSpec.describe Game do
   let(:human_player) { HumanPlayer.new(input_output) }
   let(:computer_player) { ComputerPlayer.new(grid) }
 
-  context "Gets a valid mark" do
-    it "gets a mark choice" do
-      input = StringIO.new("x")
-      game = new_game_instance(io_instance_with_input(output, input), human_player)
-      expect(game.get_valid_mark).to eq("X")
-    end
-
-    it "returns mark if mark is 'X' " do
-      input = StringIO.new("x")
-      game = new_game_instance(io_instance_with_input(output, input), human_player)
-      expect(game.get_valid_mark).to eq("X")
-    end
-
-    it "returns another mark prompt if mark is not valid" do
-      input = StringIO.new("z\nx")
-      game = new_game_instance(io_instance_with_input(output, input), human_player)
-      game.get_valid_mark
-      expect(output.string).to include("Choose your mark, type 'X' or 'O'")
-    end
-  end
-
   context "Gets a valid move" do
     it "gets a player move" do
       input = StringIO.new("1")
