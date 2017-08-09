@@ -17,6 +17,10 @@ class Grid
     !current_grid[move_part_1][move_part_2].include?("X") && !current_grid[move_part_1][move_part_2].include?("O")
   end
 
+  def move_valid?(move)
+    move > 0 && move < 10
+  end
+
   def get_available_moves(current_grid)
     current_grid = current_grid.flatten
     available_move_indexes = (0..current_grid.length-1).select { |index| !current_grid[index].include?("X") && !current_grid[index].include?("O") }

@@ -11,6 +11,20 @@ RSpec.describe Grid do
     end
   end
 
+  context "Validates player's move" do
+    it "returns true if 1 is entered" do
+      expect(grid.move_valid?(1)).to eq(true)
+    end
+
+    it "returns false if 10 is entered" do
+      expect(grid.move_valid?(10)).to eq(false)
+    end
+
+    it "returns true if 2 is entered" do
+      expect(grid.move_valid?(2)).to eq(true)
+    end
+  end
+
   context "Updates grid" do
     it "marks an 'X' on the 1st position of the grid" do
       expect(grid.place_a_move(unmarked_grid, [0, 0], "| X ")).to eq([["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
