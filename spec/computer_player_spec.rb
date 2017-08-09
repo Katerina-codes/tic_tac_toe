@@ -6,6 +6,18 @@ RSpec.describe ComputerPlayer do
   let(:grid) { Grid.new }
   let(:computer_player) { ComputerPlayer.new(grid) }
 
+  context "Gets a valid move" do
+
+    it "gets a valid move from the computer player" do
+      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+      converter_instance = Converter.new
+      computer_move = computer_player.get_valid_move(current_grid, move_sequences, "X", converter_instance)
+      expect(possible_moves.include?(computer_move)).to eq(true)
+    end
+  end
+
   it "plays a random move" do
     possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]

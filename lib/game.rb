@@ -8,18 +8,6 @@ class Game
     @computer_player = computer_player
   end
 
-  def get_valid_move(current_grid, player_type, move_sequences, player_mark)
-    @input_output.ask_for_move
-    move = player_type.play_move(move_sequences, player_mark, current_grid)
-    converted_move = @converter.convert_move_number(move)
-    until @grid.move_valid?(move) && @grid.is_move_unique?(converted_move, current_grid)
-      @input_output.display_invalid_move_error
-      move = player_type.play_move(move_sequences, player_mark, current_grid)
-      converted_move = @converter.convert_move_number(move)
-    end
-    move
-  end
-
   def initial_grid
     new_grid = @grid.draw_grid
     @input_output.display_grid(new_grid)
@@ -62,7 +50,11 @@ class Game
   end
 
   def player_flow(player_type, player_mark, winning_move_sequences, current_grid)
-    move = get_valid_move(current_grid, player_type, winning_move_sequences, player_mark)
+    if player_type == @human_player
+      move = player_type.get_valid_move(current_grid, player_mark, @converter)
+    else
+      move = player_type.get_valid_move(current_grid, winning_move_sequences, player_mark, @converter)
+    end
     display_latest_move_on_grid(player_mark, move, current_grid)
     get_winning_hits(winning_move_sequences, move, player_mark)
   end

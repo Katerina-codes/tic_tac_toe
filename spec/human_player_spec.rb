@@ -8,9 +8,52 @@ RSpec.describe HumanPlayer do
     output = StringIO.new
     input_output = InputOutput.new(output, input)
     human_player = HumanPlayer.new(input_output)
-    move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-    expect(human_player.play_move(move_sequences, "X", current_grid)).to eq(1)
+    expect(human_player.play_move("X", current_grid)).to eq(1)
+  end
+
+  context "Gets a valid move" do
+    it "gets a player move" do
+      input = StringIO.new("1")
+      output = StringIO.new
+      input_output = InputOutput.new(output, input)
+      human_player = HumanPlayer.new(input_output)
+      converter_instance = Converter.new
+      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      expect(human_player.get_valid_move(current_grid, "X", converter_instance)).to eq(1)
+    end
+
+    it "returns move if move is valid" do
+      input = StringIO.new("1")
+      output = StringIO.new
+      input_output = InputOutput.new(output, input)
+      human_player = HumanPlayer.new(input_output)
+      converter_instance = Converter.new
+      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      expect(human_player.get_valid_move(current_grid, "X", converter_instance)).to eq(1)
+    end
+
+    it "displays error message and gets move until move is valid" do
+      input = StringIO.new("0\n1")
+      output = StringIO.new
+      input_output = InputOutput.new(output, input)
+      human_player = HumanPlayer.new(input_output)
+      converter_instance = Converter.new
+      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      human_player.get_valid_move(current_grid, "X", converter_instance)
+      expect(output.string).to include("This move is invalid. Please enter another one\n")
+    end
+
+    it "displays error message if the same move is entered twice" do
+      input = StringIO.new("1\n2")
+      output = StringIO.new
+      input_output = InputOutput.new(output, input)
+      human_player = HumanPlayer.new(input_output)
+      converter_instance = Converter.new
+      current_grid_with_mark = [["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      human_player.get_valid_move(current_grid_with_mark, "X", converter_instance)
+      expect(output.string).to include("This move is invalid. Please enter another one\n")
+    end
   end
 
 end

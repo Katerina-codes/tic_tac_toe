@@ -15,56 +15,6 @@ RSpec.describe Game do
   let(:human_player) { HumanPlayer.new(input_output) }
   let(:computer_player) { ComputerPlayer.new(grid) }
 
-  context "Gets a valid move" do
-    it "gets a player move" do
-      input = StringIO.new("1")
-      game = new_game_instance(input_output, human_player)
-      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      player_type = HumanPlayer.new(io_instance_with_input(output, input))
-      move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-      expect(game.get_valid_move(current_grid, player_type, move_sequences, "X")).to eq(1)
-    end
-
-    it "returns move if move is valid" do
-      input = StringIO.new("1")
-      game = new_game_instance(input_output, human_player)
-      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      player_type = HumanPlayer.new(io_instance_with_input(output, input))
-      move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-      expect(game.get_valid_move(current_grid, player_type, move_sequences, "X")).to eq(1)
-    end
-
-    it "displays error message and gets move until move is valid" do
-      input = StringIO.new("0\n1")
-      game = new_game_instance(input_output, human_player)
-      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      player_type = HumanPlayer.new(io_instance_with_input(output, input))
-      move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-      game.get_valid_move(current_grid, player_type, move_sequences, "X")
-      expect(output.string).to include("This move is invalid. Please enter another one\n")
-    end
-
-    it "displays error message if the same move is entered twice" do
-      input = StringIO.new("1\n2")
-      game = new_game_instance(input_output, human_player)
-      current_grid_with_mark = [["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      player_type = HumanPlayer.new(io_instance_with_input(output, input))
-      move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-      game.get_valid_move(current_grid_with_mark, player_type, move_sequences, "X")
-      expect(output.string).to include("This move is invalid. Please enter another one\n")
-    end
-
-    it "gets a valid move from the computer player" do
-      game = new_game_instance(input_output, human_player)
-      current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      player_type = ComputerPlayer.new(grid)
-      possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-      move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-      computer_move = game.get_valid_move(current_grid, player_type, move_sequences, "X")
-      expect(possible_moves.include?(computer_move)).to eq(true)
-    end
-  end
-
   context "Displaying and updating grid" do
     it "shows player the initial grid" do
       game = new_game_instance(input_output, human_player)
