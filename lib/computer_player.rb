@@ -23,8 +23,8 @@ class ComputerPlayer
       block_possible_fork(current_grid, opponent_mark)
     elsif possible_moves.include?(play_winning_move(move_sequences, player_mark, opponent_mark))
        play_winning_move(move_sequences, player_mark, opponent_mark)
-     elsif possible_moves.include?(block_opponent_win(move_sequences, player_mark))
-       block_opponent_win(move_sequences, player_mark)
+     elsif possible_moves.include?(block_opponent_win(move_sequences, player_mark, opponent_mark))
+       block_opponent_win(move_sequences, player_mark, opponent_mark)
      elsif !(corner_moves & available_moves).empty?
       corner_moves.sample
     else
@@ -39,13 +39,7 @@ class ComputerPlayer
     winning_move = sequence_with_winning_move.flatten.select { |value| value != player_mark }.join.to_i
   end
 
-  def block_opponent_win(move_sequences, player_mark)
-    if player_mark == "X"
-      opponent_mark = "O"
-    else
-      opponent_mark = "X"
-    end
-
+  def block_opponent_win(move_sequences, player_mark, opponent_mark)
     sequence_with_blocking_move = move_sequences.select do |sequence|
       sequence.count(opponent_mark) == 2 && !sequence.include?(player_mark)
     end

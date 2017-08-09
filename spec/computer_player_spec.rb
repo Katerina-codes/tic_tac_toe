@@ -68,17 +68,20 @@ RSpec.describe ComputerPlayer do
   context "Defends against opponent" do
     it "plays 9 to block the opponent's winning move" do
       move_sequences = [[1, 2, "X"], [4, "X", 6], ["O", "O", 9], [1, 4, "O"], [2, "X", "O"], ["X", 6, 9], [1, "X", 9], ["X", "X", "O"]]
-      expect(computer_player.block_opponent_win(move_sequences, "X")).to eq(9)
+      opponent_mark = "O"
+      expect(computer_player.block_opponent_win(move_sequences, "X", opponent_mark)).to eq(9)
     end
 
     it "plays 8 to block the opponent's winning move" do
       move_sequences = [["X", 2, 3], [4, "X", 6], ["O", 8, "O"], ["X", 4, "O"], [2, "X", 8], [3, 6, "O"], ["X", "X", "O"], [3, "X", "O"]]
-      expect(computer_player.block_opponent_win(move_sequences, "X")).to eq(8)
+      opponent_mark = "O"
+      expect(computer_player.block_opponent_win(move_sequences, "X", opponent_mark)).to eq(8)
     end
 
     it "plays 6 to block the opponent's winning move" do
       move_sequences = [["X", 2, 3], ["O", "O", 6], ["X", 8, 9], ["X", "O", "X"], [2, 5, 8], [3, 6, 9], ["X", "O", 9], [3, "O", "X"]]
-      expect(computer_player.block_opponent_win(move_sequences, "X")).to eq(6)
+      opponent_mark = "O"
+      expect(computer_player.block_opponent_win(move_sequences, "X", opponent_mark)).to eq(6)
     end
 
     it "plays 1 if opponent has played 4, 2" do
