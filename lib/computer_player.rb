@@ -4,12 +4,16 @@ class ComputerPlayer
     @grid = grid
   end
 
-  def play_move(move_sequences, player_mark, current_grid)
+  def get_opponent_mark(player_mark)
     if player_mark == "X"
       opponent_mark = "O"
     else
       opponent_mark = "X"
     end
+  end
+
+  def play_move(move_sequences, player_mark, current_grid)
+    opponent_mark = get_opponent_mark(player_mark)
     possible_moves = (1..9).to_a
     corner_moves = [1, 3, 7, 9]
     available_moves = @grid.get_available_moves(current_grid)
