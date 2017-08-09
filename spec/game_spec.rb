@@ -369,6 +369,23 @@ RSpec.describe Game do
  --- --- ---\n""")
       expect(output.string).to include("Game over. It's a tie!")
     end
+
+    it "is impossible to beat the computer when human plays 3, 7, 6, 1, 8" do
+      input = StringIO.new("2\n3\n7\n6\n1\n8")
+      input_output = InputOutput.new(output, input)
+      human_player_with_input = HumanPlayer.new(input_output)
+      game = new_game_instance(input_output, human_player_with_input)
+      game.game_flow
+      expect(output.string).to include("""
+ --- --- ---
+| X | O | X |
+ --- --- ---
+| O | O | X |
+ --- --- ---
+| X | X | O |
+ --- --- ---\n""")
+      expect(output.string).to include("Game over. It's a tie!")
+    end
   end
 
   it "returns 'O' if p1's mark is 'X' " do
