@@ -12,7 +12,7 @@ RSpec.describe Game do
   let(:input_output) { InputOutput.new(output) }
   let(:grid) { Grid.new }
   let(:converter) { Converter.new }
-  let(:human_player) { HumanPlayer.new(input_output) }
+  let(:human_player) { HumanPlayer.new(input_output, grid) }
   let(:computer_player) { ComputerPlayer.new(grid) }
 
   context "Displaying and updating grid" do
@@ -32,7 +32,7 @@ RSpec.describe Game do
     it "ends game and displays grid when player 1 enters 1, 2, 3 in a row" do
       input = StringIO.new("1\n1\n4\n2\n8\n3")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -48,7 +48,7 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 4, 5, 6" do
       input = StringIO.new("1\n4\n1\n5\n9\n6")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -64,7 +64,7 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 7, 8, 9" do
       input = StringIO.new("1\n7\n4\n8\n5\n9")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -80,7 +80,7 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 1, 4, 7" do
       input = StringIO.new("1\n1\n5\n4\n3\n7")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -96,7 +96,7 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 2, 5, 8" do
       input = StringIO.new("1\n2\n1\n5\n4\n8")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -112,7 +112,7 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 3, 6, 9" do
       input = StringIO.new("1\n3\n2\n6\n5\n9")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -128,7 +128,7 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 1, 5, 9" do
       input = StringIO.new("1\n1\n2\n5\n4\n9")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -144,7 +144,7 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 3, 5, 7" do
       input = StringIO.new("1\n3\n6\n5\n4\n7")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -160,7 +160,7 @@ RSpec.describe Game do
     it "ends game and displays grid when p1 enters 4, 1, 2, 3" do
       input = StringIO.new("1\n4\n5\n1\n6\n2\n7\n3")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -176,7 +176,7 @@ RSpec.describe Game do
     it "ends game and displays grid when unordered moves 4, 1, 3, 2" do
       input = StringIO.new("1\n4\n5\n1\n7\n3\n\n8\n2")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -192,7 +192,7 @@ RSpec.describe Game do
     it "ends game when winning sequence is not ordered and moves aren't consecutive" do
       input = StringIO.new("1\n2\n8\n3\n5\n4\n6\n1")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -208,7 +208,7 @@ RSpec.describe Game do
     it "ends the game as soon as a player has won" do
       input = StringIO.new("1\n1\n3\n4\n5\n7")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -224,7 +224,7 @@ RSpec.describe Game do
     it "ends the game when neither player has won" do
       input = StringIO.new("1\n1\n2\n3\n4\n5\n6\n8\n7\n9")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -274,7 +274,7 @@ RSpec.describe Game do
     it "ends and scores game when neither player has won and no moves are left" do
       input = StringIO.new("2\n1\n3\n8\n7\n9\n4\n6")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("Game over. It's a tie!")
@@ -283,7 +283,7 @@ RSpec.describe Game do
     it "is impossible to beat the computer when human plays 1, 9, 4, 3, 8" do
       input = StringIO.new("2\n1\n9\n4\n3\n8")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
@@ -300,7 +300,7 @@ RSpec.describe Game do
     it "is impossible to beat the computer when human plays 3, 7, 6, 1, 8" do
       input = StringIO.new("2\n3\n7\n6\n1\n8")
       input_output = InputOutput.new(output, input)
-      human_player_with_input = HumanPlayer.new(input_output)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
       game = new_game_instance(input_output, human_player_with_input)
       game.game_flow
       expect(output.string).to include("""
