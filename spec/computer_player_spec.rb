@@ -5,29 +5,27 @@ RSpec.describe ComputerPlayer do
 
   let(:grid) { Grid.new }
   let(:computer_player) { ComputerPlayer.new(grid) }
+  let(:unmarked_move_sequences) { [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]] }
+  let(:unmarked_grid) { [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]] }
 
   context "Gets a valid move" do
 
     it "gets a valid move from the computer player" do
       current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
       possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-      move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
       converter_instance = Converter.new
-      computer_move = computer_player.get_valid_move(current_grid, move_sequences, "X", converter_instance)
+      computer_move = computer_player.get_valid_move(current_grid, unmarked_move_sequences, "X", converter_instance)
       expect(possible_moves.include?(computer_move)).to eq(true)
     end
   end
 
   it "plays a random move" do
     possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-    current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-    expect(possible_moves.include?(computer_player.play_move(move_sequences, "X", current_grid))).to eq(true)
+    expect(possible_moves.include?(computer_player.play_move(unmarked_move_sequences, "X", unmarked_grid))).to eq(true)
   end
 
   it "plays 5 as first move" do
     move_sequences = [["X", 2, 3], [4, 5, 6], [7, 8, 9], ["X", 4, 7], [2, 5, 8], [3, 6, 9], ["X", 5, 9], [3, 5, 7]]
-    current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
     expect(computer_player.play_first_move(move_sequences)).to eq(5)
   end
 
@@ -117,8 +115,7 @@ RSpec.describe ComputerPlayer do
     end
 
     it "returns 0 if there is no fork" do
-      current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      expect(computer_player.block_possible_fork(current_grid, "X")).to eq(0)
+      expect(computer_player.block_possible_fork(unmarked_grid, "X")).to eq(0)
     end
 
     it "plays 6 if opponent plays 1, 9" do
