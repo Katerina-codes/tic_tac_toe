@@ -9,7 +9,6 @@ RSpec.describe ComputerPlayer do
   let(:unmarked_grid) { [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]] }
 
   context "Gets a valid move" do
-
     it "gets a valid move from the computer player" do
       current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
       possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -17,30 +16,32 @@ RSpec.describe ComputerPlayer do
       computer_move = computer_player.get_valid_move(current_grid, unmarked_move_sequences, "X", converter_instance)
       expect(possible_moves.include?(computer_move)).to eq(true)
     end
+
+    it "plays a random move" do
+      possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      expect(possible_moves.include?(computer_player.play_move(unmarked_move_sequences, "X", unmarked_grid))).to eq(true)
+    end
   end
 
-  it "plays a random move" do
-    possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    expect(possible_moves.include?(computer_player.play_move(unmarked_move_sequences, "X", unmarked_grid))).to eq(true)
-  end
+  context "Plays a strategic move" do
+    it "plays 5 as first move" do
+      move_sequences = [["X", 2, 3], [4, 5, 6], [7, 8, 9], ["X", 4, 7], [2, 5, 8], [3, 6, 9], ["X", 5, 9], [3, 5, 7]]
+      expect(computer_player.play_first_move(move_sequences)).to eq(5)
+    end
 
-  it "plays 5 as first move" do
-    move_sequences = [["X", 2, 3], [4, 5, 6], [7, 8, 9], ["X", 4, 7], [2, 5, 8], [3, 6, 9], ["X", 5, 9], [3, 5, 7]]
-    expect(computer_player.play_first_move(move_sequences)).to eq(5)
-  end
+    it "plays a corner move as the first move if 5 is taken" do
+      move_sequences = [[1, 2, 3], ["X", 5, 6], [7, 8, 9], [1, "4", 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+      current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| X |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      corner_moves = [1, 3, 7, 9]
+      expect(corner_moves.include?(computer_player.play_move(move_sequences, "X", current_grid))).to eq(true)
+    end
 
-  it "plays a corner move as the first move if 5 is taken" do
-    move_sequences = [[1, 2, 3], ["X", 5, 6], [7, 8, 9], [1, "4", 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-    current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| X |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-    corner_moves = [1, 3, 7, 9]
-    expect(corner_moves.include?(computer_player.play_move(move_sequences, "X", current_grid))).to eq(true)
-  end
-
-  it "plays a move choosing from the only available moves left" do
-    move_sequences = [["X", 2, "O"], ["O", "X", "X"], ["X", 8, "O"], ["X", "O", "X"], [2, "X", 8], ["O", "X", "O"], ["X", "X", "O"], ["O", "X", "X"]]
-    current_grid = [["| X ", "| 2 |", " O |"], ["| O ", "| X |" , " X |"], ["| X ", "| 8 |", " O |"]]
-    available_moves = [2, 8]
-    expect(available_moves.include?(computer_player.play_move(move_sequences, "O", current_grid))).to eq(true)
+    it "plays a move choosing from the only available moves left" do
+      move_sequences = [["X", 2, "O"], ["O", "X", "X"], ["X", 8, "O"], ["X", "O", "X"], [2, "X", 8], ["O", "X", "O"], ["X", "X", "O"], ["O", "X", "X"]]
+      current_grid = [["| X ", "| 2 |", " O |"], ["| O ", "| X |" , " X |"], ["| X ", "| 8 |", " O |"]]
+      available_moves = [2, 8]
+      expect(available_moves.include?(computer_player.play_move(move_sequences, "O", current_grid))).to eq(true)
+    end
   end
 
   context "Plays a winning move" do
@@ -152,10 +153,12 @@ RSpec.describe ComputerPlayer do
     end
   end
 
-  it "returns [['X', 'X', 3]] if sequence has 2 player marks and one available move" do
-    move_sequences = [["X", "X", 3], [4, "O", 6], [7, 8, 9], ["X", 4, 7], ["X", "O", 8], [3, 6, 9], ["X", "O", 9], [3, "O", 7]]
-    player_mark = "X"
-    expect(computer_player.get_sequence_with_two_player_marks(move_sequences, player_mark)).to eq([["X", "X", 3]])
+  context "Returns a sequence which the player can use to block or win" do
+    it "returns [['X', 'X', 3]] if sequence has 2 player marks and one available move" do
+      move_sequences = [["X", "X", 3], [4, "O", 6], [7, 8, 9], ["X", 4, 7], ["X", "O", 8], [3, 6, 9], ["X", "O", 9], [3, "O", 7]]
+      player_mark = "X"
+      expect(computer_player.get_sequence_with_two_player_marks(move_sequences, player_mark)).to eq([["X", "X", 3]])
+    end
   end
 
 end
