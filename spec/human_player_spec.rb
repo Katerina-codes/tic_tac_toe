@@ -8,15 +8,15 @@ RSpec.describe HumanPlayer do
   let(:converter_instance) { Converter.new }
   let(:unmarked_grid) { [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]] }
 
-  it "plays a move" do
-    input = StringIO.new("1")
-    output = StringIO.new
-    input_output = InputOutput.new(output, input)
-    human_player = HumanPlayer.new(input_output, grid)
-    expect(human_player.play_move("X", unmarked_grid)).to eq(1)
-  end
-
   context "Gets a valid move" do
+    it "plays a move" do
+      input = StringIO.new("1")
+      output = StringIO.new
+      input_output = InputOutput.new(output, input)
+      human_player = HumanPlayer.new(input_output, grid)
+      expect(human_player.play_move("X", unmarked_grid)).to eq(1)
+    end
+
     it "gets a player move" do
       input = StringIO.new("1")
       input_output = InputOutput.new(output, input)
