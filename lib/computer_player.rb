@@ -1,5 +1,7 @@
 class ComputerPlayer
 
+  POSSIBLE_MOVES = (1..9).to_a
+
   def initialize(grid)
     @grid = grid
   end
@@ -24,16 +26,15 @@ class ComputerPlayer
 
   def play_move(move_sequences, player_mark, current_grid)
     opponent_mark = get_opponent_mark(player_mark)
-    possible_moves = (1..9).to_a
     corner_moves = [1, 3, 7, 9]
     available_moves = @grid.get_available_moves(current_grid)
     if @grid.get_available_moves(current_grid).count == 9 || @grid.get_available_moves(current_grid).count == 8 && @grid.get_available_moves(current_grid).include?(5)
       5
-    elsif possible_moves.include?(play_winning_move(move_sequences, player_mark, opponent_mark))
+    elsif POSSIBLE_MOVES.include?(play_winning_move(move_sequences, player_mark, opponent_mark))
        play_winning_move(move_sequences, player_mark, opponent_mark)
-    elsif possible_moves.include?(block_opponent_win(move_sequences, player_mark, opponent_mark))
+    elsif POSSIBLE_MOVES.include?(block_opponent_win(move_sequences, player_mark, opponent_mark))
       block_opponent_win(move_sequences, player_mark, opponent_mark)
-    elsif possible_moves.include?(block_possible_fork(current_grid, opponent_mark))
+    elsif POSSIBLE_MOVES.include?(block_possible_fork(current_grid, opponent_mark))
       block_possible_fork(current_grid, opponent_mark)
      elsif !(corner_moves & available_moves).empty?
       corner_moves.sample
@@ -43,9 +44,8 @@ class ComputerPlayer
   end
 
   def get_sequence_with_two_player_marks(move_sequences, player_mark)
-    possible_moves = (1..9).to_a
     seq = move_sequences.select do |sequence|
-      sequence.count(player_mark) == 2 && possible_moves.include?((possible_moves & sequence).join.to_i)
+      sequence.count(player_mark) == 2 && POSSIBLE_MOVES.include?((POSSIBLE_MOVES & sequence).join.to_i)
     end
   end
 
