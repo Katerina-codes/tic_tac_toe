@@ -147,6 +147,12 @@ RSpec.describe ComputerPlayer do
       current_grid = [["| 1 ", "| O |", " 3 |"], ["| O ", "| X |" , " 6 |"], ["| 7 ", "| X |", " 9 |"]]
       expect(computer_player.block_possible_fork(current_grid, "O")).to eq(1)
     end
+
+    it "blocks a winning move before it blocks a fork" do
+      current_grid = [["| 1 ", "| 2 |", " O |",], ["| O ", "| X |" , " X |"], ["| 7 ", "| X |", " 9 |"]]
+      move_sequences = [[1, 2, "O"], ["O", "X", "X"], [7, "X", 9], [1, "O", 7], [2, "X", 'X'], ["O", "X", 9], [1, "X", 9], ["O", "X", 7]]
+      expect(computer_player.play_move(move_sequences, "O", current_grid)).to eq(2)
+    end
   end
 
 end
