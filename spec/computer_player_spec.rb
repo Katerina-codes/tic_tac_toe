@@ -132,8 +132,10 @@ RSpec.describe ComputerPlayer do
     end
 
     it "plays side move 4 to block a fork" do
-      current_grid = [["| 1 ", "| 2 |", " X |"], ["| 4 ", "| O |" , " 6 |"], ["| X ", "| 8 |", " 9 |"]]
-      move_sequences = [[1, 2, "X"], [4, "O", "X"], [7, 8, 9], [1, 4, 7], [2, "O", 8], ["X", "X", 9], [1, "O", 9], ["X", "O", 7]]
+      current_grid = [["| 1 ", "| 2 |", " X |"],
+                      ["| 4 ", "| O |" , "6 |"],
+                      ["| X ", "| 8 |", " 9 |"]]
+      move_sequences = [[1, 2, "X"], [4, "O", 6], ["X", 8, 9], [1, 4, "X"], [2, "O", 8], ["X", 6, 9], [1, "O", 9], ["X", "O", "X"]]
       expect(computer_player.play_move(move_sequences, "O", current_grid)).to eq(4)
     end
 
