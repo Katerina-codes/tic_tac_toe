@@ -50,16 +50,12 @@ class ComputerPlayer
   end
 
   def play_winning_move(move_sequences, player_mark, opponent_mark)
-    sequence_with_winning_move = move_sequences.select do |sequence|
-      sequence.count(player_mark) == 2 && !sequence.include?(opponent_mark)
-    end
+    sequence_with_winning_move = get_sequence_with_two_player_marks(move_sequences, player_mark)
     winning_move = sequence_with_winning_move.flatten.select { |value| value != player_mark }.join.to_i
   end
 
   def block_opponent_win(move_sequences, player_mark, opponent_mark)
-    sequence_with_blocking_move = move_sequences.select do |sequence|
-      sequence.count(opponent_mark) == 2 && !sequence.include?(player_mark)
-    end
+    sequence_with_blocking_move = get_sequence_with_two_player_marks(move_sequences, opponent_mark)
     winning_move = sequence_with_blocking_move.flatten.select { |value| value != opponent_mark }.join.to_i
   end
 
