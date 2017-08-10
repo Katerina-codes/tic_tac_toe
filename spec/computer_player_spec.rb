@@ -155,4 +155,10 @@ RSpec.describe ComputerPlayer do
     end
   end
 
+  it "returns [['X', 'X', 3]] if sequence has 2 player marks and one available move" do
+    move_sequences = [["X", "X", 3], [4, "O", 6], [7, 8, 9], ["X", 4, 7], ["X", "O", 8], [3, 6, 9], ["X", "O", 9], [3, "O", 7]]
+    player_mark = "X"
+    expect(computer_player.get_sequence_with_two_player_marks(move_sequences, player_mark)).to eq([["X", "X", 3]])
+  end
+
 end

@@ -42,6 +42,13 @@ class ComputerPlayer
     end
   end
 
+  def get_sequence_with_two_player_marks(move_sequences, player_mark)
+    possible_moves = (1..9).to_a
+    seq = move_sequences.select do |sequence|
+      sequence.count(player_mark) == 2 && possible_moves.include?((possible_moves & sequence).join.to_i)
+    end
+  end
+
   def play_winning_move(move_sequences, player_mark, opponent_mark)
     sequence_with_winning_move = move_sequences.select do |sequence|
       sequence.count(player_mark) == 2 && !sequence.include?(opponent_mark)
