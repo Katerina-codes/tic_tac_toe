@@ -83,18 +83,6 @@ RSpec.describe Grid do
       expect(grid.get_marks_in_a_row(["| X ", "| X |", " 3 |"], "X")).to eq(2)
     end
 
-    it "returns 3 if there are 3 unmarked positions in a row" do
-      expect(grid.get_unmarked_positions_in_a_row(["| 1 ", "| 2 |", " 3 |"])).to eq(3)
-    end
-
-    it "returns 2 if there are 2 unmarked positions in a row" do
-      expect(grid.get_unmarked_positions_in_a_row(["| X ", "| 2 |", " 3 |"])).to eq(2)
-    end
-
-    it "returns 1 if there is 1 unmarked position in a row" do
-      expect(grid.get_unmarked_positions_in_a_row(["| X ", "| X |", " 3 |"])).to eq(1)
-    end
-
     it "returns true if any of the columns have 3 X's" do
       current_grid = [["| X ", "| O |", " X |"], ["| X ", "| O |" , " 6 |"], ["| X ", "| 8 |", " 9 |"]]
       expect(grid.does_any_column_have_three_marks?(current_grid, "X")).to eq(true)

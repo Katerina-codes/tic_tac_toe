@@ -37,16 +37,6 @@ class Grid
     count
   end
 
-  def get_unmarked_positions_in_a_row(row)
-    count = 0
-    row.each do |value|
-      if !value.include?("X") && !value.include?("O")
-        count +=1
-      end
-    end
-    count
-  end
-
   def grid(current_grid, row)
     grid = {
       "row one" => [current_grid[0][0], current_grid[0][1], current_grid[0][2]],

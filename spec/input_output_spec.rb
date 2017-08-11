@@ -45,17 +45,6 @@ RSpec.describe InputOutput do
   end
 
   context "Interacts with the player" do
-    it "asks the player if they want to be 'X' or 'O'" do
-      input_output.ask_for_mark_choice
-      expect(output.string).to eq("Choose your mark, type 'X' or 'O'\n")
-    end
-
-    it "gets 'X' from a player" do
-      input = StringIO.new("X")
-      input_output = InputOutput.new(output, input)
-      expect(input_output.get_mark_choice).to eq("X")
-    end
-
     it "asks the player for a move" do
       input_output.ask_for_move
       expect(output.string).to eq("Time to place your mark! Please choose a number from 1 - 9\n")
