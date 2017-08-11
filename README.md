@@ -1,18 +1,18 @@
-*Tic Tac Toe*
+# *Tic Tac Toe*
 
 - Tic Tac Toe is a game where two players, each with a mark "X" or "O" compete to see who will be the first get three of their marks in a row.
 
 - Marks can be placed vertically, horizontally or diagonally.
 
-*Rules*
+## *Rules*
 
 - Player **X** always goes first then rhe players take alternate moves and play until the game has been won or there is tie.
 
-*Game Modes*
+## *Game Modes*
 
 - There are two game modes, **human vs human** and **human vs computer**
 
-*Run the program*
+## *Run the program*
 
 - Clone or download the repository by clicking the green button above.
 
