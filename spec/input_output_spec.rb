@@ -109,6 +109,13 @@ RSpec.describe InputOutput do
       input_output = InputOutput.new(output, input)
       expect(input_output.get_valid_game_mode_input).to eq(2)
     end
+
+    it "returns 'That game mode is invalid. Please enter 1 or 2.' if input is not valid" do
+      input = StringIO.new("3")
+      input_output = InputOutput.new(output, input)
+      input_output.get_valid_game_mode_input
+      expect(output.string).to eq("That game mode is invalid. Please enter 1 or 2.\n")
+    end
   end
 
 end
