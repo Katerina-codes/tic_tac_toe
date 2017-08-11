@@ -40,9 +40,9 @@ class Game
   end
 
   def get_end_score(current_grid)
-    if @grid.row_has_three_marks?(current_grid, "X") || @grid.column_has_three_marks?(current_grid, "X") || @grid.diagonal_has_three_marks?(current_grid, "X")
+    if @grid.does_any_row_have_three_marks?(current_grid, "X") || @grid.does_any_column_have_three_marks?(current_grid, "X") || @grid.does_either_diagonal_have_three_marks?(current_grid, "X")
       @input_output.display_player_one_wins
-    elsif @grid.row_has_three_marks?(current_grid, "O") || @grid.column_has_three_marks?(current_grid, "O") || @grid.diagonal_has_three_marks?(current_grid, "O")
+    elsif @grid.does_any_row_have_three_marks?(current_grid, "O") || @grid.does_any_column_have_three_marks?(current_grid, "O") || @grid.does_either_diagonal_have_three_marks?(current_grid, "O")
       @input_output.display_player_two_wins
     else
       @input_output.display_game_tie

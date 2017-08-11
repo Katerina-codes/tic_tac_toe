@@ -61,7 +61,7 @@ class Grid
     grid[row]
   end
 
-  def row_has_three_marks?(current_grid, player_mark)
+  def does_any_row_have_three_marks?(current_grid, player_mark)
     row_one = grid(current_grid, "row one")
     row_one_mark_count = get_marks_in_a_row(row_one, player_mark)
     row_two = grid(current_grid, "row two")
@@ -71,7 +71,7 @@ class Grid
     row_one_mark_count == 3 || row_two_mark_count == 3 || row_three_mark_count == 3
   end
 
-  def column_has_three_marks?(current_grid, player_mark)
+  def does_any_column_have_three_marks?(current_grid, player_mark)
     column_one = current_grid[0][0].include?(player_mark) && current_grid[1][0].include?(player_mark) && current_grid[2][0].include?(player_mark)
     column_two = current_grid[0][1].include?(player_mark) && current_grid[1][1].include?(player_mark) && current_grid[2][1].include?(player_mark)
     column_three = current_grid[0][2].include?(player_mark) && current_grid[1][2].include?(player_mark) && current_grid[2][2].include?(player_mark)
@@ -79,7 +79,7 @@ class Grid
     column_one || column_two || column_three
   end
 
-  def diagonal_has_three_marks?(current_grid, player_mark)
+  def does_either_diagonal_have_three_marks?(current_grid, player_mark)
     diagonal_one = current_grid[0][0].include?(player_mark) && current_grid[1][1].include?(player_mark) && current_grid[2][2].include?(player_mark)
     diagonal_two = current_grid[0][2].include?(player_mark) && current_grid[1][1].include?(player_mark) && current_grid[2][0].include?(player_mark)
     diagonal_one || diagonal_two

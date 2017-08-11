@@ -97,47 +97,47 @@ RSpec.describe Grid do
 
     it "returns true if any of the columns have 3 X's" do
       current_grid = [["| X ", "| O |", " X |"], ["| X ", "| O |" , " 6 |"], ["| X ", "| 8 |", " 9 |"]]
-      expect(grid.column_has_three_marks?(current_grid, "X")).to eq(true)
+      expect(grid.does_any_column_have_three_marks?(current_grid, "X")).to eq(true)
     end
 
     it "returns false if none of the columns have 3 X's" do
       current_grid = [["| X ", "| X |", " X |"], ["| O ", "| O |" , " X |"], ["| 7 ", "| 8 |", " 9 |"]]
-      expect(grid.column_has_three_marks?(current_grid, "X")).to eq(false)
+      expect(grid.does_any_column_have_three_marks?(current_grid, "X")).to eq(false)
     end
 
     it "returns true if any of the columns have 3 O's" do
       current_grid = [["| X ", "| O |", " X |"], ["| X ", "| O |" , " X |"], ["| 7 ", "| O |", " 9 |"]]
-      expect(grid.column_has_three_marks?(current_grid, "O")).to eq(true)
+      expect(grid.does_any_column_have_three_marks?(current_grid, "O")).to eq(true)
     end
 
     it "returns true if any of the diagonals include 3 O's" do
       current_grid = [["| X ", "| X |", " O |"], ["| X ", "| O |" , " 6 |"], ["| O ", "| 8 |", " 9 |"]]
-      expect(grid.diagonal_has_three_marks?(current_grid, "O")).to eq(true)
+      expect(grid.does_either_diagonal_have_three_marks?(current_grid, "O")).to eq(true)
     end
 
     it "returns false if none of the diagonals include 3 O's" do
       current_grid = [["| X ", "| X |", " O |"], ["| X ", "| 5 |" , " O |"], ["| O ", "| 8 |", " 9 |"]]
-      expect(grid.diagonal_has_three_marks?(current_grid, "O")).to eq(false)
+      expect(grid.does_either_diagonal_have_three_marks?(current_grid, "O")).to eq(false)
     end
 
     it "returns true if any of the diagonals include 3 X's" do
       current_grid = [["| X ", "| O |", " X |"], ["| O ", "| X |" , " O |"], ["| X ", "| 8 |", " 9 |"]]
-      expect(grid.diagonal_has_three_marks?(current_grid, "X")).to eq(true)
+      expect(grid.does_either_diagonal_have_three_marks?(current_grid, "X")).to eq(true)
     end
 
     it "returns true if any rows have 3 X's" do
       current_grid = [["| X ", "| X |", " X |"], ["| O ", "| O |" , " X |"], ["| O ", "| 8 |", " 9 |"]]
-      expect(grid.row_has_three_marks?(current_grid, "X")).to eq(true)
+      expect(grid.does_any_row_have_three_marks?(current_grid, "X")).to eq(true)
     end
 
     it "returns false if no rows have 3 X's" do
       current_grid = [["| X ", "| O |", " X |"], ["| O ", "| X |" , " X |"], ["| O ", "| 8 |", " 9 |"]]
-      expect(grid.row_has_three_marks?(current_grid, "X")).to eq(false)
+      expect(grid.does_any_row_have_three_marks?(current_grid, "X")).to eq(false)
     end
 
     it "returns true if any rows have 3 O's" do
       current_grid = [["| X ", "| X |", " X |"], ["| O ", "| O |" , " O |"], ["| X ", "| 8 |", " 9 |"]]
-      expect(grid.row_has_three_marks?(current_grid, "O")).to eq(true)
+      expect(grid.does_any_row_have_three_marks?(current_grid, "O")).to eq(true)
     end
   end
 
