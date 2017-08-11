@@ -111,10 +111,17 @@ RSpec.describe InputOutput do
     end
 
     it "returns 'That game mode is invalid. Please enter 1 or 2.' if input is not valid" do
-      input = StringIO.new("3")
+      input = StringIO.new("3\n1")
       input_output = InputOutput.new(output, input)
       input_output.get_valid_game_mode_input
       expect(output.string).to eq("That game mode is invalid. Please enter 1 or 2.\n")
+    end
+
+    it "Prompts for a game mode until the input entered is valid" do
+      input = StringIO.new("!\n4\n1")
+      input_output = InputOutput.new(output, input)
+      input_output.get_valid_game_mode_input
+      expect(output.string).to include("1")
     end
   end
 

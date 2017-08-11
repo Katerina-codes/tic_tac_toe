@@ -46,11 +46,11 @@ class InputOutput
 
   def get_valid_game_mode_input
     input = get_game_mode
-    if input == 1 || input == 2
-      input
-    else
+    until input == 1 || input == 2
       @output.puts "That game mode is invalid. Please enter 1 or 2."
+      input = get_game_mode
     end
+    input
   end
 
   def display_player_one_wins
