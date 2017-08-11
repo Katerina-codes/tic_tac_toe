@@ -97,6 +97,12 @@ RSpec.describe InputOutput do
       input_output.display_game_tie
       expect(output.string).to eq("Game over. It's a tie!\n")
     end
+
+    it "only gets valid input for the game mode" do
+      input = StringIO.new("1")
+      input_output = InputOutput.new(output, input)
+      expect(input_output.get_valid_game_mode_input).to eq(1)
+    end
   end
 
 end

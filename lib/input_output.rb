@@ -44,6 +44,10 @@ class InputOutput
     @input.gets.chomp.to_i
   end
 
+  def get_valid_game_mode_input
+    input = get_game_mode
+  end
+
   def display_player_one_wins
     @output.puts "Game over. Player 1 wins!"
   end
