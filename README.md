@@ -1,12 +1,12 @@
 # *Tic Tac Toe*
 
-- Tic Tac Toe is a game where two players, each with a mark "X" or "O" compete to see who will be the first get three of their marks in a row.
+- Tic Tac Toe is a game where two players, each with a mark **X** or **O** compete to see who will be the first get three of their marks in a row.
 
 - Marks can be placed vertically, horizontally or diagonally.
 
 ## *Rules*
 
-- Player **X** always goes first then rhe players take alternate moves and play until the game has been won or there is tie.
+- Player **X** always goes first then the players take alternate moves and play until the game has been won or there is tie.
 
 ## *Game Modes*
 
