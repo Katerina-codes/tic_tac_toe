@@ -79,53 +79,53 @@ RSpec.describe ComputerPlayer do
     it "plays 9 to block the opponent's winning move" do
       move_sequences = [[1, 2, "X"], [4, "X", 6], ["O", "O", 9], [1, 4, "O"], [2, "X", "O"], ["X", 6, 9], [1, "X", 9], ["X", "X", "O"]]
       opponent_mark = "O"
-      expect(computer_player.block_opponent_win(move_sequences, "X", opponent_mark)).to eq(9)
+      expect(computer_player.move_to_block_opponent_win(move_sequences, "X", opponent_mark)).to eq(9)
     end
 
     it "plays 8 to block the opponent's winning move" do
       move_sequences = [["X", 2, 3], [4, "X", 6], ["O", 8, "O"], ["X", 4, "O"], [2, "X", 8], [3, 6, "O"], ["X", "X", "O"], [3, "X", "O"]]
       opponent_mark = "O"
-      expect(computer_player.block_opponent_win(move_sequences, "X", opponent_mark)).to eq(8)
+      expect(computer_player.move_to_block_opponent_win(move_sequences, "X", opponent_mark)).to eq(8)
     end
 
     it "plays 6 to block the opponent's winning move" do
       move_sequences = [["X", 2, 3], ["O", "O", 6], ["X", 8, 9], ["X", "O", "X"], [2, 5, 8], [3, 6, 9], ["X", "O", 9], [3, "O", "X"]]
       opponent_mark = "O"
-      expect(computer_player.block_opponent_win(move_sequences, "X", opponent_mark)).to eq(6)
+      expect(computer_player.move_to_block_opponent_win(move_sequences, "X", opponent_mark)).to eq(6)
     end
 
     it "plays 1 if opponent has played 4, 2" do
       current_grid = [["| 1 ", "| X |", " 3 |"], ["| X ", "| O |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      expect(computer_player.block_possible_fork(current_grid, "X")).to eq(1)
+      expect(computer_player.move_to_block_fork(current_grid, "X")).to eq(1)
     end
 
     it "plays 3 if opponent has played 2, 6" do
       current_grid = [["| 1 ", "| X |", " 3 |"], ["| 4 ", "| O |" , " X |"], ["| 7 ", "| 8 |", " 9 |"]]
-      expect(computer_player.block_possible_fork(current_grid, "X")).to eq(3)
+      expect(computer_player.move_to_block_fork(current_grid, "X")).to eq(3)
     end
 
     it "plays 9 if opponent has played 6, 8" do
       current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| O |" , " X |"], ["| 7 ", "| X |", " 9 |"]]
-      expect(computer_player.block_possible_fork(current_grid, "X")).to eq(9)
+      expect(computer_player.move_to_block_fork(current_grid, "X")).to eq(9)
     end
 
     it "plays 7 if opponent plays 8, 4" do
       current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| X ", "| O |" , " 6 |"], ["| 7 ", "| X |", " 9 |"]]
-      expect(computer_player.block_possible_fork(current_grid, "X")).to eq(7)
+      expect(computer_player.move_to_block_fork(current_grid, "X")).to eq(7)
     end
 
     it "returns 0 if there is no fork" do
-      expect(computer_player.block_possible_fork(unmarked_grid, "X")).to eq(0)
+      expect(computer_player.move_to_block_fork(unmarked_grid, "X")).to eq(0)
     end
 
     it "plays 6 if opponent plays 1, 9" do
       current_grid = [["| X ", "| 2 |", " 3 |"], ["| 4 ", "| O |" , " 6 |"], ["| 7 ", "| 8 |", " X |"]]
-      expect(computer_player.block_possible_fork(current_grid, "X")).to eq(6)
+      expect(computer_player.move_to_block_fork(current_grid, "X")).to eq(6)
     end
 
     it "plays 4 if opponent plays 3,7" do
       current_grid = [["| 1 ", "| 2 |", " X |"], ["| 4 ", "| O |" , " 6 |"], ["| X ", "| 8 |", " 9 |"]]
-      expect(computer_player.block_possible_fork(current_grid, "X")).to eq(4)
+      expect(computer_player.move_to_block_fork(current_grid, "X")).to eq(4)
     end
 
     it "plays side move 4 to block a fork" do
@@ -142,7 +142,7 @@ RSpec.describe ComputerPlayer do
 
     it "plays 1 if opponent is 'O' and has played 4, 2" do
       current_grid = [["| 1 ", "| O |", " 3 |"], ["| O ", "| X |" , " 6 |"], ["| 7 ", "| X |", " 9 |"]]
-      expect(computer_player.block_possible_fork(current_grid, "O")).to eq(1)
+      expect(computer_player.move_to_block_fork(current_grid, "O")).to eq(1)
     end
 
     it "blocks a winning move before it blocks a fork" do

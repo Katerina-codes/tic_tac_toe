@@ -32,10 +32,10 @@ class ComputerPlayer
       play_five_as_first_move
     elsif POSSIBLE_MOVES.include?(play_winning_move(move_sequences, player_mark, opponent_mark))
        play_winning_move(move_sequences, player_mark, opponent_mark)
-    elsif POSSIBLE_MOVES.include?(block_opponent_win(move_sequences, player_mark, opponent_mark))
-      block_opponent_win(move_sequences, player_mark, opponent_mark)
-    elsif POSSIBLE_MOVES.include?(block_possible_fork(current_grid, opponent_mark))
-      block_possible_fork(current_grid, opponent_mark)
+    elsif POSSIBLE_MOVES.include?(move_to_block_opponent_win(move_sequences, player_mark, opponent_mark))
+      move_to_block_opponent_win(move_sequences, player_mark, opponent_mark)
+    elsif POSSIBLE_MOVES.include?(move_to_block_fork(current_grid, opponent_mark))
+      move_to_block_fork(current_grid, opponent_mark)
      elsif !(corner_moves & available_moves).empty?
       corner_moves.sample
     else
@@ -54,7 +54,7 @@ class ComputerPlayer
     winning_move = sequence_with_winning_move.flatten.select { |value| value != player_mark }.join.to_i
   end
 
-  def block_opponent_win(move_sequences, player_mark, opponent_mark)
+  def move_to_block_opponent_win(move_sequences, player_mark, opponent_mark)
     sequence_with_blocking_move = get_sequence_with_two_player_marks(move_sequences, opponent_mark)
     winning_move = sequence_with_blocking_move.flatten.select { |value| value != opponent_mark }.join.to_i
   end
@@ -63,7 +63,7 @@ class ComputerPlayer
     5
   end
 
-  def block_possible_fork(current_grid, opponent_mark)
+  def move_to_block_fork(current_grid, opponent_mark)
     no_fork = 0
     if current_grid[0][1].include?(opponent_mark) && current_grid[1][0].include?(opponent_mark) && @grid.get_available_moves(current_grid).include?(1)
       1
