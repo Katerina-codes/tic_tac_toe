@@ -69,7 +69,7 @@ class Game
     p1_winning_move_sequence = [["X", "X", "X"]]
     p2_winning_move_sequence = [["O", "O", "O"]]
     @input_output.ask_for_game_mode
-    game_mode = @input_output.get_game_mode
+    game_mode = @input_output.get_valid_game_mode_input
     current_grid = initial_grid
     p1_mark = "X"
     p2_mark = "O"
