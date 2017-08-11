@@ -46,6 +46,11 @@ class InputOutput
 
   def get_valid_game_mode_input
     input = get_game_mode
+    if input == 1
+      1
+    else
+      2
+    end
   end
 
   def display_player_one_wins
