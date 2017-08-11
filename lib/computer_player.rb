@@ -29,7 +29,7 @@ class ComputerPlayer
     corner_moves = [1, 3, 7, 9]
     available_moves = @grid.get_available_moves(current_grid)
     if @grid.get_available_moves(current_grid).count == 9 || @grid.get_available_moves(current_grid).count == 8 && @grid.get_available_moves(current_grid).include?(5)
-      5
+      play_five_as_first_move
     elsif POSSIBLE_MOVES.include?(play_winning_move(move_sequences, player_mark, opponent_mark))
        play_winning_move(move_sequences, player_mark, opponent_mark)
     elsif POSSIBLE_MOVES.include?(block_opponent_win(move_sequences, player_mark, opponent_mark))
