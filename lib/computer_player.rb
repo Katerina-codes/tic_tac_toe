@@ -59,7 +59,7 @@ class ComputerPlayer
     winning_move = sequence_with_blocking_move.flatten.select { |value| value != opponent_mark }.join.to_i
   end
 
-  def play_first_move(winning_sequence)
+  def play_five_as_first_move
     5
   end
 

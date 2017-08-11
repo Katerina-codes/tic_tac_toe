@@ -25,8 +25,7 @@ RSpec.describe ComputerPlayer do
 
   context "Plays a strategic move" do
     it "plays 5 as first move" do
-      move_sequences = [["X", 2, 3], [4, 5, 6], [7, 8, 9], ["X", 4, 7], [2, 5, 8], [3, 6, 9], ["X", 5, 9], [3, 5, 7]]
-      expect(computer_player.play_first_move(move_sequences)).to eq(5)
+      expect(computer_player.play_five_as_first_move).to eq(5)
     end
 
     it "plays a corner move as the first move if 5 is taken" do
