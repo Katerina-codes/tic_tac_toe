@@ -14,7 +14,7 @@ class Game
     new_grid
   end
 
-  def display_latest_move_on_grid(mark, move, current_grid)
+  def format_and_place_move_on_grid(mark, move, current_grid)
     formatted_mark = @converter.get_mark_template(move, mark)
     converted_move = @converter.convert_move_number(move)
     @grid.place_a_move(current_grid, converted_move, formatted_mark)
@@ -55,7 +55,7 @@ class Game
     else
       move = player_type.get_valid_move(current_grid, winning_move_sequences, player_mark, @converter)
     end
-    display_latest_move_on_grid(player_mark, move, current_grid)
+    format_and_place_move_on_grid(player_mark, move, current_grid)
     get_winning_hits(winning_move_sequences, move, player_mark)
   end
 
