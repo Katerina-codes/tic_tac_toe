@@ -47,11 +47,28 @@ class Grid
     count
   end
 
+  def grid(current_grid, row)
+    grid = {
+      "row one" => [current_grid[0][0], current_grid[0][1], current_grid[0][2]],
+      "row two" => [current_grid[1][0], current_grid[1][1], current_grid[1][2]],
+      "row three" => [current_grid[2][0], current_grid[2][1], current_grid[2][2]],
+      "column one" => [current_grid[0][0], current_grid[1][0], current_grid[2][0]],
+      "column two" => [current_grid[0][1], current_grid[1][1], current_grid[2][1]],
+      "column three" => [current_grid[0][2], current_grid[1][2], current_grid[2][2]],
+      "diagonal one" => [current_grid[0][0], current_grid[1][1], current_grid[2][2]],
+      "diagonal two" => [current_grid[0][2], current_grid[1][1], current_grid[2][0]]
+    }
+    grid[row]
+  end
+
   def row_has_three_marks?(current_grid, player_mark)
-    row_one = current_grid[0][0].include?(player_mark) && current_grid[0][1].include?(player_mark) && current_grid[0][2].include?(player_mark)
-    row_two = current_grid[1][0].include?(player_mark) && current_grid[1][1].include?(player_mark) && current_grid[1][2].include?(player_mark)
-    row_three = current_grid[2][0].include?(player_mark) && current_grid[2][1].include?(player_mark) && current_grid[2][2].include?(player_mark)
-    row_one || row_two || row_three
+    row_one = grid(current_grid, "row one")
+    row_one_mark_count = get_marks_in_a_row(row_one, player_mark)
+    row_two = grid(current_grid, "row two")
+    row_two_mark_count = get_marks_in_a_row(row_two, player_mark)
+    row_three = grid(current_grid, "row three")
+    row_three_mark_count = get_marks_in_a_row(row_three, player_mark)
+    row_one_mark_count == 3 || row_two_mark_count == 3 || row_three_mark_count == 3
   end
 
   def column_has_three_marks?(current_grid, player_mark)
