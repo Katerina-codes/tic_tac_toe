@@ -7,7 +7,7 @@ RSpec.describe Grid do
 
   context "Creates grid" do
     it "draws an array of 3 arrays with numbers 1 - 9" do
-      expect(grid.draw_grid).to eq([["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])
+      expect(grid.draw_grid).to eq(unmarked_grid)
     end
   end
 
@@ -45,15 +45,17 @@ RSpec.describe Grid do
 
   context "Checks the status of a move" do
     it "returns true if move is unique" do
-      expect(grid.is_move_unique?([0, 0], [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(true)
+      expect(grid.is_move_unique?([0, 0], unmarked_grid)).to eq(true)
     end
 
     it "returns false if move is not unique" do
-      expect(grid.is_move_unique?([0, 0], [["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(false)
+      current_grid = [["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      expect(grid.is_move_unique?([0, 0], current_grid)).to eq(false)
     end
 
     it "returns true if move is unique and move is 2" do
-      expect(grid.is_move_unique?([0, 1], [["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq(true)
+      current_grid = [["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      expect(grid.is_move_unique?([0, 1], current_grid)).to eq(true)
     end
   end
 
@@ -64,56 +66,67 @@ RSpec.describe Grid do
     end
 
     it "returns an array where 8 moves are available" do
-      expect(grid.get_available_moves([["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([2, 3, 4, 5, 6, 7, 8, 9])
+      current_grid = [["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      expect(grid.get_available_moves(current_grid)).to eq([2, 3, 4, 5, 6, 7, 8, 9])
     end
 
     it "returns an array where 7 moves are available" do
-      expect(grid.get_available_moves([["| X ", "| O |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([3, 4, 5, 6, 7, 8, 9])
+      current_grid = [["| X ", "| O |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      expect(grid.get_available_moves(current_grid)).to eq([3, 4, 5, 6, 7, 8, 9])
     end
 
     it "returns true if any of the columns have 3 X's" do
       current_grid = [["| X ", "| O |", " X |"], ["| X ", "| O |" , " 6 |"], ["| X ", "| 8 |", " 9 |"]]
-      expect(grid.does_any_column_have_three_marks?(current_grid, "X")).to eq(true)
+      player_mark = "X"
+      expect(grid.does_any_column_have_three_marks?(current_grid, player_mark)).to eq(true)
     end
 
     it "returns false if none of the columns have 3 X's" do
       current_grid = [["| X ", "| X |", " X |"], ["| O ", "| O |" , " X |"], ["| 7 ", "| 8 |", " 9 |"]]
-      expect(grid.does_any_column_have_three_marks?(current_grid, "X")).to eq(false)
+      player_mark = "X"
+      expect(grid.does_any_column_have_three_marks?(current_grid, player_mark)).to eq(false)
     end
 
     it "returns true if any of the columns have 3 O's" do
       current_grid = [["| X ", "| O |", " X |"], ["| X ", "| O |" , " X |"], ["| 7 ", "| O |", " 9 |"]]
-      expect(grid.does_any_column_have_three_marks?(current_grid, "O")).to eq(true)
+      player_mark = "O"
+      expect(grid.does_any_column_have_three_marks?(current_grid, player_mark)).to eq(true)
     end
 
     it "returns true if any of the diagonals include 3 O's" do
       current_grid = [["| X ", "| X |", " O |"], ["| X ", "| O |" , " 6 |"], ["| O ", "| 8 |", " 9 |"]]
-      expect(grid.does_either_diagonal_have_three_marks?(current_grid, "O")).to eq(true)
+      player_mark = "O"
+      expect(grid.does_either_diagonal_have_three_marks?(current_grid, player_mark)).to eq(true)
     end
 
     it "returns false if none of the diagonals include 3 O's" do
       current_grid = [["| X ", "| X |", " O |"], ["| X ", "| 5 |" , " O |"], ["| O ", "| 8 |", " 9 |"]]
-      expect(grid.does_either_diagonal_have_three_marks?(current_grid, "O")).to eq(false)
+      player_mark = "O"
+      expect(grid.does_either_diagonal_have_three_marks?(current_grid, player_mark)).to eq(false)
     end
 
     it "returns true if any of the diagonals include 3 X's" do
       current_grid = [["| X ", "| O |", " X |"], ["| O ", "| X |" , " O |"], ["| X ", "| 8 |", " 9 |"]]
-      expect(grid.does_either_diagonal_have_three_marks?(current_grid, "X")).to eq(true)
+      player_mark = "X"
+      expect(grid.does_either_diagonal_have_three_marks?(current_grid, player_mark)).to eq(true)
     end
 
     it "returns true if any rows have 3 X's" do
       current_grid = [["| X ", "| X |", " X |"], ["| O ", "| O |" , " X |"], ["| O ", "| 8 |", " 9 |"]]
-      expect(grid.does_any_row_have_three_marks?(current_grid, "X")).to eq(true)
+      player_mark = "X"
+      expect(grid.does_any_row_have_three_marks?(current_grid, player_mark)).to eq(true)
     end
 
     it "returns false if no rows have 3 X's" do
       current_grid = [["| X ", "| O |", " X |"], ["| O ", "| X |" , " X |"], ["| O ", "| 8 |", " 9 |"]]
-      expect(grid.does_any_row_have_three_marks?(current_grid, "X")).to eq(false)
+      player_mark = "X"
+      expect(grid.does_any_row_have_three_marks?(current_grid, player_mark)).to eq(false)
     end
 
     it "returns true if any rows have 3 O's" do
       current_grid = [["| X ", "| X |", " X |"], ["| O ", "| O |" , " O |"], ["| X ", "| 8 |", " 9 |"]]
-      expect(grid.does_any_row_have_three_marks?(current_grid, "O")).to eq(true)
+      player_mark = "O"
+      expect(grid.does_any_row_have_three_marks?(current_grid, player_mark)).to eq(true)
     end
   end
 
