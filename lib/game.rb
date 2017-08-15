@@ -69,14 +69,14 @@ class Game
       1 => [@human_player, @human_player],
       2 => [@human_player, @computer_player]
     }
-    winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-    p1_winning_move_sequence = [["X", "X", "X"]]
-    p2_winning_move_sequence = [["O", "O", "O"]]
     game_mode = get_game_mode
     current_grid = initial_grid
+    p1_winning_move_sequence = [["X", "X", "X"]]
+    p2_winning_move_sequence = [["O", "O", "O"]]
     p1_mark = "X"
     p2_mark = "O"
     p1_type, p2_type = player_types[game_mode]
+    winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     until game_is_over?(winning_move_sequences, p1_winning_move_sequence) || game_is_over?(winning_move_sequences, p2_winning_move_sequence) || @grid.get_available_moves(current_grid) == []
       winning_move_sequences = player_move_flow(p1_type, p1_mark, p2_mark, winning_move_sequences, current_grid)
       if game_is_over?(winning_move_sequences, p1_winning_move_sequence) || @grid.get_available_moves(current_grid) == []
