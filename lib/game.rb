@@ -31,8 +31,8 @@ class Game
     !(winning_move_sequences & winning_sequence).empty?
   end
 
-  def get_mark_for_p2(p1_mark)
-    if p1_mark == "X"
+  def get_opponent_mark(player_mark)
+    if player_mark == "X"
       "O"
     else
       "X"
@@ -64,7 +64,6 @@ class Game
       1 => [@human_player, @human_player],
       2 => [@human_player, @computer_player]
     }
-
     winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     p1_winning_move_sequence = [["X", "X", "X"]]
     p2_winning_move_sequence = [["O", "O", "O"]]

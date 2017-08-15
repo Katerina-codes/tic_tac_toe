@@ -326,13 +326,13 @@ RSpec.describe Game do
     it "returns 'O' if p1's mark is 'X' " do
       game = new_game_instance(input_output, human_player)
       player_mark = "X"
-      expect(game.get_mark_for_p2(player_mark)).to eq("O")
+      expect(game.get_opponent_mark(player_mark)).to eq("O")
     end
 
     it "returns 'X' if p1's mark is 'O' " do
       game = new_game_instance(input_output, human_player)
       player_mark = "O"
-      expect(game.get_mark_for_p2(player_mark)).to eq("X")
+      expect(game.get_opponent_mark(player_mark)).to eq("X")
     end
   end
 
