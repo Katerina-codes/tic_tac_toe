@@ -253,21 +253,27 @@ RSpec.describe Game do
     it "returns 'Game over. Player 1 wins!' if 'X' wins" do
       game = new_game_instance(input_output, human_player)
       current_grid = [["| X ", "| X |", " X |"], ["| O ", "| O |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      game.get_end_score(current_grid)
+      p1_mark = "X"
+      p2_mark = "O"
+      game.get_end_score(current_grid, p1_mark, p2_mark)
       expect(output.string).to eq("Game over. Player 1 wins!\n")
     end
 
     it "returns 'Game over. Player 2 wins!' if 'O' wins" do
       game = new_game_instance(input_output, human_player)
       current_grid = [["| X ", "| X |", " O |"], ["| X ", "| O |" , " 6 |"], ["| O ", "| 8 |", " 9 |"]]
-      game.get_end_score(current_grid)
+      p1_mark = "X"
+      p2_mark = "O"
+      game.get_end_score(current_grid, p1_mark, p2_mark)
       expect(output.string).to eq("Game over. Player 2 wins!\n")
     end
 
     it "returns 'Game over. It's a tie!' if neither player wins" do
       game = new_game_instance(input_output, human_player)
       current_grid = [["| X ", "| O |", " X |"], ["| X ", "| O |" , " O |"], ["| O ", "| X |", " X |"]]
-      game.get_end_score(current_grid)
+      p1_mark = "X"
+      p2_mark = "O"
+      game.get_end_score(current_grid, p1_mark, p2_mark)
       expect(output.string).to eq("Game over. It's a tie!\n")
     end
 

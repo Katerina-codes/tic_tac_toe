@@ -39,10 +39,10 @@ class Game
     end
   end
 
-  def get_end_score(current_grid)
-    if @grid.does_any_row_have_three_marks?(current_grid, "X") || @grid.does_any_column_have_three_marks?(current_grid, "X") || @grid.does_either_diagonal_have_three_marks?(current_grid, "X")
+  def get_end_score(current_grid, p1_mark, p2_mark)
+    if @grid.does_any_row_have_three_marks?(current_grid, p1_mark) || @grid.does_any_column_have_three_marks?(current_grid, p1_mark) || @grid.does_either_diagonal_have_three_marks?(current_grid, p1_mark)
       @input_output.display_player_one_wins
-    elsif @grid.does_any_row_have_three_marks?(current_grid, "O") || @grid.does_any_column_have_three_marks?(current_grid, "O") || @grid.does_either_diagonal_have_three_marks?(current_grid, "O")
+    elsif @grid.does_any_row_have_three_marks?(current_grid, p2_mark) || @grid.does_any_column_have_three_marks?(current_grid, p2_mark) || @grid.does_either_diagonal_have_three_marks?(current_grid, p2_mark)
       @input_output.display_player_two_wins
     else
       @input_output.display_game_tie
@@ -85,7 +85,7 @@ class Game
         @input_output.display_grid(current_grid)
       end
     end
-    get_end_score(current_grid)
+    get_end_score(current_grid, p1_mark, p2_mark)
   end
 
 end
