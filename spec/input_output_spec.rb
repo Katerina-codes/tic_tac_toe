@@ -52,7 +52,7 @@ RSpec.describe InputOutput do
 
     it "gets a move from a player" do
       input = StringIO.new("1")
-      input_output = InputOutput.new(output, input)
+      input_output = io_instance_with_input(input)
       expect(input_output.get_move).to eq(1)
     end
 
@@ -68,7 +68,7 @@ RSpec.describe InputOutput do
 
     it "gets the player's game mode choice" do
       input = StringIO.new("1")
-      input_output = InputOutput.new(output, input)
+      input_output = io_instance_with_input(input)
       expect(input_output.get_game_mode).to eq(1)
     end
 
@@ -89,29 +89,33 @@ RSpec.describe InputOutput do
 
     it "Returns 1 if a valid game mode is entered" do
       input = StringIO.new("1")
-      input_output = InputOutput.new(output, input)
+      input_output = io_instance_with_input(input)
       expect(input_output.get_valid_game_mode_input).to eq(1)
     end
 
     it "Returns 2 if a valid game mode is entered" do
       input = StringIO.new("2")
-      input_output = InputOutput.new(output, input)
+      input_output = io_instance_with_input(input)
       expect(input_output.get_valid_game_mode_input).to eq(2)
     end
 
     it "returns 'That game mode is invalid. Please enter 1 or 2.' if input is not valid" do
       input = StringIO.new("3\n1")
-      input_output = InputOutput.new(output, input)
+      input_output = io_instance_with_input(input)
       input_output.get_valid_game_mode_input
       expect(output.string).to eq("That game mode is invalid. Please enter 1 or 2.\n")
     end
 
     it "Prompts for a game mode until the input entered is valid" do
       input = StringIO.new("!\n4\n1")
-      input_output = InputOutput.new(output, input)
+      input_output = io_instance_with_input(input)
       input_output.get_valid_game_mode_input
       expect(output.string).to include("1")
     end
+  end
+
+  def io_instance_with_input(input)
+    InputOutput.new(output, input)
   end
 
 end
