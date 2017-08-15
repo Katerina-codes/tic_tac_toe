@@ -71,18 +71,6 @@ RSpec.describe Grid do
       expect(grid.get_available_moves([["| X ", "| O |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]])).to eq([3, 4, 5, 6, 7, 8, 9])
     end
 
-    it "returns 0 for 0 marks in a row" do
-      expect(grid.get_marks_in_a_row(["| 1 ", "| 2 |", " 3 |"], "X")).to eq(0)
-    end
-
-    it "returns 1 for 1 mark in a row" do
-      expect(grid.get_marks_in_a_row(["| X ", "| 2 |", " 3 |"], "X")).to eq(1)
-    end
-
-    it "returns 2 for 2 marks in a row" do
-      expect(grid.get_marks_in_a_row(["| X ", "| X |", " 3 |"], "X")).to eq(2)
-    end
-
     it "returns true if any of the columns have 3 X's" do
       current_grid = [["| X ", "| O |", " X |"], ["| X ", "| O |" , " 6 |"], ["| X ", "| 8 |", " 9 |"]]
       expect(grid.does_any_column_have_three_marks?(current_grid, "X")).to eq(true)
