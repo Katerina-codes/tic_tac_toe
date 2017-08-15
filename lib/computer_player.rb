@@ -6,26 +6,17 @@ class ComputerPlayer
     @grid = grid
   end
 
-  def get_opponent_mark(player_mark)
-    if player_mark == "X"
-      opponent_mark = "O"
-    else
-      opponent_mark = "X"
-    end
-  end
-
-  def get_valid_move(current_grid, move_sequences, player_mark, converter_instance)
-    move = play_move(move_sequences, player_mark, current_grid)
+  def get_valid_move(current_grid, move_sequences, player_mark, opponent_mark, converter_instance)
+    move = play_move(move_sequences, player_mark, opponent_mark, current_grid)
     converted_move = converter_instance.convert_move_number(move)
     until @grid.move_valid?(move) && @grid.is_move_unique?(converted_move, current_grid)
-      move = play_move(move_sequences, player_mark, current_grid)
+      move = play_move(move_sequences, player_mark, opponent_mark, current_grid)
       converted_move = converter_instance.convert_move_number(move)
     end
     move
   end
 
-  def play_move(move_sequences, player_mark, current_grid)
-    opponent_mark = get_opponent_mark(player_mark)
+  def play_move(move_sequences, player_mark, opponent_mark, current_grid)
     corner_moves = [1, 3, 7, 9]
     available_moves = @grid.get_available_moves(current_grid)
     if @grid.get_available_moves(current_grid).count == 9 || @grid.get_available_moves(current_grid).count == 8 && @grid.get_available_moves(current_grid).include?(5)

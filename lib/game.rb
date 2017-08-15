@@ -49,11 +49,11 @@ class Game
     end
   end
 
-  def player_flow(player_type, player_mark, winning_move_sequences, current_grid)
+  def player_flow(player_type, player_mark, opponent_mark, winning_move_sequences, current_grid)
     if player_type == @human_player
       move = player_type.get_valid_move(current_grid, player_mark, @converter)
     else
-      move = player_type.get_valid_move(current_grid, winning_move_sequences, player_mark, @converter)
+      move = player_type.get_valid_move(current_grid, winning_move_sequences, player_mark, opponent_mark, @converter)
     end
     format_and_place_move_on_grid(player_mark, move, current_grid)
     get_winning_hits(winning_move_sequences, move, player_mark)
@@ -76,12 +76,12 @@ class Game
     p1_type, p2_type = player_types[game_mode]
 
     until game_is_over?(winning_move_sequences, p1_winning_move_sequence) || game_is_over?(winning_move_sequences, p2_winning_move_sequence) || @grid.get_available_moves(current_grid) == []
-      winning_move_sequences = player_flow(p1_type, p1_mark, winning_move_sequences, current_grid)
+      winning_move_sequences = player_flow(p1_type, p1_mark, p2_mark, winning_move_sequences, current_grid)
       if game_is_over?(winning_move_sequences, p1_winning_move_sequence) || @grid.get_available_moves(current_grid) == []
         @input_output.display_grid(current_grid)
       else
         @input_output.display_grid(current_grid)
-        winning_move_sequences = player_flow(p2_type, p2_mark, winning_move_sequences, current_grid)
+        winning_move_sequences = player_flow(p2_type, p2_mark, p1_mark, winning_move_sequences, current_grid)
         @input_output.display_grid(current_grid)
       end
     end

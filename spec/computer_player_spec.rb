@@ -13,13 +13,13 @@ RSpec.describe ComputerPlayer do
       current_grid = [["| 1 ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
       possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
       converter_instance = Converter.new
-      computer_move = computer_player.get_valid_move(current_grid, unmarked_move_sequences, "X", converter_instance)
+      computer_move = computer_player.get_valid_move(current_grid, unmarked_move_sequences, "X", "O", converter_instance)
       expect(possible_moves.include?(computer_move)).to eq(true)
     end
 
     it "plays a random move" do
       possible_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-      expect(possible_moves.include?(computer_player.play_move(unmarked_move_sequences, "X", unmarked_grid))).to eq(true)
+      expect(possible_moves.include?(computer_player.play_move(unmarked_move_sequences, "X", "O", unmarked_grid))).to eq(true)
     end
   end
 
@@ -32,14 +32,14 @@ RSpec.describe ComputerPlayer do
       move_sequences = [[1, 2, 3], ["X", 5, 6], [7, 8, 9], [1, "4", 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
       current_grid = [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| X |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
       corner_moves = [1, 3, 7, 9]
-      expect(corner_moves.include?(computer_player.play_move(move_sequences, "X", current_grid))).to eq(true)
+      expect(corner_moves.include?(computer_player.play_move(move_sequences, "X", "O", current_grid))).to eq(true)
     end
 
     it "plays a move choosing from the only available moves left" do
       move_sequences = [["X", 2, "O"], ["O", "X", "X"], ["X", 8, "O"], ["X", "O", "X"], [2, "X", 8], ["O", "X", "O"], ["X", "X", "O"], ["O", "X", "X"]]
       current_grid = [["| X ", "| 2 |", " O |"], ["| O ", "| X |" , " X |"], ["| X ", "| 8 |", " O |"]]
       available_moves = [2, 8]
-      expect(available_moves.include?(computer_player.play_move(move_sequences, "O", current_grid))).to eq(true)
+      expect(available_moves.include?(computer_player.play_move(move_sequences, "O", "X", current_grid))).to eq(true)
     end
   end
 
@@ -47,7 +47,7 @@ RSpec.describe ComputerPlayer do
     it "chooses to play winning move before blocking" do
       move_sequences = [["X", 2, "O"], [4, "X", 6], ["X", 8, "O"], ["X", 4, "X"], [2, "X", 8], ["O", 6, "O"], ["X", "X", "O"], ["O", "X", "X"]]
       current_grid = [["| X ", "| 2 |", " O |"], ["| 4 ", "| X |" , " 6 |"], ["| X ", "| 8 |", " O |"]]
-      expect(computer_player.play_move(move_sequences, "O", current_grid)).to eq(6)
+      expect(computer_player.play_move(move_sequences, "O", "X", current_grid)).to eq(6)
     end
 
     it "plays 6 as the winning move" do
@@ -131,13 +131,13 @@ RSpec.describe ComputerPlayer do
     it "plays side move 4 to block a fork" do
       current_grid = [["| 1 ", "| 2 |", " X |"], ["| 4 ", "| O |" , "6 |"], ["| X ", "| 8 |", " 9 |"]]
       move_sequences = [[1, 2, "X"], [4, "O", 6], ["X", 8, 9], [1, 4, "X"], [2, "O", 8], ["X", 6, 9], [1, "O", 9], ["X", "O", "X"]]
-      expect(computer_player.play_move(move_sequences, "O", current_grid)).to eq(4)
+      expect(computer_player.play_move(move_sequences, "O", "X", current_grid)).to eq(4)
     end
 
     it "stops computer player repeating the same move after it has blocked a fork" do
       move_sequences = [[1, 2, "X"], ["O", "O", "X"], ["X", 8, 9], [1, "O", "X"], [2, "O", 8], ["X", "X", 9], [1, "O", 9], ["X", "O", 7]]
       current_grid = [["| 1 ", "| 2 |", " X |"], ["| O ", "| O |" , " X |"], ["| X ", "| 8 |", " 9 |"]]
-      expect(computer_player.play_move(move_sequences, "O", current_grid)).to eq(9)
+      expect(computer_player.play_move(move_sequences, "O", "X", current_grid)).to eq(9)
     end
 
     it "plays 1 if opponent is 'O' and has played 4, 2" do
@@ -148,7 +148,7 @@ RSpec.describe ComputerPlayer do
     it "blocks a winning move before it blocks a fork" do
       current_grid = [["| 1 ", "| 2 |", " O |",], ["| O ", "| X |" , " X |"], ["| 7 ", "| X |", " 9 |"]]
       move_sequences = [[1, 2, "O"], ["O", "X", "X"], [7, "X", 9], [1, "O", 7], [2, "X", 'X'], ["O", "X", 9], [1, "X", 9], ["O", "X", 7]]
-      expect(computer_player.play_move(move_sequences, "O", current_grid)).to eq(2)
+      expect(computer_player.play_move(move_sequences, "O", "X", current_grid)).to eq(2)
     end
   end
 
