@@ -20,7 +20,7 @@ class Game
     @grid.place_a_move(current_grid, converted_move, formatted_mark)
   end
 
-  def get_winning_hits(winning_move_sequences, move, player_mark)
+  def put_mark_in_move_sequences(winning_move_sequences, move, player_mark)
     winning_moves = winning_move_sequences.flatten
     index_position_of_move = (0..winning_moves.length-1).select { |value| winning_moves[value] == move }
     index_position_of_move.each { |index| winning_moves[index] = player_mark }
@@ -56,7 +56,7 @@ class Game
       move = player_type.get_valid_move(current_grid, winning_move_sequences, player_mark, opponent_mark, @converter)
     end
     format_and_place_move_on_grid(player_mark, move, current_grid)
-    get_winning_hits(winning_move_sequences, move, player_mark)
+    put_mark_in_move_sequences(winning_move_sequences, move, player_mark)
   end
 
   def game_flow
