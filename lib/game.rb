@@ -39,6 +39,11 @@ class Game
     end
   end
 
+  def get_game_mode
+    @input_output.ask_for_game_mode
+    @input_output.get_valid_game_mode_input
+  end
+
   def get_end_score(current_grid, p1_mark, p2_mark)
     if @grid.does_any_row_have_three_marks?(current_grid, p1_mark) || @grid.does_any_column_have_three_marks?(current_grid, p1_mark) || @grid.does_either_diagonal_have_three_marks?(current_grid, p1_mark)
       @input_output.display_player_one_wins
@@ -67,13 +72,11 @@ class Game
     winning_move_sequences = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
     p1_winning_move_sequence = [["X", "X", "X"]]
     p2_winning_move_sequence = [["O", "O", "O"]]
-    @input_output.ask_for_game_mode
-    game_mode = @input_output.get_valid_game_mode_input
+    game_mode = get_game_mode
     current_grid = initial_grid
     p1_mark = "X"
     p2_mark = "O"
     p1_type, p2_type = player_types[game_mode]
-
     until game_is_over?(winning_move_sequences, p1_winning_move_sequence) || game_is_over?(winning_move_sequences, p2_winning_move_sequence) || @grid.get_available_moves(current_grid) == []
       winning_move_sequences = player_move_flow(p1_type, p1_mark, p2_mark, winning_move_sequences, current_grid)
       if game_is_over?(winning_move_sequences, p1_winning_move_sequence) || @grid.get_available_moves(current_grid) == []
