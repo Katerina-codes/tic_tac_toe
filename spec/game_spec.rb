@@ -247,7 +247,8 @@ RSpec.describe Game do
     it "returns a list of winning moves with instances of 1 replaced with marked_move" do
       game = new_game_instance(input_output, human_player)
       winning_moves = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-      expect(game.get_winning_hits(winning_moves, 1, "X")).to eq([["X", 2, 3], [4, 5, 6], [7, 8, 9], ["X", 4, 7], [2, 5, 8], [3, 6, 9], ["X", 5, 9], [3, 5, 7]])
+      player_mark = "X"
+      expect(game.get_winning_hits(winning_moves, 1, player_mark)).to eq([["X", 2, 3], [4, 5, 6], [7, 8, 9], ["X", 4, 7], [2, 5, 8], [3, 6, 9], ["X", 5, 9], [3, 5, 7]])
     end
 
     it "returns 'Game over. Player 1 wins!' if 'X' wins" do
@@ -324,12 +325,14 @@ RSpec.describe Game do
   context "Gets the player's mark" do
     it "returns 'O' if p1's mark is 'X' " do
       game = new_game_instance(input_output, human_player)
-      expect(game.get_mark_for_p2("X")).to eq("O")
+      player_mark = "X"
+      expect(game.get_mark_for_p2(player_mark)).to eq("O")
     end
 
     it "returns 'X' if p1's mark is 'O' " do
       game = new_game_instance(input_output, human_player)
-      expect(game.get_mark_for_p2("O")).to eq("X")
+      player_mark = "O"
+      expect(game.get_mark_for_p2(player_mark)).to eq("X")
     end
   end
 
