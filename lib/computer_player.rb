@@ -54,19 +54,27 @@ class ComputerPlayer
     5
   end
 
+  def possible_fork?(current_grid, opponent_mark, value_indexes, number)
+    index_a = value_indexes[0][0]
+    index_a1 = value_indexes[0][1]
+    index_b = value_indexes[1][0]
+    index_b1 = value_indexes[1][1]
+    current_grid[index_a][index_a1].include?(opponent_mark) && current_grid[index_b][index_b1].include?(opponent_mark) && @grid.get_available_moves(current_grid).include?(number)
+  end
+
   def move_to_block_fork(current_grid, opponent_mark)
     no_fork = 0
-    if current_grid[0][1].include?(opponent_mark) && current_grid[1][0].include?(opponent_mark) && @grid.get_available_moves(current_grid).include?(1)
+    if possible_fork?(current_grid, opponent_mark, [[0, 1], [1, 0]], 1)
       1
-    elsif current_grid[0][1].include?(opponent_mark) && current_grid[1][2].include?(opponent_mark) && @grid.get_available_moves(current_grid).include?(3)
+    elsif possible_fork?(current_grid, opponent_mark, [[0, 1], [1, 2]], 3)
       3
-    elsif current_grid[1][2].include?(opponent_mark) && current_grid[2][1].include?(opponent_mark) && @grid.get_available_moves(current_grid).include?(9)
+    elsif possible_fork?(current_grid, opponent_mark, [[1, 2], [2, 1]], 9)
       9
-    elsif current_grid[1][0].include?(opponent_mark) && current_grid[2][1].include?(opponent_mark) && @grid.get_available_moves(current_grid).include?(7)
+    elsif possible_fork?(current_grid, opponent_mark, [[1, 0], [2, 1]], 7)
       7
-    elsif current_grid[0][0].include?(opponent_mark) && current_grid[2][2].include?(opponent_mark) && @grid.get_available_moves(current_grid).include?(6)
+    elsif possible_fork?(current_grid, opponent_mark, [[0, 0], [2, 2]], 6)
       6
-    elsif current_grid[0][2].include?(opponent_mark) && current_grid[2][0].include?(opponent_mark) && @grid.get_available_moves(current_grid).include?(4)
+    elsif possible_fork?(current_grid, opponent_mark, [[0, 2], [2, 0]], 4)
       4
     else
       no_fork
