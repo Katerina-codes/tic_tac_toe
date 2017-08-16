@@ -1,6 +1,6 @@
 # *Tic Tac Toe*
 
-- Tic Tac Toe is a game where two players, each with a mark **X** or **O** compete to see who will be the first get three of their marks in a row.
+- Tic Tac Toe is a game where two players, each with a mark **X** or **O** compete to see who will be first to get three of their marks in a row.
 
 - Marks can be placed vertically, horizontally or diagonally.
 
@@ -18,6 +18,6 @@
 
 - Navigate to the repository and use **cd** followed by the repository name to enter it.
 
-- To run the program enter the following command:
+- To run the program, enter the following command:
 
 **$ ruby game_runner.rb**
