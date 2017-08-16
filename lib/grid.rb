@@ -29,8 +29,8 @@ class Grid
 
   def three_marks_in_a_row?(grid, array_of_value_indexes, mark)
     count = 0
-    array_of_value_indexes.each do |x, y|
-      if grid[x][y].include?(mark)
+    array_of_value_indexes.each do |index_a, index_a1|
+      if grid[index_a][index_a1].include?(mark)
         count +=1
       end
     end
