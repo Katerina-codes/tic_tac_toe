@@ -130,6 +130,13 @@ RSpec.describe InputOutput do
       input_output.get_valid_replay_decision
       expect(output.string).to include("Please enter 1 or 2.")
     end
+
+    it "displays error if user enter invalid input for replay" do
+      input = StringIO.new("a\n1")
+      input_output = io_instance_with_input(input)
+      input_output.display_replay_input_error
+      expect(output.string).to include("Please enter 1 or 2.")
+    end
   end
 
   def io_instance_with_input(input)
