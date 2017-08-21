@@ -44,10 +44,14 @@ class Game
     @input_output.get_valid_game_mode_input
   end
 
+  def player_wins?(current_grid, player_mark)
+    @grid.row_win?(current_grid, player_mark) || @grid.column_win?(current_grid, player_mark) || @grid.diagonal_win?(current_grid, player_mark)
+  end
+
   def get_end_score(current_grid, p1_mark, p2_mark)
-    if @grid.row_win?(current_grid, p1_mark) || @grid.column_win?(current_grid, p1_mark) || @grid.diagonal_win?(current_grid, p1_mark)
+    if player_wins?(current_grid, p1_mark)
       @input_output.display_player_one_wins
-    elsif @grid.row_win?(current_grid, p2_mark) || @grid.column_win?(current_grid, p2_mark) || @grid.diagonal_win?(current_grid, p2_mark)
+    elsif player_wins?(current_grid, p2_mark)
       @input_output.display_player_two_wins
     else
       @input_output.display_game_tie
