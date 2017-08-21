@@ -10,7 +10,6 @@ class InputOutput
     formatted_grid = grid.map do |each_row|
       row_lines + "\n" + each_row.join("") + "\n"
     end
-
     @output.puts "\n"
     @output.puts formatted_grid
     @output.puts row_lines
