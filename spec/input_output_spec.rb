@@ -121,7 +121,14 @@ RSpec.describe InputOutput do
     it "returns 1 if user wants to play again" do
       input = StringIO.new("1")
       input_output = io_instance_with_input(input)
-      expect(input_output.get_valid_replay_decision).to eq("1")
+      expect(input_output.get_valid_replay_decision).to eq(1)
+    end
+
+    it "displays error message if user enters input that is neither 1 or 2" do
+      input = StringIO.new("3\n1")
+      input_output = io_instance_with_input(input)
+      input_output.get_valid_replay_decision
+      expect(output.string).to include("Please enter 1 or 2.")
     end
   end
 

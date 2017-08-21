@@ -65,7 +65,12 @@ class InputOutput
   end
 
   def get_valid_replay_decision
-    @input.gets
+    input = @input.gets.to_i
+    until input == 1 || input == 2
+      @output.puts "Please enter 1 or 2."
+      input = @input.gets.to_i
+    end
+    input
   end
 
 end
