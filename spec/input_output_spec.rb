@@ -106,11 +106,22 @@ RSpec.describe InputOutput do
       expect(output.string).to eq("That game mode is invalid. Please enter 1 or 2.\n")
     end
 
-    it "Prompts for a game mode until the input entered is valid" do
+    it "prompts for a game mode until the input entered is valid" do
       input = StringIO.new("!\n4\n1")
       input_output = io_instance_with_input(input)
       input_output.get_valid_game_mode_input
       expect(output.string).to include("1")
+    end
+
+    it "asks the user if they want to play again" do
+      input_output.ask_for_replay
+      expect(output.string).to eq("Do you want to play again?\nEnter '1' for yes or '2' for no.\n")
+    end
+
+    it "returns 1 if user wants to play again" do
+      input = StringIO.new("1")
+      input_output = io_instance_with_input(input)
+      expect(input_output.get_valid_replay_decision).to eq("1")
     end
   end
 

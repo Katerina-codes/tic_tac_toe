@@ -60,4 +60,12 @@ class InputOutput
     @output.puts "Game over. It's a tie!"
   end
 
+  def ask_for_replay
+    @output.puts "Do you want to play again?\nEnter '1' for yes or '2' for no."
+  end
+
+  def get_valid_replay_decision
+    @input.gets
+  end
+
 end
