@@ -27,14 +27,8 @@ class Grid
     available_move_indexes.map { |element| element += 1 }
   end
 
-  def three_marks_in_a_row?(grid, array_of_value_indexes, mark)
-    count = 0
-    array_of_value_indexes.each do |index_a, index_a1|
-      if grid[index_a][index_a1].include?(mark)
-        count +=1
-      end
-    end
-    count == 3
+  def three_marks_in_a_row?(grid, line, mark)
+    line.all? { |x, y| grid[x][y].include?(mark) }
   end
 
   def row_win?(current_grid, player_mark)
