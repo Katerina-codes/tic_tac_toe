@@ -37,21 +37,21 @@ class Grid
     count == 3
   end
 
-  def does_any_row_have_three_marks?(current_grid, player_mark)
+  def row_win?(current_grid, player_mark)
     row_one = [[0, 0], [0, 1], [0, 2]]
     row_two = [[1, 0], [1, 1], [1, 2]]
     row_three = [[2, 0], [2, 1], [2, 2]]
     three_marks_in_a_row?(current_grid, row_one, player_mark) || three_marks_in_a_row?(current_grid, row_two, player_mark) || three_marks_in_a_row?(current_grid, row_three, player_mark)
   end
 
-  def does_any_column_have_three_marks?(current_grid, player_mark)
+  def column_win?(current_grid, player_mark)
     column_one = [[0, 0], [1, 0], [2, 0]]
     column_two = [[0, 1], [1, 1], [2, 1]]
     column_three = [[0, 2], [1, 2], [2, 2]]
     three_marks_in_a_row?(current_grid, column_one, player_mark) || three_marks_in_a_row?(current_grid, column_two, player_mark) || three_marks_in_a_row?(current_grid, column_three, player_mark)
   end
 
-  def does_either_diagonal_have_three_marks?(current_grid, player_mark)
+  def diagonal_win?(current_grid, player_mark)
     diagonal_one = [[0, 0], [1, 1], [2, 2]]
     diagonal_two = [[0, 2], [1, 1], [2, 0]]
     three_marks_in_a_row?(current_grid, diagonal_one, player_mark) || three_marks_in_a_row?(current_grid, diagonal_two, player_mark)

@@ -45,9 +45,9 @@ class Game
   end
 
   def get_end_score(current_grid, p1_mark, p2_mark)
-    if @grid.does_any_row_have_three_marks?(current_grid, p1_mark) || @grid.does_any_column_have_three_marks?(current_grid, p1_mark) || @grid.does_either_diagonal_have_three_marks?(current_grid, p1_mark)
+    if @grid.row_win?(current_grid, p1_mark) || @grid.column_win?(current_grid, p1_mark) || @grid.diagonal_win?(current_grid, p1_mark)
       @input_output.display_player_one_wins
-    elsif @grid.does_any_row_have_three_marks?(current_grid, p2_mark) || @grid.does_any_column_have_three_marks?(current_grid, p2_mark) || @grid.does_either_diagonal_have_three_marks?(current_grid, p2_mark)
+    elsif @grid.row_win?(current_grid, p2_mark) || @grid.column_win?(current_grid, p2_mark) || @grid.diagonal_win?(current_grid, p2_mark)
       @input_output.display_player_two_wins
     else
       @input_output.display_game_tie
