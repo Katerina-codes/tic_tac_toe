@@ -68,6 +68,16 @@ class Game
     put_mark_in_move_sequences(winning_move_sequences, move, player_mark)
   end
 
+  def replay
+    @input_output.ask_for_replay
+    replay_choice = @input_output.get_valid_replay_decision
+    if replay_choice == 1
+      game_flow
+    else
+      replay_choice
+    end
+  end
+
   def game_flow
     player_types = {
       1 => [@human_player, @human_player],
@@ -92,6 +102,7 @@ class Game
       end
     end
     get_end_score(current_grid, p1_mark, p2_mark)
+    replay
   end
 
 end
