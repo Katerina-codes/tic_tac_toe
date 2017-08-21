@@ -9,7 +9,7 @@ class ComputerPlayer
   def get_valid_move(current_grid, move_sequences, player_mark, opponent_mark, converter_instance)
     move = play_move(move_sequences, player_mark, opponent_mark, current_grid)
     converted_move = converter_instance.convert_move_number(move)
-    until @grid.move_valid?(move) && @grid.is_move_unique?(converted_move, current_grid)
+    until @grid.move_valid?(move) && @grid.move_unique?(converted_move, current_grid)
       move = play_move(move_sequences, player_mark, opponent_mark, current_grid)
       converted_move = converter_instance.convert_move_number(move)
     end

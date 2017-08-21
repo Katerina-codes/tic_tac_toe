@@ -45,17 +45,17 @@ RSpec.describe Grid do
 
   context "Checks the status of a move" do
     it "returns true if move is unique" do
-      expect(grid.is_move_unique?([0, 0], unmarked_grid)).to eq(true)
+      expect(grid.move_unique?([0, 0], unmarked_grid)).to eq(true)
     end
 
     it "returns false if move is not unique" do
       current_grid = [["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      expect(grid.is_move_unique?([0, 0], current_grid)).to eq(false)
+      expect(grid.move_unique?([0, 0], current_grid)).to eq(false)
     end
 
     it "returns true if move is unique and move is 2" do
       current_grid = [["| X ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
-      expect(grid.is_move_unique?([0, 1], current_grid)).to eq(true)
+      expect(grid.move_unique?([0, 1], current_grid)).to eq(true)
     end
   end
 

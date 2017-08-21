@@ -241,7 +241,7 @@ RSpec.describe Game do
   context "Tracks the game status" do
     it "returns true if the game has been won" do
       game = new_game_instance(input_output, human_player)
-      expect(game.game_is_over?([["O", "O", "O"], ["X", "X", 6], ["X", 8, "X"], ["O", "X", "X"], ["O", "X", 8], ["O", 6, "X"], ["O", "X", "X"], ["O", "X", "X"]], [["O", "O", "O"]])).to eq(true)
+      expect(game.game_over?([["O", "O", "O"], ["X", "X", 6], ["X", 8, "X"], ["O", "X", "X"], ["O", "X", 8], ["O", 6, "X"], ["O", "X", "X"], ["O", "X", "X"]], [["O", "O", "O"]])).to eq(true)
     end
 
     it "returns a list of winning moves with instances of 1 replaced with marked_move" do
