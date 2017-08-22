@@ -337,7 +337,7 @@ RSpec.describe Game do
   end
 
   def new_game_instance(input_output, human_player)
-    game = Game.new(input_output, grid, converter, human_player, computer_player)
+    Game.new(input_output, grid, converter, human_player, computer_player)
   end
 
   def io_instance_with_input(output, input)
