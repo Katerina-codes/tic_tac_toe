@@ -5,14 +5,15 @@ class InputOutput
     @input = input
   end
 
-  def display_grid(grid)
-    row_lines = " --- --- ---"
-    formatted_grid = grid.map do |each_row|
-      row_lines + "\n" + each_row.join("") + "\n"
-    end
-    @output.puts "\n"
-    @output.puts formatted_grid
-    @output.puts row_lines
+  def display_grid(current_grid)
+    one, two, three, four, five, six, seven, eight, nine = current_grid
+    @output.puts "\n --- --- ---"
+    @output.puts "| #{one} | #{two} | #{three} |"
+    @output.puts " --- --- ---"
+    @output.puts "| #{four} | #{five} | #{six} |"
+    @output.puts " --- --- ---"
+    @output.puts "| #{seven} | #{eight} | #{nine} |"
+    @output.puts " --- --- ---"
   end
 
   def ask_for_move

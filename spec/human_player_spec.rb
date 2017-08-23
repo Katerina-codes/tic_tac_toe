@@ -6,7 +6,7 @@ RSpec.describe HumanPlayer do
   let(:grid) { Grid.new }
   let(:output) { StringIO.new }
   let(:converter_instance) { Converter.new }
-  let(:unmarked_grid) { [["| 1 ", "| 2 |", " 3 |"], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]] }
+  let(:unmarked_grid) { [1, 2, 3, 4, 5, 6, 7, 8, 9] }
   let(:player_mark) { "X" }
 
   context "Gets a valid move" do
@@ -44,7 +44,7 @@ RSpec.describe HumanPlayer do
       input = StringIO.new("1\n2")
       input_output = InputOutput.new(output, input)
       human_player = HumanPlayer.new(input_output, grid)
-      current_grid_with_mark = [["| X ", "| 2 |", " 3 |",], ["| 4 ", "| 5 |" , " 6 |"], ["| 7 ", "| 8 |", " 9 |"]]
+      current_grid_with_mark = ["X", 2, 3, 4, 5, 6, 7, 8, 9]
       human_player.get_valid_move(current_grid_with_mark, player_mark, converter_instance)
       expect(output.string).to include("This move is invalid. Please enter another one\n")
     end
