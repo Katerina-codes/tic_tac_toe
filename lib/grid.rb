@@ -24,7 +24,7 @@ class Grid
   end
 
   def three_marks_in_a_row?(grid, line, mark)
-    line.all? { |index| grid[index] == mark }
+    line.all? { |element| element == mark }
   end
 
   def row_win?(current_grid, player_mark)
@@ -35,10 +35,10 @@ class Grid
   end
 
   def column_win?(current_grid, player_mark)
-    column_one = [0, 3, 6]
-    column_two = [1, 4, 7]
-    column_three = [2, 5, 8]
-    three_marks_in_a_row?(current_grid, column_one, player_mark) || three_marks_in_a_row?(current_grid, column_two, player_mark) || three_marks_in_a_row?(current_grid, column_three, player_mark)
+    columns = current_grid.each_slice(3).to_a.transpose
+    columns.any? do |column|
+      three_marks_in_a_row?(current_grid, column, player_mark)
+    end
   end
 
   def diagonal_win?(current_grid, player_mark)
