@@ -23,10 +23,6 @@ class Grid
     available_move_indexes.map { |element| element += 1 }
   end
 
-  def three_marks_in_a_row?(grid, line, mark)
-    line.all? { |element| element == mark }
-  end
-
   def row_win?(current_grid, player_mark)
     rows = rows(current_grid)
     rows.any? do |row|
@@ -41,10 +37,6 @@ class Grid
     end
   end
 
-  def rows(current_grid)
-    current_grid.each_slice(3).to_a
-  end
-
   def diagonal_win?(current_grid, player_mark)
     rows = rows(current_grid)
     diagonal_one = rows.each_with_index.map { |line, index| line[index] }
@@ -54,6 +46,16 @@ class Grid
 
   def game_over?(current_grid, player_mark)
     row_win?(current_grid, player_mark) || column_win?(current_grid, player_mark) || diagonal_win?(current_grid, player_mark)
+  end
+
+  private
+
+  def three_marks_in_a_row?(grid, line, mark)
+    line.all? { |element| element == mark }
+  end
+
+  def rows(current_grid)
+    current_grid.each_slice(3).to_a
   end
 
 end
