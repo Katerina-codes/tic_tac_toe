@@ -28,23 +28,32 @@ class Grid
   end
 
   def row_win?(current_grid, player_mark)
-    row_one = [0, 1, 2]
-    row_two = [3, 4, 5]
-    row_three = [6, 7, 8]
-    three_marks_in_a_row?(current_grid, row_one, player_mark) || three_marks_in_a_row?(current_grid, row_two, player_mark) || three_marks_in_a_row?(current_grid, row_three, player_mark)
+    rows = rows(current_grid)
+    rows.any? do |row|
+      three_marks_in_a_row?(current_grid, row, player_mark)
+    end
   end
 
   def column_win?(current_grid, player_mark)
-    columns = current_grid.each_slice(3).to_a.transpose
+    columns = rows(current_grid).transpose
     columns.any? do |column|
       three_marks_in_a_row?(current_grid, column, player_mark)
     end
   end
 
+  def rows(current_grid)
+    current_grid.each_slice(3).to_a
+  end
+
   def diagonal_win?(current_grid, player_mark)
-    diagonal_one = [0, 4, 8]
-    diagonal_two = [2, 4, 6]
+    rows = rows(current_grid)
+    diagonal_one = rows.each_with_index.map { |line, index| line[index] }
+    diagonal_two = rows.reverse.each_with_index.map { |line, index| line[index] }
     three_marks_in_a_row?(current_grid, diagonal_one, player_mark) || three_marks_in_a_row?(current_grid, diagonal_two, player_mark)
+  end
+
+  def game_over?(current_grid, player_mark)
+    row_win?(current_grid, player_mark) || column_win?(current_grid, player_mark) || diagonal_win?(current_grid, player_mark)
   end
 
 end
