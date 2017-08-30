@@ -15,7 +15,8 @@ RSpec.describe HumanPlayer do
       output = StringIO.new
       input_output = InputOutput.new(output, input)
       human_player = HumanPlayer.new(input_output, grid)
-      expect(human_player.play_move(player_mark, unmarked_grid)).to eq(1)
+      current_grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      expect(human_player.get_valid_move(current_grid, player_mark, converter_instance)).to eq(1)
     end
 
     it "gets a player move" do
