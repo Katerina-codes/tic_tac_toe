@@ -16,6 +16,8 @@ class ComputerPlayer
     move
   end
 
+  private
+
   def play_move(move_sequences, player_mark, opponent_mark, current_grid)
     corner_moves = [1, 3, 7, 9]
     available_moves = @grid.get_available_moves(current_grid)
@@ -50,10 +52,6 @@ class ComputerPlayer
     sequence_with_blocking_move.flatten.select { |value| value != opponent_mark }.join.to_i
   end
 
-  def play_five_as_first_move
-    5
-  end
-
   def possible_fork?(current_grid, opponent_mark, value_indexes, number)
     index_a = value_indexes[0]
     index_a1 = value_indexes[1]
@@ -77,6 +75,10 @@ class ComputerPlayer
     else
       no_fork
     end
+  end
+
+  def play_five_as_first_move
+    5
   end
 
 end
