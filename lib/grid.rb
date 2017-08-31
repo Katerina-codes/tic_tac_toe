@@ -44,10 +44,6 @@ class Grid
     three_marks_in_a_row?(current_grid, diagonal_one, player_mark) || three_marks_in_a_row?(current_grid, diagonal_two, player_mark)
   end
 
-  def game_over?(current_grid, player_mark)
-    row_win?(current_grid, player_mark) || column_win?(current_grid, player_mark) || diagonal_win?(current_grid, player_mark)
-  end
-
   private
 
   def three_marks_in_a_row?(grid, line, mark)
