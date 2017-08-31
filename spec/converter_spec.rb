@@ -42,35 +42,4 @@ RSpec.describe Converter do
       expect(converter.convert_move_number(9)).to eq(8)
     end
   end
-
-  context "Creates better display for player move" do
-    it "Formats move 1 and mark 'X' " do
-      expect(converter.get_mark_template(1, player_mark)).to eq("| X ")
-    end
-
-    it "Formats move 2 and mark 'X' " do
-      expect(converter.get_mark_template(2, player_mark)).to eq("| X |")
-    end
-
-    it "Formats move 3 and mark 'X' " do
-      expect(converter.get_mark_template(3, player_mark)).to eq(" X |")
-    end
-
-    it "Formats move 4 and mark 'X' " do
-      expect(converter.get_mark_template(4, player_mark)).to eq("| X ")
-    end
-
-    it "Formats move 5 and mark 'X' " do
-      expect(converter.get_mark_template(5, player_mark)).to eq("| X |")
-    end
-
-    it "Formats move 7 and mark 'X' " do
-      expect(converter.get_mark_template(7, player_mark)).to eq("| X ")
-    end
-
-    it "Formats move 8 and mark 'X' " do
-      expect(converter.get_mark_template(8, player_mark)).to eq("| X |")
-    end
-  end
-
 end
