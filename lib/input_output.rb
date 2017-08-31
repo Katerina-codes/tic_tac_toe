@@ -45,10 +45,6 @@ class InputOutput
     input
   end
 
-  def display_game_mode_input_error
-    @output.puts "That game mode is invalid. Please enter 1 or 2."
-  end
-
   def display_player_one_wins
     @output.puts "Game over. Player 1 wins!"
   end
@@ -65,10 +61,6 @@ class InputOutput
     @output.puts "Do you want to play again?\nEnter '1' for yes or '2' for no."
   end
 
-  def display_replay_input_error
-    @output.puts "Please enter 1 or 2."
-  end
-
   def get_valid_replay_decision
     input = @input.gets.to_i
     until input == 1 || input == 2
@@ -76,6 +68,16 @@ class InputOutput
       input = @input.gets.to_i
     end
     input
+  end
+
+  private
+
+  def display_game_mode_input_error
+    @output.puts "That game mode is invalid. Please enter 1 or 2."
+  end
+
+  def display_replay_input_error
+    @output.puts "Please enter 1 or 2."
   end
 
 end
