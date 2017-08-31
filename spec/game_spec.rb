@@ -17,9 +17,12 @@ RSpec.describe Game do
 
   context "Displaying and updating grid" do
     it "shows player the initial grid" do
-      game = new_game_instance(input_output, human_player)
-      game.initial_grid
-      expect(output.string).to eq("""
+      input = StringIO.new("1\n1\n4\n2\n8\n3\n2")
+      input_output = InputOutput.new(output, input)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
+      game = new_game_instance(input_output, human_player_with_input)
+      game.game_flow
+      expect(output.string).to include("""
  --- --- ---
 | 1 | 2 | 3 |
  --- --- ---
@@ -239,43 +242,31 @@ RSpec.describe Game do
   end
 
   context "Tracks the game status" do
-    it "returns true if the game has been won" do
-      game = new_game_instance(input_output, human_player)
-      expect(game.game_over?([["O", "O", "O"], ["X", "X", 6], ["X", 8, "X"], ["O", "X", "X"], ["O", "X", 8], ["O", 6, "X"], ["O", "X", "X"], ["O", "X", "X"]], [["O", "O", "O"]])).to eq(true)
-    end
-
-    it "returns a list of winning moves with instances of 1 replaced with marked_move" do
-      game = new_game_instance(input_output, human_player)
-      winning_moves = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-      player_mark = "X"
-      expect(game.put_mark_in_move_sequences(winning_moves, 1, player_mark)).to eq([["X", 2, 3], [4, 5, 6], [7, 8, 9], ["X", 4, 7], [2, 5, 8], [3, 6, 9], ["X", 5, 9], [3, 5, 7]])
-    end
-
     it "returns 'Game over. Player 1 wins!' if 'X' wins" do
-      game = new_game_instance(input_output, human_player)
-      current_grid = ["X", "X", "X", "O", "O" , "6", "7", "8", "9"]
-      p1_mark = "X"
-      p2_mark = "O"
-      game.get_end_score(current_grid, p1_mark, p2_mark)
-      expect(output.string).to eq("Game over. Player 1 wins!\n")
+      input = StringIO.new("1\n1\n4\n2\n5\n3\n2")
+      input_output = InputOutput.new(output, input)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
+      game = new_game_instance(input_output, human_player_with_input)
+      game.game_flow
+      expect(output.string).to include("Game over. Player 1 wins!\n")
     end
 
     it "returns 'Game over. Player 2 wins!' if 'O' wins" do
-      game = new_game_instance(input_output, human_player)
-      current_grid = ["X", "X", "O", "X", "O", "6", "O", "8", "9"]
-      p1_mark = "X"
-      p2_mark = "O"
-      game.get_end_score(current_grid, p1_mark, p2_mark)
-      expect(output.string).to eq("Game over. Player 2 wins!\n")
+      input = StringIO.new("1\n1\n5\n2\n3\n4\n7\n2")
+      input_output = InputOutput.new(output, input)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
+      game = new_game_instance(input_output, human_player_with_input)
+      game.game_flow
+      expect(output.string).to include("Game over. Player 2 wins!\n")
     end
 
     it "returns 'Game over. It's a tie!' if neither player wins" do
-      game = new_game_instance(input_output, human_player)
-      current_grid = [["| X ", "| O |", " X |"], ["| X ", "| O |" , " O |"], ["| O ", "| X |", " X |"]]
-      p1_mark = "X"
-      p2_mark = "O"
-      game.get_end_score(current_grid, p1_mark, p2_mark)
-      expect(output.string).to eq("Game over. It's a tie!\n")
+      input = StringIO.new("1\n1\n2\n3\n5\n4\n6\n8\n7\n9\n2")
+      input_output = InputOutput.new(output, input)
+      human_player_with_input = HumanPlayer.new(input_output, grid)
+      game = new_game_instance(input_output, human_player_with_input)
+      game.game_flow
+      expect(output.string).to include("Game over. It's a tie!\n")
     end
 
     it "ends and scores game when neither player has won and no moves are left" do
@@ -319,20 +310,6 @@ RSpec.describe Game do
 | X | X | O |
  --- --- ---\n""")
       expect(output.string).to include("Game over. It's a tie!")
-    end
-  end
-
-  context "Gets the player's mark" do
-    it "returns 'O' if p1's mark is 'X' " do
-      game = new_game_instance(input_output, human_player)
-      player_mark = "X"
-      expect(game.get_opponent_mark(player_mark)).to eq("O")
-    end
-
-    it "returns 'X' if p1's mark is 'O' " do
-      game = new_game_instance(input_output, human_player)
-      player_mark = "O"
-      expect(game.get_opponent_mark(player_mark)).to eq("X")
     end
   end
 

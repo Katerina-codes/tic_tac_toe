@@ -8,63 +8,9 @@ class Game
     @computer_player = computer_player
   end
 
-  def initial_grid
-    new_grid = @grid.draw_grid
-    @input_output.display_grid(new_grid)
-    new_grid
-  end
-
-  def format_and_place_move_on_grid(mark, move, current_grid)
-    converted_move = @converter.convert_move_number(move)
-    @grid.place_a_move(current_grid, converted_move, mark)
-  end
-
-  def put_mark_in_move_sequences(winning_move_sequences, move, player_mark)
-    winning_moves = winning_move_sequences.flatten
-    index_position_of_move = (0..winning_moves.length-1).select { |value| winning_moves[value] == move }
-    index_position_of_move.each { |index| winning_moves[index] = player_mark }
-    winning_moves.each_slice(3).to_a
-  end
-
-  def game_over?(winning_move_sequences, winning_sequence)
-    !(winning_move_sequences & winning_sequence).empty?
-  end
-
-  def get_opponent_mark(player_mark)
-    if player_mark == "X"
-      "O"
-    else
-      "X"
-    end
-  end
-
   def get_game_mode
     @input_output.ask_for_game_mode
     @input_output.get_valid_game_mode_input
-  end
-
-  def player_wins?(current_grid, player_mark)
-    @grid.row_win?(current_grid, player_mark) || @grid.column_win?(current_grid, player_mark) || @grid.diagonal_win?(current_grid, player_mark)
-  end
-
-  def get_end_score(current_grid, p1_mark, p2_mark)
-    if player_wins?(current_grid, p1_mark)
-      @input_output.display_player_one_wins
-    elsif player_wins?(current_grid, p2_mark)
-      @input_output.display_player_two_wins
-    else
-      @input_output.display_game_tie
-    end
-  end
-
-  def player_move_flow(player_type, player_mark, opponent_mark, winning_move_sequences, current_grid)
-    if player_type == @human_player
-      move = player_type.get_valid_move(current_grid, player_mark, @converter)
-    else
-      move = player_type.get_valid_move(current_grid, winning_move_sequences, player_mark, opponent_mark, @converter)
-    end
-    format_and_place_move_on_grid(player_mark, move, current_grid)
-    put_mark_in_move_sequences(winning_move_sequences, move, player_mark)
   end
 
   def replay
@@ -104,4 +50,51 @@ class Game
     replay
   end
 
+  private
+
+  def player_move_flow(player_type, player_mark, opponent_mark, winning_move_sequences, current_grid)
+    if player_type == @human_player
+      move = player_type.get_valid_move(current_grid, player_mark, @converter)
+    else
+      move = player_type.get_valid_move(current_grid, winning_move_sequences, player_mark, opponent_mark, @converter)
+    end
+    format_and_place_move_on_grid(player_mark, move, current_grid)
+    put_mark_in_move_sequences(winning_move_sequences, move, player_mark)
+  end
+
+  def initial_grid
+    new_grid = @grid.draw_grid
+    @input_output.display_grid(new_grid)
+    new_grid
+  end
+
+  def format_and_place_move_on_grid(mark, move, current_grid)
+    converted_move = @converter.convert_move_number(move)
+    @grid.place_a_move(current_grid, converted_move, mark)
+  end
+
+  def put_mark_in_move_sequences(winning_move_sequences, move, player_mark)
+    winning_moves = winning_move_sequences.flatten
+    index_position_of_move = (0..winning_moves.length-1).select { |value| winning_moves[value] == move }
+    index_position_of_move.each { |index| winning_moves[index] = player_mark }
+    winning_moves.each_slice(3).to_a
+  end
+
+  def player_wins?(current_grid, player_mark)
+    @grid.row_win?(current_grid, player_mark) || @grid.column_win?(current_grid, player_mark) || @grid.diagonal_win?(current_grid, player_mark)
+  end
+
+  def game_over?(winning_move_sequences, winning_sequence)
+    !(winning_move_sequences & winning_sequence).empty?
+  end
+
+  def get_end_score(current_grid, p1_mark, p2_mark)
+    if player_wins?(current_grid, p1_mark)
+      @input_output.display_player_one_wins
+    elsif player_wins?(current_grid, p2_mark)
+      @input_output.display_player_two_wins
+    else
+      @input_output.display_game_tie
+    end
+  end
 end
