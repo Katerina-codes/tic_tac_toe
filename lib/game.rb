@@ -14,10 +14,10 @@ class Game
   end
 
   def replay
-    play_again = 1  
+    play_again = 1
     @input_output.ask_for_replay
     replay_choice = @input_output.get_valid_replay_decision
-    if replay_choice == play_again 
+    if replay_choice == play_again
       game_flow
     else
       replay_choice
