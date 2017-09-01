@@ -22,13 +22,13 @@ class ComputerPlayer
     corner_moves = [1, 3, 7, 9]
     available_moves = @grid.get_available_moves(current_grid)
     if @grid.get_available_moves(current_grid).count == 9 || @grid.get_available_moves(current_grid).count == 8 && @grid.get_available_moves(current_grid).include?(5)
-      play_five_as_first_move
+      play_centre
     elsif POSSIBLE_MOVES.include?(play_winning_move(move_sequences, player_mark, opponent_mark))
        play_winning_move(move_sequences, player_mark, opponent_mark)
     elsif POSSIBLE_MOVES.include?(move_to_block_opponent_win(move_sequences, player_mark, opponent_mark))
       move_to_block_opponent_win(move_sequences, player_mark, opponent_mark)
-    elsif POSSIBLE_MOVES.include?(move_to_block_fork(current_grid, opponent_mark))
-      move_to_block_fork(current_grid, opponent_mark)
+    elsif POSSIBLE_MOVES.include?(check_for_fork(current_grid, opponent_mark))
+      check_for_fork(current_grid, opponent_mark)
      elsif !(corner_moves & available_moves).empty?
       corner_moves.sample
     else
@@ -52,13 +52,17 @@ class ComputerPlayer
     sequence_with_blocking_move.flatten.select { |value| value != opponent_mark }.join.to_i
   end
 
-  def possible_fork?(current_grid, opponent_mark, value_indexes, number)
-    index_a = value_indexes[0]
-    index_a1 = value_indexes[1]
-    current_grid[index_a] == opponent_mark && current_grid[index_a1] == opponent_mark && @grid.get_available_moves(current_grid).include?(number)
+  def move_to_block_fork(current_grid, opponent_mark, opponent_mark_one, opponent_mark_two, number)
+    current_grid[opponent_mark_one] == opponent_mark && current_grid[opponent_mark_two] == opponent_mark && @grid.get_available_moves(current_grid).include?(number)
   end
 
-  def move_to_block_fork(current_grid, opponent_mark)
+ def possible_fork?(current_grid, opponent_mark, mark_indexes, number)
+    opponent_mark_one = mark_indexes[0]
+    opponent_mark_two = mark_indexes[1]
+    move_to_block_fork(current_grid, opponent_mark, opponent_mark_one, opponent_mark_two, number)
+  end
+
+  def check_for_fork(current_grid, opponent_mark)
     no_fork = 0
     if possible_fork?(current_grid, opponent_mark, [1, 3], 1)
       1
@@ -77,7 +81,7 @@ class ComputerPlayer
     end
   end
 
-  def play_five_as_first_move
+  def play_centre
     5
   end
 
