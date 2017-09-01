@@ -56,7 +56,7 @@ class Game
 
   def player_move_flow(player_type, player_mark, opponent_mark, winning_move_sequences, current_grid)
     if player_type == @human_player
-      move = player_type.get_valid_move(current_grid, player_mark, @converter)
+      move = player_type.get_valid_move(current_grid, player_mark)
     else
       move = player_type.get_valid_move(current_grid, winning_move_sequences, player_mark, opponent_mark, @converter)
     end

@@ -5,7 +5,7 @@ class HumanPlayer
     @grid = grid
   end
 
-  def get_valid_move(current_grid, player_mark, converter_instance)
+  def get_valid_move(current_grid, player_mark)
     @input_output.ask_for_move
     move = play_move(player_mark, current_grid)
     until @grid.move_valid?(move) && @grid.move_unique?(move - 1, current_grid)
