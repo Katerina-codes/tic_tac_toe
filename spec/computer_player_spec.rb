@@ -1,12 +1,10 @@
 require 'computer_player'
 require 'grid'
-require 'converter'
 
 RSpec.describe ComputerPlayer do
 
   let(:grid) { Grid.new }
   let(:computer_player) { ComputerPlayer.new(grid) }
-  let(:converter_instance) { Converter.new }
   let(:player_mark) { "O" }
   let(:opponent_mark) { "X" }
   let(:unmarked_move_sequences) { [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]] }

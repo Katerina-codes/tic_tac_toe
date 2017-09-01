@@ -1,7 +1,6 @@
 require 'game'
 require 'input_output'
 require 'grid'
-require 'converter'
 require 'human_player'
 require 'computer_player'
 
@@ -11,7 +10,6 @@ RSpec.describe Game do
   let(:input) { StringIO.new }
   let(:input_output) { InputOutput.new(output) }
   let(:grid) { Grid.new }
-  let(:converter) { Converter.new }
   let(:human_player) { HumanPlayer.new(input_output, grid) }
   let(:computer_player) { ComputerPlayer.new(grid) }
 
@@ -314,7 +312,7 @@ RSpec.describe Game do
   end
 
   def new_game_instance(input_output, human_player)
-    Game.new(input_output, grid, converter, human_player, computer_player)
+    Game.new(input_output, grid, human_player, computer_player)
   end
 
   def io_instance_with_input(output, input)

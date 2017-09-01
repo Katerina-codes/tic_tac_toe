@@ -1,9 +1,8 @@
 class Game
 
-  def initialize(input_output, grid, converter, human_player, computer_player)
+  def initialize(input_output, grid, human_player, computer_player)
     @input_output = input_output
     @grid = grid
-    @converter = converter
     @human_player = human_player
     @computer_player = computer_player
   end
