@@ -58,7 +58,7 @@ class Game
     if player_type == @human_player
       move = player_type.get_valid_move(current_grid, player_mark)
     else
-      move = player_type.get_valid_move(current_grid, winning_move_sequences, player_mark, opponent_mark, @converter)
+      move = player_type.get_valid_move(current_grid, winning_move_sequences, player_mark, opponent_mark)
     end
     format_and_place_move_on_grid(player_mark, move, current_grid)
     put_mark_in_move_sequences(winning_move_sequences, move, player_mark)
