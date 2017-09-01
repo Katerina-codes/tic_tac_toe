@@ -71,8 +71,7 @@ class Game
   end
 
   def format_and_place_move_on_grid(mark, move, current_grid)
-    converted_move = @converter.convert_move_number(move)
-    @grid.place_a_move(current_grid, converted_move, mark)
+    @grid.place_a_move(current_grid, move - 1, mark)
   end
 
   def put_mark_in_move_sequences(winning_move_sequences, move, player_mark)
