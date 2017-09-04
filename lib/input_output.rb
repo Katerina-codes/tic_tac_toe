@@ -5,15 +5,15 @@ class InputOutput
     @input = input
   end
 
-  def display_grid(grid)
-    row_lines = " --- --- ---"
-    formatted_grid = grid.map do |each_row|
-      row_lines + "\n" + each_row.join("") + "\n"
-    end
-
-    @output.puts "\n"
-    @output.puts formatted_grid
-    @output.puts row_lines
+  def display_grid(current_grid)
+    one, two, three, four, five, six, seven, eight, nine = current_grid
+    @output.puts "\n --- --- ---"
+    @output.puts "| #{one} | #{two} | #{three} |"
+    @output.puts " --- --- ---"
+    @output.puts "| #{four} | #{five} | #{six} |"
+    @output.puts " --- --- ---"
+    @output.puts "| #{seven} | #{eight} | #{nine} |"
+    @output.puts " --- --- ---"
   end
 
   def ask_for_move
@@ -45,10 +45,6 @@ class InputOutput
     input
   end
 
-  def display_game_mode_input_error
-    @output.puts "That game mode is invalid. Please enter 1 or 2."
-  end
-
   def display_player_one_wins
     @output.puts "Game over. Player 1 wins!"
   end
@@ -59,6 +55,29 @@ class InputOutput
 
   def display_game_tie
     @output.puts "Game over. It's a tie!"
+  end
+
+  def ask_for_replay
+    @output.puts "Do you want to play again?\nEnter '1' for yes or '2' for no."
+  end
+
+  def get_valid_replay_decision
+    input = @input.gets.to_i
+    until input == 1 || input == 2
+      display_replay_input_error
+      input = @input.gets.to_i
+    end
+    input
+  end
+
+  private
+
+  def display_game_mode_input_error
+    @output.puts "That game mode is invalid. Please enter 1 or 2."
+  end
+
+  def display_replay_input_error
+    @output.puts "Please enter 1 or 2."
   end
 
 end
