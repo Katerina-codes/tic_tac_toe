@@ -16,11 +16,9 @@
 
 - Download the repository by clicking the green button above and selecting **'Download ZIP'**.
 
-- Clone or download the repository by clicking the green button above.
-
 - Navigate to the repository and use **cd** followed by the repository name to enter it.
 
-- Alternatively, clone the repository by click the green button above and copying the URL. Go to your terminal, navigate to where you want the Tic Tac Toe repository to be. Enter the following command:
+- Alternatively, clone the repository by clicking the green button above and copying the URL. Go to your terminal, navigate to where you want the Tic Tac Toe repository to be. Enter the following command:
 
 > $ git clone <paste_URL_here>
 
